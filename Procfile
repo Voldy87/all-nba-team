@@ -1,1 +1,1 @@
-web: gunicorn quiet-crag-60471.wsgi
+web: gunicorn all_nba_team.wsgi
