@@ -32,13 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'polls.apps.PollsConfig', # audience audit about the site
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'splashome'
+    'splashome' # voldy87 & site-specific splash, home page
 ]
 
 MIDDLEWARE = [
@@ -76,9 +77,21 @@ WSGI_APPLICATION = 'all_nba_team.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    'default': { #heroku-provisioned db (django stuff, polls)
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd4s8j5s205po7t',
+        'USER': 'zyqgdtpsbttnxn',
+        'PASSWORD': '28e93dff8395329a9c0760a9ad084bae4e028646af7ad5eec2b24c53f9f65046',
+        'HOST': 'ec2-54-227-250-33.compute-1.amazonaws.com',
+        'PORT': '5432',
+    },
+    'data': { # private do server (allnba data)
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'all_nba_team',
+        'USER': 'postgres',
+        'PASSWORD': 'massaciuccoli',
+        'HOST': '46.101.238.71',
+        'PORT': '5432',
     }
 }
 
