@@ -13,8 +13,7 @@
   <meta name="robots" content="noindex" />
   <meta name="language" content="English">
   {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
-  <script src="{% static 'script.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'splash_style.css' %}" />
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
@@ -67,6 +66,7 @@
 </svg>
   </div>
   <div class="container logo" >
+      <a href="/home">
       <button class="button">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
             <linearGradient id="rainbow" x1="0" x2="0" y1="0" y2="100%" >
@@ -93,6 +93,7 @@
               </g>
           </svg>
         </button>
+        </a>
   </div>	  
 </div>
 
@@ -118,7 +119,7 @@
     <text x="8" y="8" font-size="10" fill="red" transform="rotate(45)">a Voldy87 work</text>
   </a>
 </svg> 
-
+<script src="{% static 'splash_script.js' %}"></script>
 </body>
 
 </html>
