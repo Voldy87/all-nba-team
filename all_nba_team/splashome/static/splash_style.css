@@ -1,0 +1,399 @@
+/* -- general -- */
+@import url('https://fonts.googleapis.com/css?family=Bitter:700');
+html,body {
+    width: 100%;
+    height: 100%;
+}
+body {
+    background: white url('images/splash.png') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    text-align: center;
+    font-family: 'Bitter', serif;
+    cursor: progress;
+}
+/* -- voldySplash -- */
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+	align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+.bg {background: radial-gradient(circle, white 40%, #96011a, #0E499D);}
+.title {
+    text-shadow: 0px 3px 0px #b2a98f,
+                 0px 14px 10px rgba(0,0,0,0.15),
+                 0px 24px 2px rgba(0,0,0,0.1),
+                 0px 34px 30px rgba(0,0,0,0.1);
+}
+.title:hover {
+    opacity:0.75;
+    color: darkslategray;
+}
+
+h1.voldy{
+	position: relative;
+	display: block;
+	margin: 0;
+	font-size: 6vw;
+	line-height: 1;
+	transform: translateY(13vw);
+	animation: up 1000ms 100ms linear forwards;
+	z-index: 1;
+    font-style: oblique;
+    cursor: none;
+}	
+
+.title-container {
+	font-size: 0;
+    position: absolute;
+    top: 45vh;
+	overflow: hidden;
+	padding-bottom: 0.4rem;
+}
+@keyframes up {100% {transform: translateY(0);}}
+
+/* -- allnbaSplash -- */
+.container_author {
+    color: #343434;
+    font-size: 1vw;
+    display: none;
+    width:100%;
+	align-items: center;
+	justify-content: center;
+    min-height: 20vh;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 1vh;
+}
+	.container_author h1 {
+		line-height: 1.4;
+		word-spacing: 3px;
+        max-width: 45rem;
+        cursor: help;
+	}
+    .container_author a { text-decoration: none; }
+	.highlight {
+		display: inline-block;
+		color: #343434;
+		transition: color 250ms;
+		position: relative;
+		z-index: 0;
+    }
+    .highlight::after {
+			position: absolute;
+			z-index: -1;
+			bottom: -5px;
+			left: 50%;
+			transform: translateX(-50%);
+			content: '';
+			width: 100%;
+			height: 3px;
+			background-color: #343434;
+			transition: all 250ms;
+		}
+		.highlight:hover {
+			color: white;
+            text-decoration: underline ivory double;
+        }	
+			.highlight:hover::after {
+				height: 105%;
+				width: 105%;
+			}
+
+.pulse {
+	z-index: -1;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	
+}	
+    .pulse circle {
+		fill: #772603;
+		transform: scale(0);
+		opacity: 0;
+		transform-origin: 50% 50%;
+		animation: pulse 1s 2s cubic-bezier(.5,.5,0,1);
+    }		
+        .pulse circle:nth-child(2) {
+			fill: #025e02;
+			animation: pulse 1s 2.75s cubic-bezier(.5,.5,0,1);
+		}
+		.pulse circle:nth-child(3) {
+			fill: #a9ac08;
+			animation: pulse 1s 3.5s cubic-bezier(.5,.5,0,1);
+		}
+@keyframes pulse {
+	25% {opacity: 0.4;}
+	100% {transform: scale(1);}	
+}
+
+.menu-button{transition: fill 500ms;}
+.outer-circle {
+	transform-origin: 60px 60px;
+	transition: transform 2s cubic-bezier(0.620, 0.005, 0.000, 1.005);
+}
+.button {
+	max-width: 12rem;
+	background: none;
+	border: 0 none;
+	font-size: 0;
+    cursor: pointer;
+    display: none;
+}	
+    .button svg {
+		width: 100%;
+		height: auto;
+	}
+		.button svg:hover text {
+            fill: url(#rainbow2);
+            text-decoration-color: ivory;
+            text-decoration-line: underline;
+            text-decoration-style: double;
+        }
+        .button svg:hover .outer-circle {transform: rotate(360deg);}
+        .button svg:hover .outer-circle circle {
+            stroke: red;
+            stroke-width: 4;
+            stroke-dasharray: 0;
+            stroke-opacity: 0.8;
+        }
+    .logo {
+        background-image: url('images/nba_logo.svg'); 
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 10vw 30vh;
+  }
+
+.subtitle {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10vw;
+    z-index: 1;
+}
+/*  --- corner ---  */
+svg.corner {
+    display: none;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+    svg.corner text {
+        cursor: pointer;
+    }
+    svg.corner:hover text {
+        text-decoration-line: overline;
+        text-decoration-color: rgb(119, 5, 24);
+    }
+
+/* -- handwriting -- */
+#svgWrapper {
+    display:inline-block;
+    width:200px;
+    height:100px;
+    cursor:pointer;
+}    
+svg.handwriteSub {
+    stroke-width:17;
+    width:200px;
+    height:100px;
+    transition:transform .5s ease-out;
+}  
+      #statsPath {
+          stroke-dasharray: 7843;
+          stroke-dashoffset: 7843;
+          stroke-width: 5;
+          animation: handwriteStats 3s linear forwards;
+        }
+  @keyframes handwriteStats {
+      0% {
+          stroke-dashoffset: 7843;
+      }
+      100% {
+          stroke-dashoffset: 0;
+          stroke-width:15;
+      }
+  }
+  
+  .dis{animation: dis 1s linear forwards;}
+  @keyframes dis {from{stroke-width:12;fill-opacity:1;}
+                to {stroke-width:0;fill-opacity:0;}}   
+
+/* -- bouncing ball -- */
+
+.ballWrapper {
+    width: 100px;
+    height: 260px;
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    text-align: initial;
+    bottom: 0;
+  }
+  .ballWrapper:nth-of-type(1){left: 12%;}
+  .ballWrapper:nth-of-type(3){right: 12%;}
+  
+  .ball {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    animation: jump 1s infinite;
+    overflow: hidden;
+  }
+    
+  .ball:after {
+    content: "";
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    background: url("images/4D.svg");
+    position: absolute;
+    animation: rotate 2s infinite, back 1s infinite;
+    z-index: 5;
+    background-repeat: repeat;
+    background-size: cover;
+    animation-timing-function: linear;
+  }
+  
+    
+  .ball:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-image: url("images/5C.svg");
+    background-size: 110%;
+    border-radius: 100%;
+    animation: lightop 1s infinite;
+  }
+    
+  .ballshad {
+    background: url("images/5P.svg");
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 100%;
+    animation: shadop 1s infinite;
+    margin: auto;
+    display: block;
+    background-size: contain;
+    z-index: 10;
+  }
+    
+  .ballShadow {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: 10;
+    margin-left: -30px;
+    background-image: url("images/4V.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    animation: shrink 1s infinite;
+    z-index: -1;
+    background-position: center;
+  }
+    
+  @keyframes jump {
+    0% {
+      top: 0;
+      transform: scale3d(1, 1, 1);
+      border-radius: 100%;
+      animation-timing-function: ease-in;
+    }
+    45% {
+      transform: scale3d(1, 1, 1);
+    }
+    50% {
+      top: 200px;
+      animation-timing-function: ease-out;
+      transform: scale3d(1.3, .8, 1);
+    }
+    55% {
+      transform: scale3d(1, 1, 1);
+    }
+    60% {
+      transform: scale3d(.8, 1.1, 1);
+    }
+    70% {
+      transform: scale3d(.95, 1.05, 1);
+    }
+    72% {
+      transform: scale3d(1, 1, 1);
+    }
+    100% {
+      transform: scale3d(1, 1, 1);
+      top: 0;
+      border-radius: 100%;
+    }
+  }
+  
+  @keyframes rotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+  }
+  
+  @keyframes shrink {
+    0% {
+      bottom: 0;
+      margin-left: -30px;
+      width: 80px;
+      height: 20px;
+      animation-timing-function: ease-in;
+      left: 150%;
+      opacity: .2;
+    }
+    50% {
+      bottom: 5px;
+      margin-left: -10px;
+      width: 50px;
+      height: 10px;
+      animation-timing-function: ease-out;
+      left: 35%;
+      opacity: 1;
+    }
+    100% {
+      bottom: 0;
+      margin-left: -30px;
+      width: 80px;
+      height: 20px;
+      animation-timing-function: ease-in;
+      left: 150%;
+      opacity: .2;
+    }
+  }
+  
+  @keyframes lightop {
+    0% {opacity: .25;}
+    50% {opacity: .1;}
+    100% {opacity: .25;}
+  }
+  
+  @keyframes shadop {
+    0% {opacity: .25;}
+    50% {opacity: .55;}
+    100% {opacity: .25;}
+  }
+  
+  @keyframes back {
+    0% {background-position: top;}
+    100% {background-position: bottom;}
+  }
