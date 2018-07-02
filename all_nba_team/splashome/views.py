@@ -16,5 +16,5 @@ def home(request):
     return render(
         request,
         'home.html',
-        {}#context={'num_books':num_books,'num_instances':num_instances,'num_instances_available':num_instances_available,'num_authors':num_authors},
+        context={'images': ['bosdet.jpg','saslal.jpg','lebron.jpg', 'court.svg', 'ball.jpg', 'clelal.jpg']}
     )

@@ -199,7 +199,7 @@ svg.corner {
     }
     svg.corner:hover text {
         text-decoration-line: overline;
-        text-decoration-color: rgb(119, 5, 24);
+        fill: white;
     }
 
 /* -- handwriting -- */

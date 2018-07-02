@@ -40,7 +40,7 @@ body {
     position: relative;
   }
 .container .item.left:hover {
-    transition: .5s;
+    transition: all ease-out 600ms;
     flex-grow: 30;
     cursor: pointer;
   }
@@ -68,15 +68,15 @@ ul.index {
 @keyframes appear {
   0% {
     visibility: visible;
-    opacity: 0.2;
+    opacity: 0;
   }
   30% {
     background:#96011a33;
-    opacity: 0.4;
+    opacity: 0;
   }
   70% {
     background:#96011abb;
-    opacity: 0.7;
+    opacity: 0.2;
   }
   100% {
     visibility: visible;
