@@ -13,3 +13,6 @@ the presentation, which is different for every voldy87 project but not related t
 pipenv shell
 django-admin compilemessages 
 python3 manage.py runserver
+
+#tech used
+svg, django, i18n, webpack,
