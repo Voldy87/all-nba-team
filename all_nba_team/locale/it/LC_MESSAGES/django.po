@@ -80,7 +80,7 @@ msgstr "qui"
 
 #: all_nba_team/templates/index.html:121
 msgid "a Voldy87 work"
-msgstr "un sito disegnato e<br> sviluppato da Voldy87"
+msgstr "un sito di Voldy87"
 
 #~ msgid "Statistics &amp; Records"
 #~ msgstr "statistiche &amp; record"
