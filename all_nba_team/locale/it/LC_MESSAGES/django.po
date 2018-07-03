@@ -59,8 +59,6 @@ msgid "Statistics"
 msgstr "statistiche"
 
 #: all_nba_team/templates/home.html:91
-#, fuzzy
-#| msgid "records"
 msgid "Records"
 msgstr "primati"
 
@@ -74,10 +72,10 @@ msgstr "entra"
 
 #: all_nba_team/templates/index.html:108
 msgid "Want to know more about the author?"
-msgstr "informazioni sull'autore"
+msgstr "informazioni sull'autore?"
 
 #: all_nba_team/templates/index.html:110
-msgid "see here!"
+msgid "see here"
 msgstr "qui"
 
 #: all_nba_team/templates/index.html:121
