@@ -30,14 +30,14 @@ body {
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-  }
-  .container .item {
-    height: 100vh;
-    display: grid;
-    margin: auto;
-    text-align: center;
-    transition: .3s;
-    position: relative;
+    .item {
+      height: 100vh;
+      display: grid;
+      margin: auto;
+      text-align: center;
+      transition: .3s;
+      position: relative;
+    }
   }
 .container .item.left:hover {
     transition: all ease-out 600ms;

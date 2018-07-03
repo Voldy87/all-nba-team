@@ -2,7 +2,6 @@
 
 <html lang="en">
 <head>
-  <title>Voldy87 presents All-NBA Teams Stats</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="description" content="All-NBA Teams Stats Landing Page">
   <meta name="author" content="Andrea Orlandi">
@@ -13,6 +12,8 @@
   <meta name="robots" content="noindex" />
   <meta name="language" content="English">
   {% load static %}
+  {% load i18n %}
+  <title>Voldy87 {% trans "presents" %} All-NBA Teams Stats</title>
   <link rel="stylesheet" type="text/css" href="{% static 'splash_style.css' %}" />
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -20,10 +21,9 @@
 </head>
 
 <body>
-
 <div class="container">
   <div class="title-container">
-    <h1 class="voldy">presents...</h1>
+    <h1 class="voldy">{% trans "presents" %}...</h1>
     <svg class="pulse" viewBox="0 0 2048 2048" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <circle id="Oval" cx="1024" cy="1024" r="512"></circle>
       <circle id="Oval" cx="1024" cy="1024" r="768"></circle>
@@ -88,7 +88,9 @@
                   <circle cx="7" cy="60" r="2" fill="#4248f4" stroke-width="10"/>
                 </g>
                 <a href="/home">
-                  <text xml:space="preserve" text-anchor="start" font-family="Bitter, Helvetica, Arial, sans-serif" font-size="26" y="67" x="16" stroke-width="0" stroke="#000" fill="url(#rainbow)">ENTER</text>
+                  <text text-anchor="start" font-family="Bitter, Helvetica, Arial, sans-serif" font-size="26" y="67" x="16" stroke-width="0" stroke="#000" fill="url(#rainbow)">
+                      {{ _("enter")|default:"enter"|cut:" "|upper }}
+                  </text>
                 </a>
               </g>
           </svg>
@@ -103,9 +105,9 @@
       <div class="ballShadow"></div>
   </div>
   <div>
-    <h1>Want to know more about the author?<br>
+    <h1>{% trans "Want to know more about the author?" %}<br>
       <a class="highlight" target="_blank" href="https://voldy87.tk">
-        <span style="text-transform: uppercase">see here!</span>
+        <span style="text-transform: uppercase">{% trans "see here" %}!</span>
       </a>
     </h1>
   </div>  
@@ -116,7 +118,7 @@
 </div>
 <svg class="corner" xmlns="http://www.w3.org/2000/svg" height="70" width="70">
   <a target="_blank" href="https://voldy87.tk">
-    <text x="8" y="8" font-size="10" fill="red" transform="rotate(45)">a Voldy87 work</text>
+    <text x="8" y="8" font-size="10" fill="red" transform="rotate(45)">{% trans "a Voldy87 work" %}</text>
   </a>
 </svg> 
 <script src="{% static 'splash_script.js' %}"></script>

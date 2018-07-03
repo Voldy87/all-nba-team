@@ -18,6 +18,7 @@ from django.urls import include, path
 from django.contrib import admin
 
 urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),
     path('polls/', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', include('splashome.urls')),

@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-  <title>All-NBA Team Stats {{ title }}</title>
+  <title>{{ title|default:"All-NBA Team Stats" }}</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="description" content="All-NBA Teams Stats Home Page">
   <meta name="author" content="Andrea Orlandi">
@@ -13,6 +13,7 @@
   <meta name="robots" content="noindex" />
   <meta name="language" content="English">
   {% load static %}
+  {% load i18n %}
   <link rel="stylesheet" type="text/css" href="{% static 'home_style.css' %}" />
   
   <!--[if lt IE 9]>
@@ -24,9 +25,9 @@
     <div class="container">
         <div class="item left">
             <ul class="index">
-                <li><h5>History</h5></li>
-                <li><h5>Winners' list</h5></li>
-                <li><h5>Records</h5>
+                <li><h5>{{ _("history")|capfirst }}</h5></li>
+                <li><h5>{{ _("Winners' list")|capfirst }}</h5></li>
+                <li><h5>{{ _("records")|capfirst }}</h5>
                     <ul>
                         <li>Single Players
                             <ul>
@@ -77,8 +78,9 @@
             </ul>
         </div>
         <div class="item right">
+            {% include "lang-switch.html" %}
             <div class="menu__title menu__title--up">
-                <h2>List of recipients</h2>
+                <h2>{% trans "List of recipients" %}</h2>
             </div>
             <div id="list">
                 <object type="image/svg+xml" data="{% static 'images/group.svg' %}">
@@ -86,7 +88,7 @@
                 </object>
             </div>
             <div class="menu__title menu__title--down">
-                <h2>Statistics &amp; Records</h2>
+                <h2>{{ _("Statistics")|title }} &amp; {{ _("Records")|title }}</h2>
             </div> 
                 <nav class="menu">
                     <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
@@ -114,7 +116,7 @@
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
               
-                <!-- Image text -->
+                <!-- Here, inside the p, the title of the image -->
                 <div class="caption-container">
                   <p id="caption"></p>
                 </div>
@@ -124,7 +126,7 @@
                         {% for image in images %}
                         <div class="column">
                             {% with '/images/'|add:image as image_static %}
-                            <img class="demo cursor" style="width:100%" onclick="currentSlide(1)" alt="TODO" src="{% static image_static %}">
+                            <img class="demo cursor" style="width:100%" onclick="currentSlide({{ forloop.counter }})" alt="TODO" src="{% static image_static %}">
                             {% endwith %}
                         </div>
                         {% endfor %}
