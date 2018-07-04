@@ -151,6 +151,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'record_pages/static'),
+    os.path.join(BASE_DIR, 'polls/static'),
 ) # where to look for static files that are not tied to a particular app.
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #for the collectstatic command

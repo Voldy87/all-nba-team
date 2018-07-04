@@ -14,14 +14,16 @@
   {% load static %}
   {% load i18n %}
   <title>Voldy87 {% trans "presents" %} All-NBA Teams Stats</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'splash_style.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'general.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'style/splash.css' %}" />
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
 </head>
 
 <body>
-<div class="container">
+    {% include "lang-switch.html" %}
+<div class="splash-container">
   <div class="title-container">
     <h1 class="voldy">{% trans "presents" %}...</h1>
     <svg class="pulse" viewBox="0 0 2048 2048" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -121,7 +123,7 @@
     <text x="8" y="8" font-size="10" fill="red" transform="rotate(45)">{% trans "a Voldy87 work" %}</text>
   </a>
 </svg> 
-<script src="{% static 'splash_script.js' %}"></script>
+<script src="{% static 'script/splash.js' %}"></script>
 </body>
 
 </html>

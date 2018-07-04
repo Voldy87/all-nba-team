@@ -48,7 +48,7 @@ msgstr "presente"
 
 #: all_nba_team/templates/index.html:92
 msgid "enter"
-msgstr "site"
+msgstr "entrez"
 
 #: all_nba_team/templates/index.html:108
 msgid "Want to know more about the author?"
@@ -60,4 +60,4 @@ msgstr "vois ici"
 
 #: all_nba_team/templates/index.html:121
 msgid "a Voldy87 work"
-msgstr "un travail de Voldy87"
+msgstr "fait par Voldy87"

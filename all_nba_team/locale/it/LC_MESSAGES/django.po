@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 15:54+0200\n"
+"POT-Creation-Date: 2018-07-04 16:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,69 +18,74 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: all_nba_team/settings.py:127
-msgid "German"
-msgstr "Tedesco"
-
-#: all_nba_team/settings.py:128
-msgid "English"
-msgstr "Inglese"
-
-#: all_nba_team/settings.py:129
-msgid "Spanish"
-msgstr "Spagnolo"
-
-#: all_nba_team/settings.py:130
-msgid "French"
-msgstr "Francese"
-
-#: all_nba_team/settings.py:131
-msgid "Italian"
-msgstr "Italiano"
-
-#: all_nba_team/templates/home.html:28
+#: all_nba_team/templates/base.html:30
 msgid "history"
 msgstr "storia"
 
-#: all_nba_team/templates/home.html:29
+#: all_nba_team/templates/base.html:31
 msgid "Winners' list"
 msgstr "lista dei premiati"
 
-#: all_nba_team/templates/home.html:30
+#: all_nba_team/templates/base.html:32
 msgid "records"
 msgstr "primati"
 
-#: all_nba_team/templates/home.html:83
+#: record_pages/templates/history.html:6
+msgid "All-NBA Teams History"
+msgstr "Un po' di storia.."
+
+#: record_pages/templates/history.html:13
+#, fuzzy
+#| msgid "history"
+msgid "History"
+msgstr "storia"
+
+#: splashome/templates/home.html:13
 msgid "List of recipients"
 msgstr "Elenco vincitori"
 
-#: all_nba_team/templates/home.html:91
+#: splashome/templates/home.html:21
 msgid "Statistics"
 msgstr "statistiche"
 
-#: all_nba_team/templates/home.html:91
+#: splashome/templates/home.html:21
 msgid "Records"
 msgstr "primati"
 
-#: all_nba_team/templates/index.html:16 all_nba_team/templates/index.html:26
+#: splashome/templates/index.html:16 splashome/templates/index.html:28
 msgid "presents"
 msgstr "ha l'onore di presentare"
 
-#: all_nba_team/templates/index.html:92
+#: splashome/templates/index.html:94
 msgid "enter"
 msgstr "entra"
 
-#: all_nba_team/templates/index.html:108
+#: splashome/templates/index.html:110
 msgid "Want to know more about the author?"
 msgstr "informazioni sull'autore?"
 
-#: all_nba_team/templates/index.html:110
+#: splashome/templates/index.html:112
 msgid "see here"
 msgstr "qui"
 
-#: all_nba_team/templates/index.html:121
+#: splashome/templates/index.html:123
 msgid "a Voldy87 work"
-msgstr "un sito di Voldy87"
+msgstr "un sito di Voldy"
+
+#~ msgid "German"
+#~ msgstr "Tedesco"
+
+#~ msgid "English"
+#~ msgstr "Inglese"
+
+#~ msgid "Spanish"
+#~ msgstr "Spagnolo"
+
+#~ msgid "French"
+#~ msgstr "Francese"
+
+#~ msgid "Italian"
+#~ msgstr "Italiano"
 
 #~ msgid "Statistics &amp; Records"
 #~ msgstr "statistiche &amp; record"

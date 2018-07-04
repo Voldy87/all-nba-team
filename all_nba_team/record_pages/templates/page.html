@@ -5,10 +5,32 @@
 
 {% block head %} 
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'page.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style/page.css' %}" />
 {% endblock %}
 
-{% block content %} 
+{% block content %}
+
+    <div class="stage">
+        {% with range="abcdefghijabcdefghij" %}
+        {% for spam in range   %}
+        <div class="layer"></div>
+        {% endfor %}
+        {% endwith %}
+    </div>
+    <div class="page-content-container">
+
+    </div> 
+{% endblock %}
+
+{% block footer %}
+<div class="page-footer">
+    <div><img src="{% static 'assets/home-icon.svg' %}"><a href="/home">back Home</a></div>
+    <div>2017-{% now 'Y' %} by <b>Voldy87</b> (<a href="https://voldy87.tk">about me</a>)</div>
+    <div>Contacts</div>
+    <div>site <img src="{% static 'assets/search-icon.svg' %}"> search or <img src="{% static 'assets/icon-sitemap.svg' %}">map</div>
+    <div>Terms of use</div>
+    <div>Accessibility</div>
+</div>
 {% endblock %}
 
 {% block svgdef %}
