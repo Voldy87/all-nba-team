@@ -7,6 +7,6 @@ def history(request):
     #return HttpResponse("Hello, world. You're at the history page.")
     return render(
         request,
-        'page.html',
+        'history.html',
         {}#context={'num_books':num_books,'num_instances':num_instances,'num_instances_available':num_instances_available,'num_authors':num_authors},
     )

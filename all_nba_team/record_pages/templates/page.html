@@ -1,15 +1,20 @@
-<!doctype html>
+{% extends "base.html" %}
 
-<html lang="en">
-<head>
-  <meta charset="utf-8">
+{% load i18n %}
+{% load static %}
 
-  <title>The HTML5 Herald</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
-</head>
+{% block head %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'page.css' %}" />
+{% endblock %}
 
-<body>
-  <p>lalallalalalla</p>   
-</body>
-</html>
+{% block content %} 
+{% endblock %}
+
+{% block svgdef %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'page.js' %}"></script>
+{% endblock %}
