@@ -22,6 +22,11 @@ h5 {
   font-weight: 500;
 }
 
+h2 a, h5 a {
+  text-decoration: unset;
+  color: inherit;
+}
+
 ul {
   list-style-type: none;
 }

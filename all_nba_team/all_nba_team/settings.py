@@ -60,7 +60,10 @@ ROOT_URLCONF = 'all_nba_team.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['all_nba_team/templates'],
+        'DIRS': [
+            'all_nba_team/templates',
+            'record_pages/templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
