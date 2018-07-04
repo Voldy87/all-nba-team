@@ -1,0 +1,28 @@
+{% extends "page.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "All-NBA Teams History" %}{% endblock %}
+
+{% block head %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'history.css' %}" />
+    <style>
+        .layer:after {
+            content:"{% trans 'History' %}"
+        }
+    </style> 
+{% endblock %}
+
+{% block content %} 
+    {{ block.super }}
+{% endblock %}
+
+{% block svgdef %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'history.js' %}"></script>
+{% endblock %}

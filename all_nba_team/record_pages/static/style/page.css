@@ -1,0 +1,234 @@
+@-webkit-keyframes osc {
+  100% {
+    -webkit-transform: rotateX(30deg) rotateY(1deg) rotateZ(1deg);
+            transform: rotateX(30deg) rotateY(1deg) rotateZ(1deg);
+  }
+}
+
+@keyframes osc {
+  100% {
+    -webkit-transform: rotateX(30deg) rotateY(1deg) rotateZ(1deg);
+            transform: rotateX(30deg) rotateY(1deg) rotateZ(1deg);
+  }
+}
+
+.page-content-container {
+  position: relative;
+  top: -199px;
+  margin: 0 10px;
+  border-radius: 20px;
+  border: thick ridge #0E499D;
+  display: block;
+}
+
+.page-content-container:after {
+  content: "";
+  background: url("../assets/basket-sky.jpg");
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.stage {
+  height: 10vh;
+  width: 20vw;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  -webkit-perspective: 9999px;
+          perspective: 9999px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.layer {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-animation: osc 800ms infinite alternate ease-in-out -3.5s;
+          animation: osc 800ms infinite alternate ease-in-out -3.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-transform: rotateY(10deg) rotateX(10deg) translateZ(10deg);
+          transform: rotateY(10deg) rotateX(10deg) translateZ(10deg);
+}
+
+.layer:after {
+  font-size: 80px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  color: #820116;
+  letter-spacing: -2px;
+  text-shadow: 4px 0 10px rgba(0, 0, 0, 0.13);
+}
+
+.layer:nth-child(n+10):after {
+  -webkit-text-stroke: 3px rgba(0, 0, 0, 0.25);
+}
+
+.layer:nth-child(n+11):after {
+  -webkit-text-stroke: 15px #0E499D;
+  text-shadow: 6px 0 6px black, 5px 5px 5px black, 0 6px 6px black;
+}
+
+.layer:nth-child(n+12):after {
+  -webkit-text-stroke: 15px #0a336e;
+}
+
+.layer:last-child:after {
+  -webkit-text-stroke: 17px rgba(0, 0, 0, 0.1);
+}
+
+.layer:first-child:after {
+  color: #fff;
+  text-shadow: none;
+}
+
+.layer:nth-child(1):after {
+  -webkit-transform: translateZ(0px);
+          transform: translateZ(0px);
+}
+
+.layer:nth-child(2):after {
+  -webkit-transform: translateZ(-1.5px);
+          transform: translateZ(-1.5px);
+}
+
+.layer:nth-child(3):after {
+  -webkit-transform: translateZ(-3px);
+          transform: translateZ(-3px);
+}
+
+.layer:nth-child(4):after {
+  -webkit-transform: translateZ(-4.5px);
+          transform: translateZ(-4.5px);
+}
+
+.layer:nth-child(5):after {
+  -webkit-transform: translateZ(-6px);
+          transform: translateZ(-6px);
+}
+
+.layer:nth-child(6):after {
+  -webkit-transform: translateZ(-7.5px);
+          transform: translateZ(-7.5px);
+}
+
+.layer:nth-child(7):after {
+  -webkit-transform: translateZ(-9px);
+          transform: translateZ(-9px);
+}
+
+.layer:nth-child(8):after {
+  -webkit-transform: translateZ(-10.5px);
+          transform: translateZ(-10.5px);
+}
+
+.layer:nth-child(9):after {
+  -webkit-transform: translateZ(-12px);
+          transform: translateZ(-12px);
+}
+
+.layer:nth-child(10):after {
+  -webkit-transform: translateZ(-13.5px);
+          transform: translateZ(-13.5px);
+}
+
+.layer:nth-child(11):after {
+  -webkit-transform: translateZ(-15px);
+          transform: translateZ(-15px);
+}
+
+.layer:nth-child(12):after {
+  -webkit-transform: translateZ(-16.5px);
+          transform: translateZ(-16.5px);
+}
+
+.layer:nth-child(13):after {
+  -webkit-transform: translateZ(-18px);
+          transform: translateZ(-18px);
+}
+
+.layer:nth-child(14):after {
+  -webkit-transform: translateZ(-19.5px);
+          transform: translateZ(-19.5px);
+}
+
+.layer:nth-child(15):after {
+  -webkit-transform: translateZ(-21px);
+          transform: translateZ(-21px);
+}
+
+.layer:nth-child(16):after {
+  -webkit-transform: translateZ(-22.5px);
+          transform: translateZ(-22.5px);
+}
+
+.layer:nth-child(17):after {
+  -webkit-transform: translateZ(-24px);
+          transform: translateZ(-24px);
+}
+
+.layer:nth-child(18):after {
+  -webkit-transform: translateZ(-25.5px);
+          transform: translateZ(-25.5px);
+}
+
+.layer:nth-child(19):after {
+  -webkit-transform: translateZ(-27px);
+          transform: translateZ(-27px);
+}
+
+.layer:nth-child(20):after {
+  -webkit-transform: translateZ(-28.5px);
+          transform: translateZ(-28.5px);
+}
+
+.page-footer {
+  color: white;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  font-size: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.page-footer a {
+  text-decoration: unset;
+  color: inherit;
+}
+
+.page-footer img {
+  width: 12px;
+  padding: 0 1px;
+}
+
+.page-footer div {
+  curspadding: 4px 2px;
+  margin: 3px 1px;
+  border: 1px solid #96011a;
+  border-radius: 10px;
+}
+
+.page-footer div:hover {
+  background: rgba(14, 73, 157, 0.2);
+  color: #96011a;
+  border: 1px dashed #96011a;
+}
+/*# sourceMappingURL=page.css.map */
