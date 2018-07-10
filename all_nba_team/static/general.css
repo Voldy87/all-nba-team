@@ -1,7 +1,60 @@
 @import url("https://fonts.googleapis.com/css?family=Bitter:700");
+@-webkit-keyframes appear {
+  0% {
+    visibility: visible;
+    opacity: 0;
+  }
+  30% {
+    background: #96011a;
+    opacity: 0;
+  }
+  70% {
+    background: #96011a;
+    opacity: 0.2;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+    background: url("./images/nba_logo.svg") center bottom no-repeat, -webkit-gradient(linear, left top, left bottom, from(#0E499D), color-stop(#96011a), color-stop(20%, rgba(255, 255, 255, 0.8)));
+    background: url("./images/nba_logo.svg") center bottom no-repeat, linear-gradient(#0E499D, #96011a, rgba(255, 255, 255, 0.8) 20%);
+  }
+}
+@keyframes appear {
+  0% {
+    visibility: visible;
+    opacity: 0;
+  }
+  30% {
+    background: #96011a;
+    opacity: 0;
+  }
+  70% {
+    background: #96011a;
+    opacity: 0.2;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+    background: url("./images/nba_logo.svg") center bottom no-repeat, -webkit-gradient(linear, left top, left bottom, from(#0E499D), color-stop(#96011a), color-stop(20%, rgba(255, 255, 255, 0.8)));
+    background: url("./images/nba_logo.svg") center bottom no-repeat, linear-gradient(#0E499D, #96011a, rgba(255, 255, 255, 0.8) 20%);
+  }
+}
+
+/* Smartphones (portrait and landscape) ----------- */
 body {
   font-family: Bitter, Arial, Helvetica, sans-serif;
-  cursor: url("images/ball.cur"), auto;
+  cursor: url("images/ball.cur"), url("images/ball.svg"), url("images/ball.jpg"), auto;
+}
+
+.cursor:hover, h2:hover {
+  cursor: url("./images/ball-hover.png"), auto !important;
+  color: #0E499D;
+  -webkit-text-decoration-style: double;
+          text-decoration-style: double;
+  -webkit-text-decoration-color: white;
+          text-decoration-color: white;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 * {
@@ -14,6 +67,7 @@ body {
 h2 {
   font-size: 24px;
   font-weight: 700;
+  display: inline-block;
 }
 
 h5 {
@@ -30,6 +84,11 @@ ul {
   list-style-type: none;
 }
 
+a:hover {
+  cursor: text !important;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
 /* -- container left and right -- */
 .container {
   display: -webkit-box;
@@ -67,6 +126,18 @@ ul {
   cursor: pointer;
 }
 
+@media (min-width: 320px) and (max-width: 413px) {
+  .container .item.left:hover {
+    width: auto;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .container .item.left:hover {
+    width: auto;
+  }
+}
+
 .right {
   -webkit-box-flex: 100;
       -ms-flex-positive: 100;
@@ -77,24 +148,70 @@ ul {
   border-left: 1px solid rgba(14, 73, 157, 0.4);
 }
 
+@media (min-width: 320px) and (max-width: 413px) {
+  .right {
+    -webkit-box-shadow: unset;
+            box-shadow: unset;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .right {
+    -webkit-box-shadow: unset;
+            box-shadow: unset;
+  }
+}
+
 .left {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  width: 1vmax;
-  /* as CSS can't animate between display none/block */
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.1)));
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
   -webkit-box-shadow: 10px 0 70px 10px #0E499D;
           box-shadow: 10px 0 70px 10px #0E499D;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.1)));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
   border-right: 1px solid rgba(14, 73, 157, 0.4);
+  width: 1vw;
+  /* as CSS can't animate between display none/block */
   z-index: 1;
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  .left {
+    -webkit-box-flex: 8;
+        -ms-flex-positive: 8;
+            flex-grow: 8;
+    -webkit-box-shadow: unset;
+            box-shadow: unset;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .left {
+    -webkit-box-flex: 7;
+        -ms-flex-positive: 7;
+            flex-grow: 7;
+    -webkit-box-shadow: unset;
+            box-shadow: unset;
+  }
 }
 
 /* -- index on the left -- */
 ul.index {
   visibility: hidden;
   overflow-y: auto;
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  ul.index {
+    width: 85%;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  ul.index {
+    width: 85%;
+  }
 }
 
 .container .item.left:hover ul.index {
@@ -106,46 +223,10 @@ ul.index {
           animation-fill-mode: forwards;
 }
 
-@-webkit-keyframes appear {
-  0% {
-    visibility: visible;
-    opacity: 0;
-  }
-  30% {
-    background: #96011a;
-    opacity: 0;
-  }
-  70% {
-    background: #96011a;
-    opacity: 0.2;
-  }
-  100% {
-    visibility: visible;
-    opacity: 1;
-    background: url("../images/nba_logo.svg") center bottom no-repeat, -webkit-gradient(linear, left top, left bottom, from(#0E499D), color-stop(#96011a), color-stop(20%, rgba(255, 255, 255, 0.8)));
-    background: url("../images/nba_logo.svg") center bottom no-repeat, linear-gradient(#0E499D, #96011a, rgba(255, 255, 255, 0.8) 20%);
-  }
-}
-
-@keyframes appear {
-  0% {
-    visibility: visible;
-    opacity: 0;
-  }
-  30% {
-    background: #96011a;
-    opacity: 0;
-  }
-  70% {
-    background: #96011a;
-    opacity: 0.2;
-  }
-  100% {
-    visibility: visible;
-    opacity: 1;
-    background: url("../images/nba_logo.svg") center bottom no-repeat, -webkit-gradient(linear, left top, left bottom, from(#0E499D), color-stop(#96011a), color-stop(20%, rgba(255, 255, 255, 0.8)));
-    background: url("../images/nba_logo.svg") center bottom no-repeat, linear-gradient(#0E499D, #96011a, rgba(255, 255, 255, 0.8) 20%);
-  }
+.container .item.left:hover .mobile-switch {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  width: 15%;
 }
 
 ul.index {
@@ -249,5 +330,35 @@ ul.index > li li li:hover {
   -webkit-text-decoration: #0E499D underline waved;
           text-decoration: #0E499D underline waved;
   color: #96011a;
+}
+
+.mobile-switch {
+  display: none;
+  color: red;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-image: url("./images/arrow.png"), -webkit-gradient(linear, right top, left top, from(#d0d0fa), to(#f8a5a5));
+  background-image: url("./images/arrow.png"), linear-gradient(to left, #d0d0fa, #f8a5a5);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  .mobile-switch {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .mobile-switch {
+    display: block;
+    width: 100%;
+  }
 }
 /*# sourceMappingURL=general.css.map */

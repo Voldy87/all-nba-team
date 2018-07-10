@@ -1,36 +1,9 @@
+@import 'colors';
+@import 'animations';
+@import 'mixins';
+@import 'base';
+
 @import url('https://fonts.googleapis.com/css?family=Bitter:700');
-
-$red:#96011a;
-$blue:#0E499D;
-$orange: #FA8320;
-
-body {
-  font-family: Bitter, Arial, Helvetica, sans-serif;
-  cursor: url("images/ball.cur"), auto;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  h2 {
-    font-size: 24px;
-    font-weight: 700;
-  }
-  h5 {
-    font-size: 18px;
-    font-weight: 500;
-  }
-  h2 a, h5 a {
-    text-decoration: unset;
-    color: inherit;
-  }
-
-  ul {
-    list-style-type: none;
-  }
 
   /* -- container left and right -- */
   .container {
@@ -50,6 +23,12 @@ body {
 .container .item.left:hover {
     transition: all ease-out 600ms;
     flex-grow: 30;
+    @include xs {
+      width: auto;
+    }
+    @include sm {
+      width: auto;
+    }
     cursor: pointer;
   }
   
@@ -57,14 +36,28 @@ body {
     flex-grow: 100;
     background: radial-gradient(circle, white, $red, $blue);
     box-shadow: -10px 0 70px 10px $blue;
+    @include xs {
+      box-shadow: unset;
+    }
+    @include sm {
+      box-shadow: unset;
+    }
     border-left: 1px solid rgba(14,73,157,0.4);
   }
   .left {
     flex-grow: 1;
-    width: 1vmax; /* as CSS can't animate between display none/block */
-    background: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.1));
     box-shadow: 10px 0 70px 10px $blue;
+    @include xs {
+      flex-grow: 8;
+      box-shadow: unset;
+    }
+    @include sm {
+      flex-grow: 7;
+      box-shadow: unset;
+    }
+    background: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.1));
     border-right: 1px solid rgba(14,73,157,0.4);
+    width: 1vw; /* as CSS can't animate between display none/block */
     z-index: 1;
   }
   
@@ -72,31 +65,23 @@ body {
 ul.index {
   visibility: hidden;
   overflow-y: auto;
+  @include xs {
+    width: 85%;
+  }
+  @include sm {
+    width: 85%;
+  }
 }
 .container .item.left:hover ul.index {
   animation-name: appear;
   animation-duration: 800ms;
   animation-fill-mode: forwards;
 }
-@keyframes appear {
-  0% {
-    visibility: visible;
-    opacity: 0;
-  }
-  30% {
-    background:$red;
-    opacity: 0;
-  }
-  70% {
-    background:$red;
-    opacity: 0.2;
-  }
-  100% {
-    visibility: visible;
-    opacity: 1;
-    background: url('../images/nba_logo.svg') center bottom no-repeat, linear-gradient($blue,$red,rgba(255, 255, 255, 0.8) 20%) ;
-  }
+.container .item.left:hover .mobile-switch {
+  transform: rotate(0deg);
+  width: 15%;
 }
+
 ul.index {
   padding: 15px 5px;
   line-height: 45px;
@@ -173,4 +158,26 @@ ul.index > li li li:hover {
             color: $red;
             }
     }
+}
+
+.mobile-switch {
+  display: none;
+  color:red;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  background-image: url("./images/arrow.png"), linear-gradient(to left, rgb(208, 208, 250), rgb(248, 165, 165));//red;//, linear-gradient(to right, $red, $blue);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transform: rotate(180deg);
+  @include xs {
+    display:block;
+    width: 100%;
+  }
+  @include sm {
+    display:block;
+    width: 100%;
+  }
 }

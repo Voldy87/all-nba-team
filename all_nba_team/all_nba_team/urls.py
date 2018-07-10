@@ -22,6 +22,5 @@ urlpatterns = [
     path('record_pages/', include('record_pages.urls')),
     path('polls/', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', include('splashome.urls')),
     url(r'^', include('splashome.urls')),
 ]

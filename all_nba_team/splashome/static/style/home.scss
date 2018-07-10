@@ -1,4 +1,4 @@
-
+@import '../../../static/mixins'; //for the media queries
 
 /* -- menu -- */
 
@@ -283,6 +283,12 @@ a.menu-item:hover img {
   height: 45vh;
   right: 0;
   left: 0;
+  @include xs {
+    display: none;
+  }
+  @include sm {
+    display: none;
+  }
 }
 
 /* Hide the images by default */
@@ -303,7 +309,7 @@ a.menu-item:hover img {
 }
 
 /* Add a pointer when hovering over the thumbnail images */
-.cursor {
+.cursor:hover {
   cursor: pointer;
 }
 

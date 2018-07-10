@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="menu__title menu__title--up">
+    <div class="cursor menu__title menu__title--up">
         <h2>{% trans "List of recipients" %}</h2>
     </div>
     <div id="list">
@@ -22,7 +22,7 @@
     <div class="menu__title menu__title--down">
         <h2>{{ _("Statistics")|title }} &amp; {{ _("Records")|title }}</h2>
     </div> 
-    <nav class="menu">
+    <div class="menu">
         <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
         <label class="menu-open-button" for="menu-open">
             <span class="hamburger hamburger-1"></span>
@@ -34,7 +34,7 @@
         <a href="#" class="menu-item" content="Draft"> <img class="lottery" src="{% static 'images/lottery.svg' %}" alt="Drafts"> </a>
         <a href="#" class="menu-item" content="Franchise"> <img class="team" src="{% static 'images/team3.svg' %}" alt="Teams"> </a>
         <a href="#" class="menu-item" content="Player"> <img class="player" src="{% static 'images/player3.svg' %}" alt="Single players"> </a>
-    </nav>
+    </div>
     <div class="slidesContainer">
                 {% for image in images %}
                 <div class="mySlides">

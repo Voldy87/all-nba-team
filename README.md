@@ -11,6 +11,7 @@ the presentation, which is different for every voldy87 project but not related t
 #deploygit ch (auto deploy heroku on master)
 (in django root)
 pipenv shell
+[cd all_nba_team/]
 django-admin compilemessages 
 python3 manage.py runserver
 

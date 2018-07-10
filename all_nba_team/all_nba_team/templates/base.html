@@ -25,7 +25,7 @@
 
 <body>
     <div class="container">
-        <div class="item left">
+        <nav class="item left">
             <ul class="index">
                 <li><h5><a href="../record_pages/history">{{ _("history")|capfirst }}</a></h5></li>
                 <li><h5>{{ _("Winners' list")|capfirst }}</h5></li>
@@ -78,7 +78,8 @@
                     </ul>
                 </li>
             </ul>
-        </div>
+            <div class="mobile-switch"></div>
+        </nav>
         <div class="item right">
             {% include "lang-switch.html" %}
             {% block content %}HERE THE CONTENT OF THE PAGE{% endblock %}

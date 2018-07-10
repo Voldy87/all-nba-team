@@ -1,3 +1,4 @@
+/* Smartphones (portrait and landscape) ----------- */
 /* -- menu -- */
 #filterdef {
   visibility: hidden;
@@ -367,15 +368,27 @@ a.menu-item:hover img {
 .slidesContainer {
   position: absolute;
   bottom: 0;
-  height: 40vh;
+  height: 45vh;
   right: 0;
   left: 0;
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  .slidesContainer {
+    display: none;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .slidesContainer {
+    display: none;
+  }
 }
 
 /* Hide the images by default */
 .mySlides {
   display: none;
-  height: 70%;
+  height: 60%;
   border-color: rgba(212, 121, 89, 0.2);
   border-width: 3px;
   border-style: solid;
@@ -391,7 +404,7 @@ a.menu-item:hover img {
 }
 
 /* Add a pointer when hovering over the thumbnail images */
-.cursor {
+.cursor:hover {
   cursor: pointer;
 }
 
@@ -480,6 +493,7 @@ a.menu-item:hover img {
   position: absolute;
   width: 100%;
   bottom: 30%;
+  font-size: smaller;
 }
 
 .row {
