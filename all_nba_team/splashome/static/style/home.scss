@@ -1,16 +1,17 @@
-@import '../../../static/mixins'; //for the media queries
+@import '../../../static/style/mixins'; //for the media queries
+@import '../../../static/style/colors';
 
 /* -- menu -- */
 #lang-switch {
   @include xs {
     bottom: 15vh;
-    right: 25vw;
+    right: 20vw;
     left: unset !important;
     top: unset !important;
   }
   @include sm {
     bottom: 15vh;
-    right: 25vw;
+    right: 18vw;
     left: unset !important;
     top: unset !important;
   }
@@ -26,26 +27,28 @@
           filter: url("#shadowed-goo");
   top: 35vh;
 }
+
 #list {
   position: absolute;
   color: white;
   text-align: center;
   left: 0;
   right: 0;
-  top: 14vh;
+  top: 13vh;
+  object { 
+    transform: scale(1.7);
+    background: $blue;
+    border-radius: 45%;
+    padding: 10px;
+    &:hover{
+      cursor: pointer;
+      transform: scale(2.2);
+      background: radial-gradient($red 20%,$blue);
+    }
+    transition: transform,background 1800ms ease-out;
+  }
 }
-#list object:hover{
-  cursor: pointer;
-  transform: scale(2);
-  background: radial-gradient(#0E4991,#0E4990,#0E499D);
-  transition: transform,background 200ms ease-out;
-}
-#list object { 
-  transform: scale(1.7);
-  background: #0E499D;
-  border-radius: 45%;
-  padding: 10px;
- }
+
 
 .menu__title {
   color: white;
@@ -233,11 +236,10 @@ a.menu-item:hover img {
   -webkit-transform: scale(1.1, 1.1) translate3d(0, 0, 0);
           transform: scale(1.1, 1.1) translate3d(0, 0, 0);
   cursor: pointer;
-}
-
-.menu-open-button:hover {
-  -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
-          transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+  &:hover {
+      -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+              transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+  }
 }
 
 .menu-open:checked + .menu-open-button {
@@ -314,15 +316,10 @@ a.menu-item:hover img {
   border-radius: 28px;
 }
 
-/* Add a pointer when hovering over the thumbnail images */
-.cursor:hover {
-  cursor: pointer;
-}
 
 /* Next & previous buttons */
 .prev,
 .next {
-  cursor: pointer;
   position: absolute;
   background: rgba(255,255,255,0.3);
   top: 50%;

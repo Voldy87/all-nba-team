@@ -16,7 +16,7 @@
   <meta name="language" content="{{ LANGUAGE_CODE }}">
   <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon/favicon.ico' %}"/>
 
-  <link rel="stylesheet" type="text/css" href="{% static 'general.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'style/general.css' %}" />
   {% block head %}{% endblock %}
   
   <!--[if lt IE 9]>
@@ -26,7 +26,7 @@
 
 <body>
     <div class="container">
-        <nav class="item left" onmouseover="toggleH2()">
+        <nav class="item left">
             <ul class="index">
                 <li><h5><a href="../record_pages/history">{{ _("history")|capfirst }}</a></h5></li>
                 <li><h5>{{ _("Winners' list")|capfirst }}</h5></li>
@@ -79,9 +79,9 @@
                     </ul>
                 </li>
             </ul>
-            <div class="mobile-switch"></div>
+            <div class="mobile-switch" onmouseover="toggleH2(); toggleFooter();" onmouseout="toggleH2(); toggleFooter();"></div>
         </nav>
-        <div class="item right" onmouseover="toggleH2()">
+        <div class="item right" onmouseovser="toggleH2()">
             {% include "lang-switch.html" %}
             {% block content %}HERE THE CONTENT OF THE PAGE{% endblock %}
             {% block footer %}{% endblock %}

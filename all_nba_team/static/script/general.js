@@ -1,17 +1,14 @@
-var sideMenuOpened = true;
+var toggle = true;
 
 function toggleH2() {
-    if (document.querySelector(".item.left").style.flexGrow==30) //the side mnenu is opened
-        sideMenuOpened = false;
-    console.log("hover");
+    console.log(6666);
     var x = document.querySelectorAll("h2");
-    var i;
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = sideMenuOpened ? "none" : "inherit";
-    }
-    sideMenuOpened = !sideMenuOpened;
-    //document.querySelector(".container .item.left .index").style.visibility="hidden";
+    for (let i = 0; i < x.length; i++)
+        x[i].style.display = toggle ? "none" : "inherit";
+    toggle = !toggle;
 }
+
+
 
 function hoverEvent() {
     console.log("hover");

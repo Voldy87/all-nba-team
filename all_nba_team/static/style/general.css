@@ -15,8 +15,8 @@
   100% {
     visibility: visible;
     opacity: 1;
-    background: url("./images/nba_logo.svg") center bottom no-repeat, -webkit-gradient(linear, left top, left bottom, from(#0E499D), color-stop(#96011a), color-stop(20%, rgba(255, 255, 255, 0.8)));
-    background: url("./images/nba_logo.svg") center bottom no-repeat, linear-gradient(#0E499D, #96011a, rgba(255, 255, 255, 0.8) 20%);
+    background: url("../images/nba_logo.svg") center bottom no-repeat, -webkit-gradient(linear, left top, left bottom, from(#0E499D), color-stop(#96011a), color-stop(20%, rgba(255, 255, 255, 0.8)));
+    background: url("../images/nba_logo.svg") center bottom no-repeat, linear-gradient(#0E499D, #96011a, rgba(255, 255, 255, 0.8) 20%);
   }
 }
 @keyframes appear {
@@ -35,19 +35,23 @@
   100% {
     visibility: visible;
     opacity: 1;
-    background: url("./images/nba_logo.svg") center bottom no-repeat, -webkit-gradient(linear, left top, left bottom, from(#0E499D), color-stop(#96011a), color-stop(20%, rgba(255, 255, 255, 0.8)));
-    background: url("./images/nba_logo.svg") center bottom no-repeat, linear-gradient(#0E499D, #96011a, rgba(255, 255, 255, 0.8) 20%);
+    background: url("../images/nba_logo.svg") center bottom no-repeat, -webkit-gradient(linear, left top, left bottom, from(#0E499D), color-stop(#96011a), color-stop(20%, rgba(255, 255, 255, 0.8)));
+    background: url("../images/nba_logo.svg") center bottom no-repeat, linear-gradient(#0E499D, #96011a, rgba(255, 255, 255, 0.8) 20%);
   }
 }
 
 /* Smartphones (portrait and landscape) ----------- */
 body {
   font-family: Bitter, Arial, Helvetica, sans-serif;
-  cursor: url("images/ball.cur"), url("images/ball.svg"), url("images/ball.jpg"), auto;
+  cursor: url("../images/ball.cur"), url("../images/ball.svg"), url("../images/ball.jpg"), auto !important;
+}
+
+.cursor, h2 {
+  cursor: url("../images/ball.cur"), url("../images/ball.svg"), url("../images/ball.jpg"), auto !important;
 }
 
 .cursor:hover, h2:hover {
-  cursor: url("./images/ball-hover.png"), auto !important;
+  cursor: url("../images/ball-hover.png"), auto !important;
   color: #0E499D;
   -webkit-text-decoration-style: double;
           text-decoration-style: double;
@@ -70,6 +74,23 @@ h2 {
   display: inline-block;
 }
 
+@media (min-width: 320px) and (max-width: 413px) {
+  h2 {
+    font-size: 10px;
+    font-weight: normal;
+    display: inline;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  h2 {
+    font-size: 20px;
+    -webkit-box-shadow: unset;
+            box-shadow: unset;
+    display: inline;
+  }
+}
+
 h5 {
   font-size: 18px;
   font-weight: 500;
@@ -84,11 +105,13 @@ ul {
   list-style-type: none;
 }
 
-a:hover {
-  cursor: text !important;
+/* Add a pointer when hovering over the thumbnail images */
+@media only screen and (min-width: 750px) and (max-height: 1100px) {
+  .slidesContainer {
+    display: none;
+  }
 }
 
-/* Add a pointer when hovering over the thumbnail images */
 /* -- container left and right -- */
 .container {
   display: -webkit-box;
@@ -117,7 +140,7 @@ a:hover {
   position: relative;
 }
 
-.container .item.left:hover {
+.item.left:hover {
   -webkit-transition: all ease-out 600ms;
   transition: all ease-out 600ms;
   -webkit-box-flex: 30;
@@ -127,15 +150,31 @@ a:hover {
 }
 
 @media (min-width: 320px) and (max-width: 413px) {
-  .container .item.left:hover {
-    width: auto;
+  .item.left:hover {
+    width: 50%;
   }
 }
 
 @media (min-width: 414px) and (max-width: 767px) {
-  .container .item.left:hover {
+  .item.left:hover {
     width: auto;
   }
+}
+
+.item.left:hover ul.index {
+  background: white;
+  -webkit-animation-name: appear;
+          animation-name: appear;
+  -webkit-animation-duration: 800ms;
+          animation-duration: 800ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.item.left:hover .mobile-switch {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  width: 12%;
 }
 
 .right {
@@ -204,29 +243,14 @@ ul.index {
 
 @media (min-width: 320px) and (max-width: 413px) {
   ul.index {
-    width: 85%;
+    width: 88%;
   }
 }
 
 @media (min-width: 414px) and (max-width: 767px) {
   ul.index {
-    width: 85%;
+    width: 88%;
   }
-}
-
-.container .item.left:hover ul.index {
-  -webkit-animation-name: appear;
-          animation-name: appear;
-  -webkit-animation-duration: 800ms;
-          animation-duration: 800ms;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-
-.container .item.left:hover .mobile-switch {
-  -webkit-transform: rotate(0deg);
-          transform: rotate(0deg);
-  width: 15%;
 }
 
 ul.index {
@@ -258,7 +282,7 @@ ul.index h5::before, ul.index h5::after {
   width: 15px;
   height: 15px;
   display: inline-block;
-  background-image: url("images/ball.svg");
+  background-image: url("../images/ball.svg");
   background-size: 15px 15px;
   background-repeat: no-repeat;
   -webkit-transition: -webkit-transform 5s;
@@ -339,8 +363,8 @@ ul.index > li li li:hover {
   top: 0;
   right: 0;
   height: 100%;
-  background-image: url("./images/arrow.png"), -webkit-gradient(linear, right top, left top, from(#d0d0fa), to(#f8a5a5));
-  background-image: url("./images/arrow.png"), linear-gradient(to left, #d0d0fa, #f8a5a5);
+  background-image: url("../images/arrow.png"), -webkit-gradient(linear, right top, left top, from(#d0d0fa), to(#f8a5a5));
+  background-image: url("../images/arrow.png"), linear-gradient(to left, #d0d0fa, #f8a5a5);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;

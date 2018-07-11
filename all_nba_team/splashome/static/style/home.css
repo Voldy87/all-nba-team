@@ -3,7 +3,7 @@
 @media (min-width: 320px) and (max-width: 413px) {
   #lang-switch {
     bottom: 15vh;
-    right: 25vw;
+    right: 20vw;
     left: unset !important;
     top: unset !important;
   }
@@ -12,7 +12,7 @@
 @media (min-width: 414px) and (max-width: 767px) {
   #lang-switch {
     bottom: 15vh;
-    right: 25vw;
+    right: 18vw;
     left: unset !important;
     top: unset !important;
   }
@@ -36,18 +36,7 @@
   text-align: center;
   left: 0;
   right: 0;
-  top: 14vh;
-}
-
-#list object:hover {
-  cursor: pointer;
-  -webkit-transform: scale(2);
-          transform: scale(2);
-  background: radial-gradient(#0E4991, #0E4990, #0E499D);
-  -webkit-transition: background 200ms ease-out,-webkit-transform;
-  transition: background 200ms ease-out,-webkit-transform;
-  transition: transform,background 200ms ease-out;
-  transition: transform,background 200ms ease-out,-webkit-transform;
+  top: 13vh;
 }
 
 #list object {
@@ -56,6 +45,17 @@
   background: #0E499D;
   border-radius: 45%;
   padding: 10px;
+  -webkit-transition: background 1800ms ease-out,-webkit-transform;
+  transition: background 1800ms ease-out,-webkit-transform;
+  transition: transform,background 1800ms ease-out;
+  transition: transform,background 1800ms ease-out,-webkit-transform;
+}
+
+#list object:hover {
+  cursor: pointer;
+  -webkit-transform: scale(2.2);
+          transform: scale(2.2);
+  background: radial-gradient(#96011a 20%, #0E499D);
 }
 
 .menu__title {
@@ -413,15 +413,9 @@ a.menu-item:hover img {
   border-radius: 28px;
 }
 
-/* Add a pointer when hovering over the thumbnail images */
-.cursor:hover {
-  cursor: pointer;
-}
-
 /* Next & previous buttons */
 .prev,
 .next {
-  cursor: pointer;
   position: absolute;
   background: rgba(255, 255, 255, 0.3);
   top: 50%;

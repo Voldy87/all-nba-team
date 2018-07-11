@@ -24,12 +24,18 @@
 
 {% block footer %}
 <div class="page-footer">
-    <div><img src="{% static 'assets/home-icon.svg' %}"><a href="/home">back Home</a></div>
-    <div>2017-{% now 'Y' %} by <b>Voldy87</b> (<a href="https://voldy87.tk">about me</a>)</div>
-    <div>Contacts</div>
-    <div>site <img src="{% static 'assets/search-icon.svg' %}"> search or <img src="{% static 'assets/icon-sitemap.svg' %}">map</div>
-    <div>Terms of use</div>
-    <div>Accessibility</div>
+    <div>
+        <div class="page-footer__backhome"><a href="/home"><img src="{% static 'assets/home-icon.svg' %}" alt="back to home page"><span>back Home</span></a></div>
+        <div class="page-footer__credits">2017-{% now 'Y' %} by <b>Voldy87</b> (<a href="https://voldy87.tk">about me</a>)</div>
+    </div>
+    <div>
+        <div class="page-footer__contacts">Contacts</div>
+        <div class="page-footer__searchAndMap">site <a href="#"><img src="{% static 'assets/search-icon.svg' %}"><span>search</span></a> or <a href="#"><img src="{% static 'assets/icon-sitemap.svg' %}"><span>map</span></a></div>
+    </div>
+    <div>
+        <div class="page-footer__privacy">Terms of use</div>
+        <div class="page-footer__universal">Accessibility</div>
+    </div>
 </div>
 {% endblock %}
 
@@ -38,5 +44,5 @@
 
 {% block script %}
     {{ block.super }}
-    <script src="{% static 'page.js' %}"></script>
+    <script src="{% static 'script/page.js' %}"></script>
 {% endblock %}

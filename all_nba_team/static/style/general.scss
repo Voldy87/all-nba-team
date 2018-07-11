@@ -5,6 +5,13 @@
 
 @import url('https://fonts.googleapis.com/css?family=Bitter:700');
 
+
+@media only screen and (min-width: 750px) and (max-height: 1100px) {
+  .slidesContainer {
+      display: none;
+  }
+}
+
   /* -- container left and right -- */
   .container {
     display: flex;
@@ -20,16 +27,26 @@
       position: relative;
     }
   }
-.container .item.left:hover {
+.item.left:hover {
     transition: all ease-out 600ms;
     flex-grow: 30;
     @include xs {
-      width: auto;
+      width: 50%;
     }
     @include sm {
       width: auto;
     }
     cursor: pointer;
+    ul.index {
+      background: white;
+      animation-name: appear;
+      animation-duration: 800ms;
+      animation-fill-mode: forwards;
+    }
+    .mobile-switch {
+      transform: rotate(0deg);
+      width: 12%;
+    }
   }
   
   .right {
@@ -66,21 +83,13 @@ ul.index {
   visibility: hidden;
   overflow-y: auto;
   @include xs {
-    width: 85%;
+    width: 88%;
   }
   @include sm {
-    width: 85%;
+    width: 88%;
   }
 }
-.container .item.left:hover ul.index {
-  animation-name: appear;
-  animation-duration: 800ms;
-  animation-fill-mode: forwards;
-}
-.container .item.left:hover .mobile-switch {
-  transform: rotate(0deg);
-  width: 15%;
-}
+
 
 ul.index {
   padding: 15px 5px;
@@ -107,7 +116,7 @@ ul.index h5::before, ul.index h5::after {
   width: 15px;
   height: 15px;
   display: inline-block;
-  background-image: url("images/ball.svg");
+  background-image: url("../images/ball.svg");
   background-size: 15px 15px;
   background-repeat: no-repeat; 
   transition: transform 5s;
@@ -167,7 +176,7 @@ ul.index > li li li:hover {
   top: 0;
   right: 0;
   height: 100%;
-  background-image: url("./images/arrow.png"), linear-gradient(to left, rgb(208, 208, 250), rgb(248, 165, 165));//red;//, linear-gradient(to right, $red, $blue);
+  background-image: url("../images/arrow.png"), linear-gradient(to left, rgb(208, 208, 250), rgb(248, 165, 165));//red;//, linear-gradient(to right, $red, $blue);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: contain;

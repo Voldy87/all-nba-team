@@ -12,10 +12,10 @@
 {% endblock %}
 
 {% block content %}
-    <div class="cursor menu__title menu__title--up">
-        <h2>{% trans "List of recipients" %}</h2>
-    </div>
     <div class="linkbutton-direct">
+        <div class="cursor menu__title menu__title--up">
+            <h2>{% trans "List of recipients" %}</h2>
+        </div>
         <div id="list">
             <object type="image/svg+xml" data="{% static 'images/group.svg' %}">
                 List <!-- fallback image in CSS -->

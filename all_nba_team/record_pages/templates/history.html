@@ -7,7 +7,7 @@
 
 {% block head %} 
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'history.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style/history.css' %}" />
     <style>
         .layer:after {
             content:"{% trans 'History' %}"
@@ -24,5 +24,5 @@
 
 {% block script %}
     {{ block.super }}
-    <script src="{% static 'history.js' %}"></script>
+    <script src="{% static 'script/history.js' %}"></script>
 {% endblock %}

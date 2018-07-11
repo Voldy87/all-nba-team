@@ -1,3 +1,5 @@
+@import '../../../static/style/mixins.scss';
+
 //TITLE
 
 $clr:#0E499D;
@@ -10,10 +12,10 @@ $clr2:#96011a;
 @mixin layerize($NUM_LAYERS:20) {
     .stage {
         height: 10vh;
-        width: 20vw;
-        margin: auto;
+        //width: 20vw;
+        //margin: auto;
         position: absolute;
-        top: 0; right: 0; left: 0;
+        top: 7%; right: 0; left: 0;
         perspective: 9999px;
         transform-style: preserve-3d;
     }
@@ -24,7 +26,13 @@ $clr2:#96011a;
         animation-fill-mode: forwards;
         transform: rotateY(10deg) rotateX(10deg) translateZ(10deg);
         &:after {
-            font-size: 80px;
+            font-size: 70px;
+            @include xs {
+                font-size: 35px;
+              }
+              @include sm {
+                font-size: 55px;
+              }
             position: absolute;
             left: 0; right: 0;
             color: darken($clr2, 4%);
@@ -63,14 +71,26 @@ $clr2:#96011a;
 
 .page-content-container { 
     position: relative;
-    top: -199px;
+    height: 60%;
+    top: 20%;
     margin: 0 10px; 
     border-radius: 20px;
     border: thick ridge $clr;
     display: block;
   &:after {
     content: "";
-    background: url("../assets/basket-sky.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../assets/basket-sky-lg.jpg");
+    @include xs {
+        background-image: url("../assets/basket-sky-sm.jpg");
+    }
+    @include sm {
+        background-image: url("../assets/basket-sky-sm.jpg");
+    }
+    @include md {
+        background-image: url("../assets/basket-sky-md.jpg");
+    }
     opacity: 0.5;
     top: 0;
     left: 0;
@@ -95,6 +115,13 @@ $clr2:#96011a;
     bottom: 0;
     font-size: 10px;
     display: flex;
+    flex-direction: row;
+    @include xs {
+        flex-direction: column;
+    }
+    @include sm {
+        flex-direction: column;
+    }    
     background: rgba(255,255,255,0.2);
     padding: 5px;
     justify-content: space-evenly;
@@ -107,7 +134,7 @@ $clr2:#96011a;
         padding: 0 1px;
     }
     div {
-        curspadding: 4px 2px;
+        padding: 4px 2px;
         margin: 3px 1px;
         border: 1px solid $clr2;
         border-radius: 10px;
@@ -117,4 +144,15 @@ $clr2:#96011a;
             border: 1px dashed $clr2;
         }
     }
+}
+
+.page-footer__backhome span, .page-footer__searchAndMap span {
+    @include xs {display: none;}
+    @include sm {display: none;}
+}
+
+.page-footer > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
