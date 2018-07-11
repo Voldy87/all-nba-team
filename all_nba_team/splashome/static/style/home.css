@@ -30,14 +30,6 @@
   top: 35vh;
 }
 
-#arlist {
-  background: #96011a;
-  border-radius: 100%;
-  color: white;
-  text-align: center;
-  line-height: 80px;
-}
-
 #list {
   position: absolute;
   color: white;

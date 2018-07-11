@@ -1,3 +1,6 @@
+{% load static %}
+{% load i18n %}
+
 <!doctype html>
 
 <html lang="en">
@@ -10,9 +13,8 @@
   <meta name="keywords" content="NBA, award, basketball, sport, team, franchise">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex" />
-  <meta name="language" content="English">
-  {% load static %}
-  {% load i18n %}
+  <meta name="language" content="{{ LANGUAGE_CODE }}">
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon/favicon.ico' %}"/>
   <title>Voldy87 {% trans "presents" %} All-NBA Teams Stats</title>
   <link rel="stylesheet" type="text/css" href="{% static 'general.css' %}" />
   <link rel="stylesheet" type="text/css" href="{% static 'style/splash.css' %}" />
