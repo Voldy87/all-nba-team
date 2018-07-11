@@ -25,7 +25,7 @@
 
 <body>
     <div class="container">
-        <nav class="item left">
+        <nav class="item left" onmouseover="toggleH2()">
             <ul class="index">
                 <li><h5><a href="../record_pages/history">{{ _("history")|capfirst }}</a></h5></li>
                 <li><h5>{{ _("Winners' list")|capfirst }}</h5></li>
@@ -80,7 +80,7 @@
             </ul>
             <div class="mobile-switch"></div>
         </nav>
-        <div class="item right">
+        <div class="item right" onmouseover="toggleH2()">
             {% include "lang-switch.html" %}
             {% block content %}HERE THE CONTENT OF THE PAGE{% endblock %}
             {% block footer %}{% endblock %}
@@ -88,6 +88,7 @@
         {% block svgdef %}{% endblock %}
     </div>
      <!-- Container END -->
+     <script src="{% static 'script/general.js' %}" charset="UTF-8" type="application/javascript"></script>
      {% block script %}{% endblock %}
 </body>
 </html>

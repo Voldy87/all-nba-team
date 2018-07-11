@@ -1,5 +1,23 @@
 /* Smartphones (portrait and landscape) ----------- */
 /* -- menu -- */
+@media (min-width: 320px) and (max-width: 413px) {
+  #lang-switch {
+    bottom: 15vh;
+    right: 25vw;
+    left: unset !important;
+    top: unset !important;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  #lang-switch {
+    bottom: 15vh;
+    right: 25vw;
+    left: unset !important;
+    top: unset !important;
+  }
+}
+
 #filterdef {
   visibility: hidden;
   position: fixed;
@@ -12,7 +30,7 @@
   top: 35vh;
 }
 
-#alist {
+#arlist {
   background: #96011a;
   border-radius: 100%;
   color: white;
