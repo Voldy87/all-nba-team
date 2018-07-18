@@ -11,29 +11,29 @@
 {% block content %}
 
     <div class="stage">
-        {% with range="abcdefghijabcdefghij" %}
+        {% with range="abcdefghijabcdefghij" %} <!-- for the layers -->
         {% for spam in range   %}
         <div class="layer"></div>
         {% endfor %}
         {% endwith %}
     </div>
     <div class="page-content-container">
-
+        {% block data %}{% endblock %}
     </div> 
 {% endblock %}
 
 {% block footer %}
 <div class="page-footer">
     <div>
-        <div class="page-footer__backhome"><a href="/home"><img src="{% static 'assets/home-icon.svg' %}" alt="back to home page"><span>back Home</span></a></div>
-        <div class="page-footer__credits">2017-{% now 'Y' %} by <b>Voldy87</b> (<a href="https://voldy87.tk">about me</a>)</div>
+        <div class="page-footer__backhome"><a href="/home"><img src="{% static 'assets/home-icon.svg' %}" alt="back to home page">&nbsp;<span>Home Page</span></a></div>
+        <div class="page-footer__credits">2017-{% now 'Y' %} <b>Voldy87</b> (<a href="https://voldy87.tk">about me</a>)</div>
     </div>
     <div>
         <div class="page-footer__contacts">Contacts</div>
-        <div class="page-footer__searchAndMap">site <a href="#"><img src="{% static 'assets/search-icon.svg' %}"><span>search</span></a> or <a href="#"><img src="{% static 'assets/icon-sitemap.svg' %}"><span>map</span></a></div>
+        <div class="page-footer__searchAndMap">Site <a href="#"><img src="{% static 'assets/search-icon.svg' %}"><span>search</span></a> or <a href="#"><img src="{% static 'assets/icon-sitemap.svg' %}"><span>map</span></a></div>
     </div>
     <div>
-        <div class="page-footer__privacy">Terms of use</div>
+        <div class="page-footer__privacy">Terms of Use</div>
         <div class="page-footer__universal">Accessibility</div>
     </div>
 </div>

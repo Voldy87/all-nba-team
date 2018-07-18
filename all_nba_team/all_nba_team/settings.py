@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'splashome' # voldy87 & site-specific splash, home page
+    'record_pages',
+    'splashome', # voldy87 & site-specific splash, home page
 ]
 
 MIDDLEWARE = [
@@ -72,7 +73,11 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n', #i18n
+                #'app.apptemplates.load_setting',
             ],
+            'libraries':{
+               # 'i18n_include': 'record_pages.templatetags.i18n_include',
+            }
         },
     },
 ]

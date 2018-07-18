@@ -12,10 +12,11 @@ $clr2:#96011a;
 @mixin layerize($NUM_LAYERS:20) {
     .stage {
         height: 10vh;
-        //width: 20vw;
-        //margin: auto;
+        width: 90%;
         position: absolute;
-        top: 7%; right: 0; left: 0;
+        @include xs {top: 7%;}
+        @include sm {top: 7%;} 
+        left: 5%;
         perspective: 9999px;
         transform-style: preserve-3d;
     }
@@ -68,39 +69,48 @@ $clr2:#96011a;
     }
 
 }
+.reduced .layer:after {
+    font-size: smaller;
+}
+
+.reduced * {
+    font-size: smaller !important;
+}
 
 .page-content-container { 
     position: relative;
     height: 60%;
+    //width: 73%;
     top: 20%;
     margin: 0 10px; 
     border-radius: 20px;
     border: thick ridge $clr;
     display: block;
-  &:after {
-    content: "";
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url("../assets/basket-sky-lg.jpg");
-    @include xs {
-        background-image: url("../assets/basket-sky-sm.jpg");
-    }
-    @include sm {
-        background-image: url("../assets/basket-sky-sm.jpg");
-    }
-    @include md {
-        background-image: url("../assets/basket-sky-md.jpg");
-    }
-    opacity: 0.5;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: 1;
-    background-repeat: no-repeat;
-    background-size: cover;   
-  }
+    transition: all 800ms ease-out;
+    //&:after {
+        //content: "";
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url("../assets/basket-sky-lg.jpg");
+        @include xs {
+            background-image: url("../assets/basket-sky-sm.jpg");
+        }
+        @include sm {
+            background-image: url("../assets/basket-sky-sm.jpg");
+        }
+        @include md {
+            background-image: url("../assets/basket-sky-md.jpg");
+        }
+        opacity: 0.5;
+       // top: 0;
+        //left: 0;
+       // bottom: 0;
+      //  right: 0;
+     //   position: absolute;
+     //   z-index: 1;
+        background-repeat: no-repeat;
+        background-size: cover;   
+ // }
 }
 
 @include layerize();
@@ -116,11 +126,14 @@ $clr2:#96011a;
     font-size: 10px;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     @include xs {
         flex-direction: column;
+        justify-content: center;
     }
     @include sm {
         flex-direction: column;
+        justify-content: center;
     }    
     background: rgba(255,255,255,0.2);
     padding: 5px;
@@ -130,18 +143,43 @@ $clr2:#96011a;
         color: inherit;
     }
     img {
+        display: none;
+        @include xs {
+            display: initial;
+        }
+        @include sm {
+            display: initial;
+        }  
         width: 12px;
         padding: 0 1px;
     }
     div {
-        padding: 4px 2px;
+        @include xs {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        @include sm {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    }
+    div div {
+        padding: 4px 8px;
+        font-size: 20px;
+        @include xs {
+            font-size: small;
+        }
+        @include sm {
+            font-size: smaller;
+        } 
         margin: 3px 1px;
         border: 1px solid $clr2;
         border-radius: 10px;
         &:hover { 
-            background: rgba(14,73,157,0.2);
-            color: $clr2;
-            border: 1px dashed $clr2;
+            background-color: $clr2;
+            //border: 1px dashed $clr2;
         }
     }
 }
@@ -151,8 +189,4 @@ $clr2:#96011a;
     @include sm {display: none;}
 }
 
-.page-footer > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
+

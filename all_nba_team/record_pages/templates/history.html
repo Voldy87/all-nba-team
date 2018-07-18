@@ -3,6 +3,8 @@
 {% load i18n %}
 {% load static %}
 
+{% load i18n_include %}
+
 {% block title %}{% trans "All-NBA Teams History" %}{% endblock %}
 
 {% block head %} 
@@ -16,7 +18,14 @@
 {% endblock %}
 
 {% block content %} 
-    {{ block.super }}
+    {{ block.super }} 
+{% endblock %}
+
+{% block data %} 
+    <div class="history-text"> 
+        {% get_current_language as LANGUAGE_CODE %}
+        {% i18n_include "history.html" LANGUAGE_CODE %}
+    </div> 
 {% endblock %}
 
 {% block svgdef %}

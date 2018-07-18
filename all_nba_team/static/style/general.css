@@ -140,9 +140,12 @@ ul {
   position: relative;
 }
 
-.item.left:hover {
+.item.left {
   -webkit-transition: all ease-out 600ms;
   transition: all ease-out 600ms;
+}
+
+.item.left:hover {
   -webkit-box-flex: 30;
       -ms-flex-positive: 30;
           flex-grow: 30;
@@ -202,6 +205,7 @@ ul {
 }
 
 .left {
+  width: 5vw;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -210,7 +214,6 @@ ul {
   background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.1)));
   background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
   border-right: 1px solid rgba(14, 73, 157, 0.4);
-  width: 1vw;
   /* as CSS can't animate between display none/block */
   z-index: 1;
 }
@@ -222,6 +225,7 @@ ul {
             flex-grow: 8;
     -webkit-box-shadow: unset;
             box-shadow: unset;
+    width: 10vw;
   }
 }
 
@@ -232,6 +236,7 @@ ul {
             flex-grow: 7;
     -webkit-box-shadow: unset;
             box-shadow: unset;
+    width: 5vw;
   }
 }
 
@@ -256,6 +261,32 @@ ul.index {
 ul.index {
   padding: 15px 5px;
   line-height: 45px;
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  ul.index {
+    line-height: inherit !important;
+    padding: inherit !important;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  ul.index {
+    line-height: inherit !important;
+    padding: inherit !important;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  ul.index li {
+    font-size: smaller !important;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  ul.index li {
+    font-size: smaller !important;
+  }
 }
 
 ul.index > li {
@@ -291,11 +322,35 @@ ul.index h5::before, ul.index h5::after {
   transition: transform 5s, -webkit-transform 5s;
 }
 
+@media (min-width: 320px) and (max-width: 413px) {
+  ul.index h5::before, ul.index h5::after {
+    display: none;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  ul.index h5::before, ul.index h5::after {
+    display: none;
+  }
+}
+
 ul.index h5:hover::before, ul.index h5:hover::after {
   -webkit-transform: rotate(360deg);
           transform: rotate(360deg);
   background-color: #FA8320;
   border-radius: 100%;
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  ul.index h5:hover::before, ul.index h5:hover::after {
+    display: none;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  ul.index h5:hover::before, ul.index h5:hover::after {
+    display: none;
+  }
 }
 
 ul.index ::before {

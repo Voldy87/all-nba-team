@@ -27,25 +27,28 @@
       position: relative;
     }
   }
-.item.left:hover {
+  .item.left {
     transition: all ease-out 600ms;
-    flex-grow: 30;
-    @include xs {
-      width: 50%;
-    }
-    @include sm {
-      width: auto;
-    }
-    cursor: pointer;
-    ul.index {
-      background: white;
-      animation-name: appear;
-      animation-duration: 800ms;
-      animation-fill-mode: forwards;
-    }
-    .mobile-switch {
-      transform: rotate(0deg);
-      width: 12%;
+    &:hover {
+      flex-grow: 30;
+      //width: 100%;
+      @include xs {
+        width: 50%;
+      }
+      @include sm {
+        width: auto;
+      }
+      cursor: pointer;
+      ul.index {
+        background: white;
+        animation-name: appear;
+        animation-duration: 800ms;
+        animation-fill-mode: forwards;
+      }
+      .mobile-switch {
+        transform: rotate(0deg);
+        width: 12%;
+      }
     }
   }
   
@@ -62,19 +65,22 @@
     border-left: 1px solid rgba(14,73,157,0.4);
   }
   .left {
+    width: 5vw;
     flex-grow: 1;
     box-shadow: 10px 0 70px 10px $blue;
     @include xs {
       flex-grow: 8;
       box-shadow: unset;
+      width: 10vw;
     }
     @include sm {
       flex-grow: 7;
       box-shadow: unset;
+      width: 5vw;
     }
     background: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.1));
     border-right: 1px solid rgba(14,73,157,0.4);
-    width: 1vw; /* as CSS can't animate between display none/block */
+     /* as CSS can't animate between display none/block */
     z-index: 1;
   }
   
@@ -94,6 +100,19 @@ ul.index {
 ul.index {
   padding: 15px 5px;
   line-height: 45px;
+  @include xs {
+    line-height: inherit !important;
+    padding: inherit !important;
+  }
+  @include sm {
+    line-height: inherit !important;
+    padding: inherit !important;
+  }
+}
+
+ul.index li {
+  @include xs {font-size: smaller !important;}
+  @include sm {font-size: smaller !important;}
 }
 ul.index > li { 
   border-top-color: $red;
@@ -120,10 +139,14 @@ ul.index h5::before, ul.index h5::after {
   background-size: 15px 15px;
   background-repeat: no-repeat; 
   transition: transform 5s;
+  @include xs {display: none;}
+  @include sm {display: none;}
 }
 ul.index h5:hover::before, ul.index h5:hover::after  {
   transform: rotate(360deg);
   background-color: $orange;
+  @include xs {display: none;}
+  @include sm {display: none;}
   border-radius: 100%;
 }
 ul.index ::before {margin-right:5px}

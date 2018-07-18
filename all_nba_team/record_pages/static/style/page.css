@@ -12,6 +12,14 @@
   }
 }
 
+.reduced .layer:after {
+  font-size: smaller;
+}
+
+.reduced * {
+  font-size: smaller !important;
+}
+
 .page-content-container {
   position: relative;
   height: 60%;
@@ -20,52 +28,55 @@
   border-radius: 20px;
   border: thick ridge #0E499D;
   display: block;
-}
-
-.page-content-container:after {
-  content: "";
+  -webkit-transition: all 800ms ease-out;
+  transition: all 800ms ease-out;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("../assets/basket-sky-lg.jpg");
   opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: 1;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 @media (min-width: 320px) and (max-width: 413px) {
-  .page-content-container:after {
+  .page-content-container {
     background-image: url("../assets/basket-sky-sm.jpg");
   }
 }
 
 @media (min-width: 414px) and (max-width: 767px) {
-  .page-content-container:after {
+  .page-content-container {
     background-image: url("../assets/basket-sky-sm.jpg");
   }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .page-content-container:after {
+  .page-content-container {
     background-image: url("../assets/basket-sky-md.jpg");
   }
 }
 
 .stage {
   height: 10vh;
+  width: 90%;
   position: absolute;
-  top: 7%;
-  right: 0;
-  left: 0;
+  left: 5%;
   -webkit-perspective: 9999px;
           perspective: 9999px;
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  .stage {
+    top: 7%;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .stage {
+    top: 7%;
+  }
 }
 
 .layer {
@@ -237,6 +248,8 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   background: rgba(255, 255, 255, 0.2);
   padding: 5px;
   -webkit-box-pack: space-evenly;
@@ -250,6 +263,9 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
 }
 
@@ -259,6 +275,9 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
 }
 
@@ -268,21 +287,75 @@
 }
 
 .page-footer img {
+  display: none;
   width: 12px;
   padding: 0 1px;
 }
 
-.page-footer div {
-  padding: 4px 2px;
+@media (min-width: 320px) and (max-width: 413px) {
+  .page-footer img {
+    display: initial;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .page-footer img {
+    display: initial;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  .page-footer div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .page-footer div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+.page-footer div div {
+  padding: 4px 8px;
+  font-size: 20px;
   margin: 3px 1px;
   border: 1px solid #96011a;
   border-radius: 10px;
 }
 
-.page-footer div:hover {
-  background: rgba(14, 73, 157, 0.2);
-  color: #96011a;
-  border: 1px dashed #96011a;
+@media (min-width: 320px) and (max-width: 413px) {
+  .page-footer div div {
+    font-size: small;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .page-footer div div {
+    font-size: smaller;
+  }
+}
+
+.page-footer div div:hover {
+  background-color: #96011a;
 }
 
 @media (min-width: 320px) and (max-width: 413px) {
@@ -295,17 +368,5 @@
   .page-footer__backhome span, .page-footer__searchAndMap span {
     display: none;
   }
-}
-
-.page-footer > div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
 }
 /*# sourceMappingURL=page.css.map */

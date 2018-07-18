@@ -79,9 +79,9 @@
                     </ul>
                 </li>
             </ul>
-            <div class="mobile-switch" onmouseover="toggleH2(); toggleFooter();" onmouseout="toggleH2(); toggleFooter();"></div>
+            <div class="mobile-switch" ></div> {% comment %} onmouseover="toggleH2(); toggleFooter();" onmouseout="toggleH2(); toggleFooter();" {% endcomment %}
         </nav>
-        <div class="item right" onmouseovser="toggleH2()">
+        <div class="item right">
             {% include "lang-switch.html" %}
             {% block content %}HERE THE CONTENT OF THE PAGE{% endblock %}
             {% block footer %}{% endblock %}
