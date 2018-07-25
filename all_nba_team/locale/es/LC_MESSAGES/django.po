@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Copyright (C) 2017
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# FIRST AUTHOR <allnbateam@voldy87.tk>, 2018.
 #
 #, fuzzy
 msgid ""
@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-25 10:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Andrea Orlandi <allnbateam@voldy87.tk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -20,130 +20,108 @@ msgstr ""
 
 #: all_nba_team/templates/base.html:31
 msgid "history"
-msgstr "storia"
+msgstr "historia"
 
 #: all_nba_team/templates/base.html:32
 msgid "Winners' list"
-msgstr "lista dei premiati"
+msgstr "Lista de ganadores"
 
 #: all_nba_team/templates/base.html:33
 msgid "records"
-msgstr "primati"
+msgstr "marcas"
 
 #: all_nba_team/templates/base.html:37
 msgid "Complete list"
-msgstr "Elenco completo"
+msgstr "Lista completa"
 
 #: all_nba_team/templates/base.html:38
 msgid "10 or more selections"
-msgstr "Più di 9 selezioni"
+msgstr "10 o más selecciones"
 
 #: all_nba_team/templates/base.html:39
 msgid "Stats Leading"
-msgstr "Leader stagionali"
+msgstr "líderes estadísticos"
 
 #: all_nba_team/templates/base.html:40
 msgid "Rookie primacies"
-msgstr "Record per rookie"
+msgstr "Records de los rookies"
 
 #: all_nba_team/templates/base.html:41
 msgid "Overall selections"
-msgstr "Selezioni complessive"
+msgstr "Selecciones generales"
 
 #: all_nba_team/templates/base.html:42
 msgid "Selection streaks"
-msgstr "Selezioni consecutive"
+msgstr "Rayas de selección"
 
 #: all_nba_team/templates/base.html:43
 msgid "Role sorting"
-msgstr "Selezioni per ruolo"
+msgstr "ordenación por rol"
 
 #: all_nba_team/templates/base.html:44
 msgid "Age primacies"
-msgstr "Primati d'età"
+msgstr "Marcas de edad"
 
 #: all_nba_team/templates/base.html:45
 msgid "Choices with single team"
-msgstr "Scelte con una franchigia"
+msgstr "selecciones con un solo equipo"
 
 #: all_nba_team/templates/base.html:46
 msgid "Choices with multiple teams"
-msgstr "Scelte con diverse franchigie"
+msgstr "selecciones con múltiples equipos"
 
 #: record_pages/templates/history.html:8
 msgid "All-NBA Teams History"
-msgstr "Un po' di storia.."
+msgstr "Historia de los equipos All-NBA"
 
 #: record_pages/templates/history.html:15
-#, fuzzy
-#| msgid "history"
 msgid "History"
-msgstr "storia"
+msgstr "Historia"
 
 #: record_pages/templates/page.html:28
 msgid "Back to"
-msgstr "Torna alla"
+msgstr "Vuelves a"
 
 #: record_pages/templates/page.html:28
 msgid "Home"
-msgstr "Home Page"
+msgstr "Inicio"
 
 #: record_pages/templates/page.html:62
 msgid "Terms of Use"
-msgstr "Termini d'utilizzo"
+msgstr "Términos de Uso"
 
 #: splashome/templates/home.html:7
-#, fuzzy
-#| msgid "All-NBA Teams History"
 msgid "All-NBA Teams Stats Home Page"
-msgstr "Un po' di storia.."
+msgstr "Página de inicio"
 
 #: splashome/templates/home.html:17
 msgid "List of recipients"
-msgstr "Elenco vincitori"
+msgstr "Lista de destinatarios"
 
 #: splashome/templates/home.html:27
 msgid "Statistics"
-msgstr "statistiche"
+msgstr "Estadísticas"
 
 #: splashome/templates/home.html:27
 msgid "Records"
-msgstr "primati"
+msgstr "Marcas"
 
 #: splashome/templates/index.html:18 splashome/templates/index.html:30
 msgid "presents"
-msgstr "ha l'onore di presentare"
+msgstr "presenta"
 
 #: splashome/templates/index.html:96
 msgid "enter"
-msgstr "entra"
+msgstr "entras"
 
 #: splashome/templates/index.html:112
 msgid "Want to know more about the author?"
-msgstr "informazioni sull'autore?"
+msgstr "¿Quieres saber más sobre el autor?"
 
 #: splashome/templates/index.html:114
 msgid "see here"
-msgstr "qui"
+msgstr "mira aquí"
 
 #: splashome/templates/index.html:125
 msgid "a Voldy87 work"
-msgstr "un sito di Voldy87"
-
-#~ msgid "German"
-#~ msgstr "Tedesco"
-
-#~ msgid "English"
-#~ msgstr "Inglese"
-
-#~ msgid "Spanish"
-#~ msgstr "Spagnolo"
-
-#~ msgid "French"
-#~ msgstr "Francese"
-
-#~ msgid "Italian"
-#~ msgstr "Italiano"
-
-#~ msgid "Statistics &amp; Records"
-#~ msgstr "statistiche &amp; record"
+msgstr "un trabajo de Voldy87"

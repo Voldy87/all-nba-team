@@ -11,10 +11,10 @@
     background: linear-gradient($red 80%,white);
     color: $blue;
     width: 95%;
+    @include lg {width: 98%;} 
     height: 95%;
     margin: 7px auto;
-    border-top-right-radius: inherit;
-    border-top-left-radius: inherit;
+    border-radius: inherit;
     padding: 5px 8px;
     font-size: 10px;
     @include sm {font-size: smaller;} 
@@ -51,12 +51,13 @@
     @include xs {display: inline-block;} 
     position: relative;
     top: 2px;
+    right: 1px;
     z-index: 2;
-    width: 100%;
+    width: 100.4%;
 }
 .tab {
     border-style: solid;
-    width: 32%;
+    width: 32.4%;
     border-width: 0;
     border-color: $red;
     background: $blue;
@@ -69,7 +70,9 @@
     font-size: smaller;
     cursor: pointer;
     &:hover {
-        color: $blue;
+        text-decoration-color: white;
+        text-decoration-line: underline;
+        text-decoration-style: dotted;
     }
 }
 
@@ -77,7 +80,11 @@
     position: relative;
     color: white;
     border: 2px solid white;
-    padding: 15px 2px 5px 2px;
+    @include lg {
+        border: none;
+    } 
+    padding: 15px 8px 5px 8px;
+    //@include lg {padding: unset;} 
     line-height: 22px;
     word-spacing: 2px;
     display: block;
@@ -89,7 +96,7 @@
     } 
     @include xs {
         display: none;
-        font-size: 8px;
+        font-size: 10px !important;
         line-height: normal;
         word-spacing: normal;
     }

@@ -20,130 +20,108 @@ msgstr ""
 
 #: all_nba_team/templates/base.html:31
 msgid "history"
-msgstr "storia"
+msgstr ""
 
 #: all_nba_team/templates/base.html:32
 msgid "Winners' list"
-msgstr "lista dei premiati"
+msgstr ""
 
 #: all_nba_team/templates/base.html:33
 msgid "records"
-msgstr "primati"
+msgstr ""
 
 #: all_nba_team/templates/base.html:37
 msgid "Complete list"
-msgstr "Elenco completo"
+msgstr ""
 
 #: all_nba_team/templates/base.html:38
 msgid "10 or more selections"
-msgstr "Più di 9 selezioni"
+msgstr ""
 
 #: all_nba_team/templates/base.html:39
 msgid "Stats Leading"
-msgstr "Leader stagionali"
+msgstr ""
 
 #: all_nba_team/templates/base.html:40
 msgid "Rookie primacies"
-msgstr "Record per rookie"
+msgstr ""
 
 #: all_nba_team/templates/base.html:41
 msgid "Overall selections"
-msgstr "Selezioni complessive"
+msgstr ""
 
 #: all_nba_team/templates/base.html:42
 msgid "Selection streaks"
-msgstr "Selezioni consecutive"
+msgstr ""
 
 #: all_nba_team/templates/base.html:43
 msgid "Role sorting"
-msgstr "Selezioni per ruolo"
+msgstr ""
 
 #: all_nba_team/templates/base.html:44
 msgid "Age primacies"
-msgstr "Primati d'età"
+msgstr ""
 
 #: all_nba_team/templates/base.html:45
 msgid "Choices with single team"
-msgstr "Scelte con una franchigia"
+msgstr ""
 
 #: all_nba_team/templates/base.html:46
 msgid "Choices with multiple teams"
-msgstr "Scelte con diverse franchigie"
+msgstr ""
 
 #: record_pages/templates/history.html:8
 msgid "All-NBA Teams History"
-msgstr "Un po' di storia.."
+msgstr ""
 
 #: record_pages/templates/history.html:15
-#, fuzzy
-#| msgid "history"
 msgid "History"
-msgstr "storia"
+msgstr ""
 
 #: record_pages/templates/page.html:28
 msgid "Back to"
-msgstr "Torna alla"
+msgstr ""
 
 #: record_pages/templates/page.html:28
 msgid "Home"
-msgstr "Home Page"
+msgstr ""
 
 #: record_pages/templates/page.html:62
 msgid "Terms of Use"
-msgstr "Termini d'utilizzo"
+msgstr ""
 
 #: splashome/templates/home.html:7
-#, fuzzy
-#| msgid "All-NBA Teams History"
 msgid "All-NBA Teams Stats Home Page"
-msgstr "Un po' di storia.."
+msgstr ""
 
 #: splashome/templates/home.html:17
 msgid "List of recipients"
-msgstr "Elenco vincitori"
+msgstr ""
 
 #: splashome/templates/home.html:27
 msgid "Statistics"
-msgstr "statistiche"
+msgstr ""
 
 #: splashome/templates/home.html:27
 msgid "Records"
-msgstr "primati"
+msgstr ""
 
 #: splashome/templates/index.html:18 splashome/templates/index.html:30
 msgid "presents"
-msgstr "ha l'onore di presentare"
+msgstr ""
 
 #: splashome/templates/index.html:96
 msgid "enter"
-msgstr "entra"
+msgstr ""
 
 #: splashome/templates/index.html:112
 msgid "Want to know more about the author?"
-msgstr "informazioni sull'autore?"
+msgstr ""
 
 #: splashome/templates/index.html:114
 msgid "see here"
-msgstr "qui"
+msgstr ""
 
 #: splashome/templates/index.html:125
 msgid "a Voldy87 work"
-msgstr "un sito di Voldy87"
-
-#~ msgid "German"
-#~ msgstr "Tedesco"
-
-#~ msgid "English"
-#~ msgstr "Inglese"
-
-#~ msgid "Spanish"
-#~ msgstr "Spagnolo"
-
-#~ msgid "French"
-#~ msgstr "Francese"
-
-#~ msgid "Italian"
-#~ msgstr "Italiano"
-
-#~ msgid "Statistics &amp; Records"
-#~ msgstr "statistiche &amp; record"
+msgstr ""

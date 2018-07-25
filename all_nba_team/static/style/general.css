@@ -106,49 +106,48 @@ ul {
 }
 
 /* Add a pointer when hovering over the thumbnail images */
-@media only screen and (min-width: 750px) and (max-height: 1100px) {
-  .slidesContainer {
-    display: none;
+.item.left {
+  -webkit-transition: all ease-out 800ms forwards;
+  transition: all ease-out 800ms forwards;
+  width: 5vw;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-box-shadow: 10px 0 70px 10px #0E499D;
+          box-shadow: 10px 0 70px 10px #0E499D;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.1)));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
+  border-right: 1px solid rgba(14, 73, 157, 0.4);
+  z-index: 1;
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  .item.left {
+    -webkit-box-flex: 8;
+        -ms-flex-positive: 8;
+            flex-grow: 8;
+    -webkit-box-shadow: unset;
+            box-shadow: unset;
+    width: 10vw;
   }
 }
 
-/* -- container left and right -- */
-.container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.container .item {
-  height: 100vh;
-  display: -ms-grid;
-  display: grid;
-  margin: auto;
-  text-align: center;
-  -webkit-transition: .3s;
-  transition: .3s;
-  position: relative;
-}
-
-.item.left {
-  -webkit-transition: all ease-out 600ms;
-  transition: all ease-out 600ms;
+@media (min-width: 414px) and (max-width: 767px) {
+  .item.left {
+    -webkit-box-flex: 7;
+        -ms-flex-positive: 7;
+            flex-grow: 7;
+    -webkit-box-shadow: unset;
+            box-shadow: unset;
+    width: 5vw;
+  }
 }
 
 .item.left:hover {
   -webkit-box-flex: 30;
       -ms-flex-positive: 30;
           flex-grow: 30;
+  width: 45%;
   cursor: pointer;
 }
 
@@ -161,6 +160,12 @@ ul {
 @media (min-width: 414px) and (max-width: 767px) {
   .item.left:hover {
     width: auto;
+  }
+}
+
+@media (min-width: 1480px) {
+  .item.left:hover {
+    width: 10%;
   }
 }
 
@@ -180,70 +185,12 @@ ul {
   width: 12%;
 }
 
-.right {
-  -webkit-box-flex: 100;
-      -ms-flex-positive: 100;
-          flex-grow: 100;
-  background: radial-gradient(circle, white, #96011a, #0E499D);
-  -webkit-box-shadow: -10px 0 70px 10px #0E499D;
-          box-shadow: -10px 0 70px 10px #0E499D;
-  border-left: 1px solid rgba(14, 73, 157, 0.4);
-}
-
-@media (min-width: 320px) and (max-width: 413px) {
-  .right {
-    -webkit-box-shadow: unset;
-            box-shadow: unset;
-  }
-}
-
-@media (min-width: 414px) and (max-width: 767px) {
-  .right {
-    -webkit-box-shadow: unset;
-            box-shadow: unset;
-  }
-}
-
-.left {
-  width: 5vw;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -webkit-box-shadow: 10px 0 70px 10px #0E499D;
-          box-shadow: 10px 0 70px 10px #0E499D;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0.1)));
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
-  border-right: 1px solid rgba(14, 73, 157, 0.4);
-  /* as CSS can't animate between display none/block */
-  z-index: 1;
-}
-
-@media (min-width: 320px) and (max-width: 413px) {
-  .left {
-    -webkit-box-flex: 8;
-        -ms-flex-positive: 8;
-            flex-grow: 8;
-    -webkit-box-shadow: unset;
-            box-shadow: unset;
-    width: 10vw;
-  }
-}
-
-@media (min-width: 414px) and (max-width: 767px) {
-  .left {
-    -webkit-box-flex: 7;
-        -ms-flex-positive: 7;
-            flex-grow: 7;
-    -webkit-box-shadow: unset;
-            box-shadow: unset;
-    width: 5vw;
-  }
-}
-
 /* -- index on the left -- */
 ul.index {
   visibility: hidden;
   overflow-y: auto;
+  padding: 15px 2px;
+  line-height: 45px;
 }
 
 @media (min-width: 320px) and (max-width: 413px) {
@@ -256,11 +203,6 @@ ul.index {
   ul.index {
     width: 88%;
   }
-}
-
-ul.index {
-  padding: 15px 5px;
-  line-height: 45px;
 }
 
 @media (min-width: 320px) and (max-width: 413px) {
@@ -297,9 +239,13 @@ ul.index > li {
   border-style: double;
   border-radius: 10%;
   border-width: medium;
-  margin: 10px 5px;
+  margin: 10px 3px;
   background-color: rgba(245, 236, 236, 0.8);
   font-size: 17px;
+}
+
+ul.index h5 {
+  font-size: 13px;
 }
 
 ul.index h5:hover {
@@ -310,11 +256,11 @@ ul.index h5:hover {
 
 ul.index h5::before, ul.index h5::after {
   content: '';
-  width: 15px;
-  height: 15px;
+  width: 13px;
+  height: 13px;
   display: inline-block;
   background-image: url("../images/ball.svg");
-  background-size: 15px 15px;
+  background-size: 13px 13px;
   background-repeat: no-repeat;
   -webkit-transition: -webkit-transform 5s;
   transition: -webkit-transform 5s;
@@ -385,6 +331,22 @@ ul.index > li li li {
   line-height: 12px;
 }
 
+@media (min-width: 1024px) and (max-width: 1479px) {
+  ul.index > li li li {
+    display: inline-block;
+    width: 45%;
+    font-size: 90%;
+  }
+  ul.index > li li li:nth-child(odd) {
+    text-align: right;
+    padding-right: 5px;
+  }
+  ul.index > li li li:nth-child(even) {
+    text-align: left;
+    padding-left: 5px;
+  }
+}
+
 ul.index > li li li:hover {
   -webkit-text-decoration: #96011a underline dotted;
           text-decoration: #96011a underline dotted;
@@ -392,23 +354,14 @@ ul.index > li li li:hover {
   font-weight: 800;
 }
 
-.credits {
-  margin-top: -15px;
+@media (min-width: 1024px) and (max-width: 1479px) {
+  .credits {
+    margin-top: -20px;
+  }
 }
 
 .credits li {
   display: inline;
-}
-
-.credits a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.credits a:hover {
-  -webkit-text-decoration: #0E499D underline waved;
-          text-decoration: #0E499D underline waved;
-  color: #96011a;
 }
 
 .mobile-switch {
@@ -439,5 +392,57 @@ ul.index > li li li:hover {
     display: block;
     width: 100%;
   }
+}
+
+.right {
+  -webkit-box-flex: 100;
+      -ms-flex-positive: 100;
+          flex-grow: 100;
+  background: radial-gradient(circle, white, #96011a, #0E499D);
+  -webkit-box-shadow: -10px 0 70px 10px #0E499D;
+          box-shadow: -10px 0 70px 10px #0E499D;
+  border-left: 1px solid rgba(14, 73, 157, 0.4);
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  .right {
+    -webkit-box-shadow: unset;
+            box-shadow: unset;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .right {
+    -webkit-box-shadow: unset;
+            box-shadow: unset;
+  }
+}
+
+/* -- container left and right -- */
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .item {
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  margin: auto;
+  text-align: center;
+  -webkit-transition: .3s;
+  transition: .3s;
+  position: relative;
 }
 /*# sourceMappingURL=general.css.map */

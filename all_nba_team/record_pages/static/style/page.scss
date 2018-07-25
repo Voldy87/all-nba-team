@@ -70,7 +70,7 @@ $clr2:#96011a;
 
 }
 .reduced .layer:after {
-    font-size: smaller;
+    //font-size: smaller;
 }
 
 .reduced * {
@@ -79,9 +79,13 @@ $clr2:#96011a;
 
 .page-content-container { 
     position: relative;
-    height: 60%;
     //width: 73%;
+    height: 60%;
     top: 20%;
+    @include lg {
+        height: 70%;
+        top: 15%;
+    }
     margin: 0 10px; 
     border-radius: 20px;
     border: thick ridge $clr;
@@ -140,7 +144,7 @@ $clr2:#96011a;
     justify-content: space-evenly;
     a {
         text-decoration: unset;
-        color: inherit;
+        color: $clr;
     }
     img {
         display: none;
@@ -153,16 +157,19 @@ $clr2:#96011a;
         width: 12px;
         padding: 0 1px;
     }
-    div {
+    & > div {
+        width: 33%;
         @include xs {
             display: flex;
             flex-direction: row;
             justify-content: center;
+            width: auto;
         }
         @include sm {
             display: flex;
             flex-direction: row;
             justify-content: center;
+            width: auto;
         }
     }
     div div {

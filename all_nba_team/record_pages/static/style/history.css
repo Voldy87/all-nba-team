@@ -12,10 +12,15 @@
   width: 95%;
   height: 95%;
   margin: 7px auto;
-  border-top-right-radius: inherit;
-  border-top-left-radius: inherit;
+  border-radius: inherit;
   padding: 5px 8px;
   font-size: 10px;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  .history-text {
+    width: 98%;
+  }
 }
 
 @media (min-width: 414px) and (max-width: 767px) {
@@ -85,8 +90,9 @@
   display: none;
   position: relative;
   top: 2px;
+  right: 1px;
   z-index: 2;
-  width: 100%;
+  width: 100.4%;
 }
 
 @media (min-width: 414px) and (max-width: 767px) {
@@ -103,7 +109,7 @@
 
 .tab {
   border-style: solid;
-  width: 32%;
+  width: 32.4%;
   border-width: 0;
   border-color: #96011a;
   background: #0E499D;
@@ -115,17 +121,28 @@
 }
 
 .tab:hover {
-  color: #0E499D;
+  -webkit-text-decoration-color: white;
+          text-decoration-color: white;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+  -webkit-text-decoration-style: dotted;
+          text-decoration-style: dotted;
 }
 
 .tab-container {
   position: relative;
   color: white;
   border: 2px solid white;
-  padding: 15px 2px 5px 2px;
+  padding: 15px 8px 5px 8px;
   line-height: 22px;
   word-spacing: 2px;
   display: block;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  .tab-container {
+    border: none;
+  }
 }
 
 @media (min-width: 414px) and (max-width: 767px) {
@@ -140,7 +157,7 @@
 @media (min-width: 320px) and (max-width: 413px) {
   .tab-container {
     display: none;
-    font-size: 8px;
+    font-size: 10px !important;
     line-height: normal;
     word-spacing: normal;
   }

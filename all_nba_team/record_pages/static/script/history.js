@@ -2,6 +2,7 @@ function showSection(elem, theme) {
     var tabs = document.querySelectorAll(".tab")
     var sections = document.querySelectorAll(".tab-section");
     document.querySelector(".tab-container").style.display = 'block';
+    document.querySelector(".tab-container").style.fontSize = 'smaller';
     for (let i = 0; i<tabs.length; i++) {
         console.log(theme);
         tabs[i].style.borderWidth =  "0px" ;
