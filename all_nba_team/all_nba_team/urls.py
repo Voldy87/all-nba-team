@@ -19,8 +19,8 @@ from django.contrib import admin
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
+    path('record_pages/', include('record_pages.urls')),
     path('polls/', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', include('splashome.urls')),
     url(r'^', include('splashome.urls')),
 ]

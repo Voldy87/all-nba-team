@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 15:54+0200\n"
+"POT-Creation-Date: 2018-07-25 10:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,69 +18,132 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: all_nba_team/settings.py:127
-msgid "German"
-msgstr "Tedesco"
-
-#: all_nba_team/settings.py:128
-msgid "English"
-msgstr "Inglese"
-
-#: all_nba_team/settings.py:129
-msgid "Spanish"
-msgstr "Spagnolo"
-
-#: all_nba_team/settings.py:130
-msgid "French"
-msgstr "Francese"
-
-#: all_nba_team/settings.py:131
-msgid "Italian"
-msgstr "Italiano"
-
-#: all_nba_team/templates/home.html:28
+#: all_nba_team/templates/base.html:31
 msgid "history"
 msgstr "storia"
 
-#: all_nba_team/templates/home.html:29
+#: all_nba_team/templates/base.html:32
 msgid "Winners' list"
 msgstr "lista dei premiati"
 
-#: all_nba_team/templates/home.html:30
+#: all_nba_team/templates/base.html:33
 msgid "records"
 msgstr "primati"
 
-#: all_nba_team/templates/home.html:83
+#: all_nba_team/templates/base.html:37
+msgid "Complete list"
+msgstr "Elenco completo"
+
+#: all_nba_team/templates/base.html:38
+msgid "10 or more selections"
+msgstr "Più di 9 selezioni"
+
+#: all_nba_team/templates/base.html:39
+msgid "Stats Leading"
+msgstr "Leader stagionali"
+
+#: all_nba_team/templates/base.html:40
+msgid "Rookie primacies"
+msgstr "Record per rookie"
+
+#: all_nba_team/templates/base.html:41
+msgid "Overall selections"
+msgstr "Selezioni complessive"
+
+#: all_nba_team/templates/base.html:42
+msgid "Selection streaks"
+msgstr "Selezioni consecutive"
+
+#: all_nba_team/templates/base.html:43
+msgid "Role sorting"
+msgstr "Selezioni per ruolo"
+
+#: all_nba_team/templates/base.html:44
+msgid "Age primacies"
+msgstr "Primati d'età"
+
+#: all_nba_team/templates/base.html:45
+msgid "Choices with single team"
+msgstr "Scelte con una franchigia"
+
+#: all_nba_team/templates/base.html:46
+msgid "Choices with multiple teams"
+msgstr "Scelte con diverse franchigie"
+
+#: record_pages/templates/history.html:8
+msgid "All-NBA Teams History"
+msgstr "Un po' di storia.."
+
+#: record_pages/templates/history.html:15
+#, fuzzy
+#| msgid "history"
+msgid "History"
+msgstr "storia"
+
+#: record_pages/templates/page.html:28
+msgid "Back to"
+msgstr "Torna alla"
+
+#: record_pages/templates/page.html:28
+msgid "Home"
+msgstr "Home Page"
+
+#: record_pages/templates/page.html:62
+msgid "Terms of Use"
+msgstr "Termini d'utilizzo"
+
+#: splashome/templates/home.html:7
+#, fuzzy
+#| msgid "All-NBA Teams History"
+msgid "All-NBA Teams Stats Home Page"
+msgstr "Un po' di storia.."
+
+#: splashome/templates/home.html:17
 msgid "List of recipients"
 msgstr "Elenco vincitori"
 
-#: all_nba_team/templates/home.html:91
+#: splashome/templates/home.html:27
 msgid "Statistics"
 msgstr "statistiche"
 
-#: all_nba_team/templates/home.html:91
+#: splashome/templates/home.html:27
 msgid "Records"
 msgstr "primati"
 
-#: all_nba_team/templates/index.html:16 all_nba_team/templates/index.html:26
+#: splashome/templates/index.html:18 splashome/templates/index.html:30
 msgid "presents"
 msgstr "ha l'onore di presentare"
 
-#: all_nba_team/templates/index.html:92
+#: splashome/templates/index.html:96
 msgid "enter"
 msgstr "entra"
 
-#: all_nba_team/templates/index.html:108
+#: splashome/templates/index.html:112
 msgid "Want to know more about the author?"
 msgstr "informazioni sull'autore?"
 
-#: all_nba_team/templates/index.html:110
+#: splashome/templates/index.html:114
 msgid "see here"
 msgstr "qui"
 
-#: all_nba_team/templates/index.html:121
+#: splashome/templates/index.html:125
 msgid "a Voldy87 work"
 msgstr "un sito di Voldy87"
+
+#~ msgid "German"
+#~ msgstr "Tedesco"
+
+#~ msgid "English"
+#~ msgstr "Inglese"
+
+#~ msgid "Spanish"
+#~ msgstr "Spagnolo"
+
+#~ msgid "French"
+#~ msgstr "Francese"
+
+#~ msgid "Italian"
+#~ msgstr "Italiano"
 
 #~ msgid "Statistics &amp; Records"
 #~ msgstr "statistiche &amp; record"

@@ -1,0 +1,199 @@
+@import '../../../static/style/mixins.scss';
+
+//TITLE
+
+$clr:#0E499D;
+$clr2:#96011a;
+
+@keyframes osc {
+    100% { transform: rotateX(30deg) rotateY(1deg) rotateZ(1deg); }
+  }
+
+@mixin layerize($NUM_LAYERS:20) {
+    .stage {
+        height: 10vh;
+        width: 90%;
+        position: absolute;
+        @include xs {top: 7%;}
+        @include sm {top: 7%;} 
+        left: 5%;
+        perspective: 9999px;
+        transform-style: preserve-3d;
+    }
+    .layer {
+
+        transform-style: preserve-3d;
+        animation: osc 800ms infinite alternate ease-in-out -3.5s;
+        animation-fill-mode: forwards;
+        transform: rotateY(10deg) rotateX(10deg) translateZ(10deg);
+        &:after {
+            font-size: 70px;
+            @include xs {
+                font-size: 35px;
+              }
+              @include sm {
+                font-size: 55px;
+              }
+            position: absolute;
+            left: 0; right: 0;
+            color: darken($clr2, 4%);
+            letter-spacing: -2px;
+            text-shadow: 4px 0 10px hsla(0, 0%, 0%, .13);
+        }
+        &:nth-child(n+#{round($NUM_LAYERS/2)}):after {
+            -webkit-text-stroke: 3px hsla(0, 0%, 0%, .25);
+        }
+        &:nth-child(n+#{round($NUM_LAYERS/2 + 1)}):after {
+            -webkit-text-stroke: 15px $clr;
+            text-shadow: 6px 0 6px darken($clr,35%),
+                        5px 5px 5px darken($clr,40%),
+                        0 6px 6px darken($clr,35%);
+        }
+        &:nth-child(n+#{round($NUM_LAYERS/2 + 2)}):after {
+            -webkit-text-stroke: 15px darken($clr, 10%);
+        }
+        &:last-child:after {
+            -webkit-text-stroke: 17px hsla(0, 0%, 0%, .1);
+        }
+        &:first-child:after{
+            color: #fff;
+            text-shadow: none;
+        }
+    }  
+
+    $i: 1;
+    @for $i from 1 through $NUM_LAYERS {
+        .layer:nth-child(#{$i}):after{
+            transform: translateZ(($i - 1) * -1.5px);
+        }
+    }
+
+}
+.reduced .layer:after {
+    //font-size: smaller;
+}
+
+.reduced * {
+    font-size: smaller !important;
+}
+
+.page-content-container { 
+    position: relative;
+    //width: 73%;
+    height: 60%;
+    top: 20%;
+    @include lg {
+        height: 70%;
+        top: 15%;
+    }
+    margin: 0 10px; 
+    border-radius: 20px;
+    border: thick ridge $clr;
+    display: block;
+    transition: all 800ms ease-out;
+    //&:after {
+        //content: "";
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url("../assets/basket-sky-lg.jpg");
+        @include xs {
+            background-image: url("../assets/basket-sky-sm.jpg");
+        }
+        @include sm {
+            background-image: url("../assets/basket-sky-sm.jpg");
+        }
+        @include md {
+            background-image: url("../assets/basket-sky-md.jpg");
+        }
+        opacity: 0.5;
+       // top: 0;
+        //left: 0;
+       // bottom: 0;
+      //  right: 0;
+     //   position: absolute;
+     //   z-index: 1;
+        background-repeat: no-repeat;
+        background-size: cover;   
+ // }
+}
+
+@include layerize();
+
+//FOOTER
+
+.page-footer {
+    color: white;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    font-size: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    @include xs {
+        flex-direction: column;
+        justify-content: center;
+    }
+    @include sm {
+        flex-direction: column;
+        justify-content: center;
+    }    
+    background: rgba(255,255,255,0.2);
+    padding: 5px;
+    justify-content: space-evenly;
+    a {
+        text-decoration: unset;
+        color: $clr;
+    }
+    img {
+        display: none;
+        @include xs {
+            display: initial;
+        }
+        @include sm {
+            display: initial;
+        }  
+        width: 12px;
+        padding: 0 1px;
+    }
+    & > div {
+        width: 33%;
+        @include xs {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: auto;
+        }
+        @include sm {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: auto;
+        }
+    }
+    div div {
+        padding: 4px 8px;
+        font-size: 20px;
+        @include xs {
+            font-size: small;
+        }
+        @include sm {
+            font-size: smaller;
+        } 
+        margin: 3px 1px;
+        border: 1px solid $clr2;
+        border-radius: 10px;
+        &:hover { 
+            background-color: $clr2;
+            //border: 1px dashed $clr2;
+        }
+    }
+}
+
+.page-footer__backhome span, .page-footer__searchAndMap span {
+    @include xs {display: none;}
+    @include sm {display: none;}
+}
+
+

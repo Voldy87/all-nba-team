@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'splashome' # voldy87 & site-specific splash, home page
+    'record_pages',
+    'splashome', # voldy87 & site-specific splash, home page
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,10 @@ ROOT_URLCONF = 'all_nba_team.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['all_nba_team/templates'],
+        'DIRS': [
+            'all_nba_team/templates',
+            'record_pages/templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,7 +73,11 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n', #i18n
+                #'app.apptemplates.load_setting',
             ],
+            'libraries':{
+               # 'i18n_include': 'record_pages.templatetags.i18n_include',
+            }
         },
     },
 ]
@@ -148,6 +156,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'record_pages/static'),
+    os.path.join(BASE_DIR, 'polls/static'),
 ) # where to look for static files that are not tied to a particular app.
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #for the collectstatic command

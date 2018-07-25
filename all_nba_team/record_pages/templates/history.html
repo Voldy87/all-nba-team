@@ -1,0 +1,37 @@
+{% extends "page.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% load i18n_include %}
+
+{% block title %}{% trans "All-NBA Teams History" %}{% endblock %}
+
+{% block head %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/history.css' %}" />
+    <style>
+        .layer:after {
+            content:"{% trans 'History' %}"
+        }
+    </style> 
+{% endblock %}
+
+{% block content %} 
+    {{ block.super }} 
+{% endblock %}
+
+{% block data %} 
+    <div class="history-text"> 
+        {% get_current_language as LANGUAGE_CODE %}
+        {% i18n_include "history.html" LANGUAGE_CODE %}
+    </div> 
+{% endblock %}
+
+{% block svgdef %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'script/history.js' %}"></script>
+{% endblock %}

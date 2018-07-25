@@ -1,0 +1,12 @@
+.right {
+    flex-grow: 100;
+    background: radial-gradient(circle, white, $red, $blue);
+    box-shadow: -10px 0 70px 10px $blue;
+    @include xs {
+      box-shadow: unset;
+    }
+    @include sm {
+      box-shadow: unset;
+    }
+    border-left: 1px solid rgba(14,73,157,0.4);
+  }
