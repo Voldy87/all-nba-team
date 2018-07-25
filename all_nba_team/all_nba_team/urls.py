@@ -19,6 +19,7 @@ from django.contrib import admin
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
+    url(r'^api-auth/', include('rest_framework.urls')), #for the django rest framework browsable api
     path('record_pages/', include('record_pages.urls')),
     path('polls/', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
