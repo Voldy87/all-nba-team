@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework', #django-rest-framework (for the private and public API)
+    'api',
     'record_pages',
     'splashome', # voldy87 & site-specific splash, home page
 ]

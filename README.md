@@ -29,7 +29,9 @@ django-admin compilemessages
 python3 manage.py runserver
 
 #tech used
-svg, django, i18n, webpack,
+svg
+django (i18n, dango-rest-framework)
+webpack,
 
 #models
 - all

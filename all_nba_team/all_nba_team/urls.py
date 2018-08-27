@@ -18,10 +18,15 @@ from django.urls import include, path
 from django.contrib import admin
 
 urlpatterns = [
+    # i18n
     path('i18n/', include('django.conf.urls.i18n')),
-    url(r'^api-auth/', include('rest_framework.urls')), #for the django rest framework browsable api
+    # django rest framework browsable api
+    url(r'^api/', include('api.urls')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')), 
+    # standard pages
+    url(r'^', include('splashome.urls')),
     path('record_pages/', include('record_pages.urls')),
     path('polls/', include('polls.urls')),
+    # admin page
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('splashome.urls')),
 ]
