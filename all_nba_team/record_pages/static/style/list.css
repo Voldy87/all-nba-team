@@ -68,4 +68,8 @@
   border-left: 5px solid white;
   border-right: 5px solid white;
 }
+
+.history-text table b {
+  text-transform: uppercase;
+}
 /*# sourceMappingURL=list.css.map */

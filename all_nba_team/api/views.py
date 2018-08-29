@@ -39,10 +39,11 @@ class HonorsView(viewsets.ViewSet):
         Return a list of all honors.
         """
         c = models.NBA_stats()
-        if not c.isUpToDate():
-            print(44444)
+        if not c.isUpToDate(): #load every playerId-playerInfo(name,surname,etc.) couples inside redis, if not there
             c.set_All_PlayerInfo()
-        data = list(models.AllNbaTeamsList.objects.using('data').all().values()) #year, teamid_id, type, playerid, role
+        year = self.request.query_params.get('season', None)
+        year+="-01-01"
+        data = list(models.AllNbaTeamsList.objects.using('data').filter(year=year).values()) #year, teamid_id, type, playerid, role
         teams = dict()
         res = list()
         for d in data:
