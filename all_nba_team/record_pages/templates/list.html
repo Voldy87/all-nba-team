@@ -28,20 +28,22 @@
                 <th rowspan="2">Seasons</th>
                 <th colspan="2">First team</th>
                 <th colspan="2">Second team</th>
-                <th colspan="2">Third team</th>
+                {% if teams == 3 %}<th colspan="2">Third team</th> {% endif %}
             </tr>
             <tr>
                 <th>Player</th>
                 <th>Team</th>
                 <th>Player</th>
                 <th>Team</th>
+            {% if teams == 3 %}
                 <th>Player</th>
                 <th>Team</th>
+            {% endif %}
             </tr>
             
             {% for s in selections %}
                 <tr>
-                    {% if forloop.counter == 1 %} <td rowspan="5">{{s.season}}</td> {% endif %} 
+                    <td rowspan="5">{{s.season}}</td>
                     {% for d in s.F.0 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %}
                 </tr>
                 <tr> {% for d in s.F.1 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %} </tr>
@@ -51,64 +53,7 @@
             {% endfor %}
             
             </table>
-        <br>
-        <table>
-                <tr>
-                    <th rowspan="2">Seasons</th>
-                    <th colspan="2">First team</th>
-                    <th colspan="2">Second team</th>
-                    <th colspan="2">Third team</th>
-                </tr>
-                <tr>
-                    <th>Player</th>
-                    <th>Team</th>
-                    <th>Player</th>
-                    <th>Team</th>
-                    <th>Player</th>
-                    <th>Team</th>
-                </tr>
-                <tr>
-                    <td rowspan="5">2001</td>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                </tr>
-                <tr>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                </tr>
-                <tr>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                </tr>
-                <tr>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                </tr>
-                <tr>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                    <td>tizio</td>
-                    <td>squadra</td>
-                </tr>
-        </table>
+
     </div> 
 {% endblock %}
 

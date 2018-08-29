@@ -41,9 +41,16 @@ class HonorsView(viewsets.ViewSet):
         c = models.NBA_stats()
         if not c.isUpToDate(): #load every playerId-playerInfo(name,surname,etc.) couples inside redis, if not there
             c.set_All_PlayerInfo()
+        decade = self.request.query_params.get('decade', None)
+        if decade is not None:
+           start_year = int(decade)+1
+           end_year = int(decade)+10
+           start = str(start_year)+"-01-01"
+           end = str(end_year)+"-01-01"
         year = self.request.query_params.get('season', None)
-        year+="-01-01"
-        data = list(models.AllNbaTeamsList.objects.using('data').filter(year=year).values()) #year, teamid_id, type, playerid, role
+        if year is not None:
+            year+="-01-01"
+        data = list(models.AllNbaTeamsList.objects.using('data').filter(year__range=[start,end]).values()) #year, teamid_id, type, playerid, role
         teams = dict()
         res = list()
         for d in data:

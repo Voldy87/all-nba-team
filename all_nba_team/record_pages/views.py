@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import requests, os.path
+import requests, os.path, collections
 # Create your views here.from django.http import HttpResponse
 
 def createRoleArray(array,role):
@@ -22,21 +22,28 @@ def history(request):
     )
 
 def complete_list(request):
-    url = request.build_absolute_uri("../../api/honors?season=1999")
-    d = requests.get(url).json()
+    url = request.build_absolute_uri("../../api/honors?decade=1960")
+    data = requests.get(url).json()
+    data = sorted(data,key=lambda x: x["season"])
+    result = collections.defaultdict(list)
+    for d in data:
+        result[d['season']].append(d)
+    data = list(result.values())
     selections = list()
-    selections.append({
-            "season": d[0]["season"],
-            "F": createRoleArray(d,"F"),
-            "C": createRoleArray(d,"C"),
-            "G": createRoleArray(d,"G")
-    })
-    print(selections)
+    for d in data: #each iteration represents the player chosen for that season
+        selections.append({
+                "season": d[0]["season"],
+                "F": createRoleArray(d,"F"),
+                "C": createRoleArray(d,"C"),
+                "G": createRoleArray(d,"G")
+        })
     return render(
         request,
         'list.html',
         context={
-            "selections": selections
+            "selections": selections,
+            "roles": True,
+            "teams": 2
         }
     )
 
