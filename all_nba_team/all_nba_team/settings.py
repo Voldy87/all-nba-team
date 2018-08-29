@@ -106,7 +106,13 @@ DATABASES = {
         'PASSWORD': 'massaciuccoli',
         'HOST': '46.101.238.71',
         'PORT': '5432',
-    }
+    },
+    'redis': { # private do server (allnba data)
+        'NAME': 'allnbateam',
+        'PASSWORD': '9jQ4vl5SZWYbPdOJYejag5gzwOHjeF8U',
+        'HOST': 'redis-13191.c55.eu-central-1-1.ec2.cloud.redislabs.com',
+        'PORT': '13191',
+    },
 }
 
 

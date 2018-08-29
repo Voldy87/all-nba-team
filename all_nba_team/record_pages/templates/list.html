@@ -1,0 +1,121 @@
+{% extends "page.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% load i18n_include %}
+
+{% block title %}{% trans "All-NBA Teams Recipients" %}{% endblock %}
+
+{% block head %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/list.css' %}" />
+    <style>
+        .layer:after {
+            content:"{% trans 'Selections' %}"
+        }
+    </style> 
+{% endblock %}
+
+{% block content %} 
+    {{ block.super }} 
+{% endblock %}
+
+{% block data %} 
+    <div class="history-text"> 
+        <table>
+            <tr>
+                <th rowspan="2">Seasons</th>
+                <th colspan="2">First team</th>
+                <th colspan="2">Second team</th>
+                <th colspan="2">Third team</th>
+            </tr>
+            <tr>
+                <th>Player</th>
+                <th>Team</th>
+                <th>Player</th>
+                <th>Team</th>
+                <th>Player</th>
+                <th>Team</th>
+            </tr>
+            
+            {% for s in selections %}
+                <tr>
+                    {% if forloop.counter == 1 %} <td rowspan="5">{{s.season}}</td> {% endif %} 
+                    {% for d in s.F.0 %} <td>{{d.0}}</td><td>{{d.1}}</td> {% endfor %}
+                </tr>
+                <tr> {% for d in s.F.1 %} <td>{{d.0}}</td><td>{{d.1}}</td> {% endfor %} </tr>
+                <tr> {% for d in s.C   %} <td>{{d.0}}</td><td>{{d.1}}</td> {% endfor %} </tr>
+                <tr> {% for d in s.G.0 %} <td>{{d.0}}</td><td>{{d.1}}</td> {% endfor %} </tr>
+                <tr> {% for d in s.G.1 %} <td>{{d.0}}</td><td>{{d.1}}</td> {% endfor %} </tr>
+            {% endfor %}
+            
+            </table>
+        <br>
+        <table>
+                <tr>
+                    <th rowspan="2">Seasons</th>
+                    <th colspan="2">First team</th>
+                    <th colspan="2">Second team</th>
+                    <th colspan="2">Third team</th>
+                </tr>
+                <tr>
+                    <th>Player</th>
+                    <th>Team</th>
+                    <th>Player</th>
+                    <th>Team</th>
+                    <th>Player</th>
+                    <th>Team</th>
+                </tr>
+                <tr>
+                    <td rowspan="5">2001</td>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                </tr>
+                <tr>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                </tr>
+                <tr>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                </tr>
+                <tr>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                </tr>
+                <tr>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                    <td>tizio</td>
+                    <td>squadra</td>
+                </tr>
+        </table>
+    </div> 
+{% endblock %}
+
+{% block svgdef %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'script/list.js' %}"></script>
+{% endblock %}

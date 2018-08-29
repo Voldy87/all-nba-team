@@ -1,0 +1,55 @@
+$clr:#0E499D;
+$clr2:#96011a;
+.page-content-container {top: 10%}
+.history-text table {
+    border-collapse: collapse;
+    width: 100%;
+    background: rgba(121,121,121,0.8);
+    color: white;
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    tr:nth-child(even){
+        background-color: $clr;
+        td:hover {color: $clr2;}
+    }
+    tr:nth-child(odd){
+        background-color: $clr2;
+        td:hover {color: $clr;}
+    }
+    td:hover {
+        background-color: white;
+    }
+    th {
+        color: white;
+        text-decoration: underline;
+        font-size: larger;
+        &:hover {
+            color: $clr;
+            background-color: white;
+        }
+    }
+    tr:first-child {
+        border-top: 5px solid white;
+        border-left: 5px solid white;
+        border-right: 5px solid white;
+        th {
+            font-size: x-large; // "n" team
+            &:first-child { //season header
+                font-style: italic;
+            }
+            &[rowspan="2"] {border-bottom: 5px solid white;}
+        }
+        td {
+            &:first-child { // season value
+                
+            }
+        }
+    }
+    tr:nth-child(2){
+        border-bottom: 5px solid white;
+        border-left: 5px solid white;
+        border-right: 5px solid white;
+    }
+} 
