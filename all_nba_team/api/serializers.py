@@ -27,3 +27,17 @@ class SeasonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Seasons
         fields = ('start', 'end', 'name', 'abbreviation')
+
+
+
+
+class HonoredSerializer(serializers.HyperlinkedModelSerializer):
+    overall = serializers.IntegerField()
+    first = serializers.IntegerField()
+    second = serializers.IntegerField()
+    third = serializers.IntegerField()
+    fullname = serializers.CharField()
+
+    class Meta:
+        model = models.AllNbaTeamsList
+        fields = ('fullname', 'overall', 'first', 'second', 'third')

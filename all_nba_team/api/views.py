@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.response import Response
 from . import models, serializers
+from django.db.models import Count, Q
 
 def history(request):
     return JsonResponse(555, safe=False)
@@ -28,6 +29,39 @@ class TeamAliasViewSet(viewsets.ModelViewSet):
 class SeasonsViewSet(viewsets.ModelViewSet):
     queryset = models.Seasons.objects.using('data').all()
     serializer_class = serializers.SeasonSerializer
+
+class HonoredViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.HonoredSerializer
+    def get_queryset(self):
+        """
+        Optionally restricts the returned honored by filtering 
+        against a specific minimum for overall, 1sr,2nd,3rd, selections.
+        """
+        queryset = models.AllNbaTeamsList.objects.using('data').values('playerid').annotate(
+            overall = Count('playerid'),
+            first   = Count('playerid', filter=Q(type=1)),
+            second  = Count('playerid', filter=Q(type=2)),
+            third   = Count('playerid', filter=Q(type=3))
+        )
+        for f in ('overall','first','second','third'):
+            val = self.request.query_params.get( f, None )
+            if val is not None:
+                kwargs = { '{0}__gte'.format(f): val }
+                queryset = queryset.filter(**kwargs)
+        val = self.request.query_params.get( "min", None )
+        if val is not None:
+            queryset = queryset.filter(overall>=val)
+        c = models.NBA_stats()
+        if not c.isUpToDate(): #load every playerId-playerInfo(name,surname,etc.) couples inside redis, if not there
+            c.set_All_PlayerInfo()
+        queryset = queryset.order_by('-overall')
+        for q in queryset:
+            info = c.get_Single_PlayerInfo(str(q["playerid"]))
+            fullname = info["name"]+" "+info["surname"]
+            q["fullname"] = fullname
+        return queryset#.order_by('overall')
+    
+    
 
 # ------------ VIEWS -----------
 class HonorsView(viewsets.ViewSet):
