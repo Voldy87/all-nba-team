@@ -48,9 +48,6 @@ class HonoredViewSet(viewsets.ModelViewSet):
             if val is not None:
                 kwargs = { '{0}__gte'.format(f): val }
                 queryset = queryset.filter(**kwargs)
-        val = self.request.query_params.get( "min", None )
-        if val is not None:
-            queryset = queryset.filter(overall>=val)
         c = models.NBA_stats()
         if not c.isUpToDate(): #load every playerId-playerInfo(name,surname,etc.) couples inside redis, if not there
             c.set_All_PlayerInfo()
