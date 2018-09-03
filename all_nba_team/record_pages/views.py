@@ -1,8 +1,20 @@
 from django.shortcuts import render
 import requests, os.path, collections
 from functools import reduce
+from datetime import datetime
+from math import ceil,floor
 
 # Create your views here.from django.http import HttpResponse
+
+def round(x,val=10,up=True):
+    if up:
+        return int(ceil(x / float(val))) * val
+    else:
+        return int(floor(x / float(val))) * val
+def chunks(l, n):
+    """Yield successive n-sized chunks from l."""
+    for i in range(0, len(l), n):
+        yield l[i:i + n]
 
 def createRoleArray(array,role):
     array = list(filter(lambda x: x["role"]==role,array))
@@ -24,7 +36,25 @@ def history(request):
     )
 
 def complete_list(request):
-    url = request.build_absolute_uri("../../api/honors?decade=1980")
+    #creation of the menu for selecting the decades to show
+    url = request.build_absolute_uri("../../api/seasons")
+    data = requests.get(url).json()
+    start = data[0]["start"]
+    start = int(datetime.strptime(start, '%Y-%m-%d').year)
+    start_decade = round(start)
+    end = data[len(data)-1]["end"]
+    end = int(datetime.strptime(end, '%Y-%m-%d').year)
+    end = round(end,up=True)
+    end_decade = round(end,up=False)
+    start_interval = [ str(start)+"-"+str(start_decade) ]
+    end_interval   = [ str(end)+"-"+str(end_decade) ]
+    middle = list(range(start_decade,end_decade,10))
+    middle = list( map(lambda x: str(x)+"-"+str(x+10), middle) )
+    intervals = start_interval + middle
+    # show the selected decade
+    index = int(request.GET.get('index',0))
+    decade = round(int(request.GET.get('start', '1946')),val=10,up=False) #get the start decade
+    url = request.build_absolute_uri("../../api/honors?decade="+str(decade))
     data = requests.get(url).json()
     data = sorted(data,key=lambda x: x["season"])
     teams = set() 
@@ -34,19 +64,29 @@ def complete_list(request):
         teams.add(d['type'])
     data = list(result.values())
     selections = list()
-    for d in data: #each iteration represents the player chosen for that season
-        selections.append({
+    for d in data: #each iteration represents the group of players chosen for that season
+        if d[0]["role"] == "":
+            season = d[0]["season"]
+            d = list ( map( lambda y: [ ("<b>"+y["player"]["surname"]+"</b> "+y["player"]["name"]), y["team"] ], d ) )
+            selections.append({
+                "season": season,
+                "all": list(chunks(d,2))
+            })
+        else: 
+            selections.append({
                 "season": d[0]["season"],
                 "F": createRoleArray(d,"F"),
                 "C": createRoleArray(d,"C"),
-                "G": createRoleArray(d,"G")
-        })
+                "G": createRoleArray(d,"G"),
+            })
     return render(
         request,
         'list.html',
         context={
+            "intervals": intervals,
             "selections": selections,
-            "teams": len(teams)
+            "teams": len(teams),
+            "index": index
         }
     )
 

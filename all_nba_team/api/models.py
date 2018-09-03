@@ -63,9 +63,9 @@ class NBA_stats:
     """The abstraction of data taken from stats.nba.com and, sometimes, saved on Redis"""
     def __init__(self, *args, **kwargs):
         self.redis = redis.StrictRedis(decode_responses=True,
-            host=settings.DATABASES['redis']['HOST'],
-            port=settings.DATABASES['redis']['PORT'], 
-            password=settings.DATABASES['redis']['PASSWORD']
+            host = settings.DATABASES['redis']['HOST'],
+            port = settings.DATABASES['redis']['PORT'], 
+            password = settings.DATABASES['redis']['PASSWORD']
         )
         self.update = (self.redis.dbsize()!=0)
     def redisFlush(self):

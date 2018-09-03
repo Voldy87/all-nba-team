@@ -1,75 +1,192 @@
+/* Smartphones (portrait and landscape) ----------- */
+.stage {
+  top: 0;
+  left: 5%;
+}
+
 .page-content-container {
   top: 10%;
 }
 
-.history-text table {
+@media (min-width: 1024px) and (max-width: 1479px) {
+  .page-content-container {
+    height: 70vh;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  .page-content-container {
+    width: 100vw;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .page-content-container {
+    width: 100vw;
+  }
+}
+
+div.decade-choice {
+  border-radius: 10px;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+div.decade-choice span:first-child {
+  display: none;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  div.decade-choice span:first-child {
+    display: inherit;
+  }
+}
+
+div.decade-choice span:last-child {
+  display: inherit;
+  font-size: xx-small;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  div.decade-choice span:last-child {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  div.decade-choice {
+    padding: 8px;
+    margin: 7px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  div.decade-choice {
+    border: 2px solid #96011a;
+  }
+}
+
+div.decade-choice a:not(:last-child)::after {
+  content: '';
+  background: #0E499D;
+  width: 10px;
+  height: 10px;
+  border-radius: 20px;
+  display: none;
+  margin: 0 5px;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  div.decade-choice a:not(:last-child)::after {
+    display: inline-block;
+  }
+}
+
+div.decade-choice a:hover {
+  color: white;
+}
+
+div.decade-choice a.active {
+  color: white;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  div.decade-choice a.active {
+    font-size: xx-large;
+  }
+}
+
+.honors-list {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.honors-list table {
   border-collapse: collapse;
   width: 100%;
   background: rgba(121, 121, 121, 0.8);
   color: white;
 }
 
-.history-text table td, .history-text table th {
+.honors-list table td, .honors-list table th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-.history-text table tr:nth-child(even) {
+.honors-list table tr:nth-child(even) {
   background-color: #0E499D;
 }
 
-.history-text table tr:nth-child(even) td:hover {
+.honors-list table tr:nth-child(even) td:hover {
   color: #96011a;
 }
 
-.history-text table tr:nth-child(odd) {
+.honors-list table tr:nth-child(odd) {
   background-color: #96011a;
 }
 
-.history-text table tr:nth-child(odd) td:hover {
+.honors-list table tr:nth-child(odd) td:hover {
   color: #0E499D;
 }
 
-.history-text table td:hover {
+.honors-list table td:hover {
   background-color: white;
 }
 
-.history-text table th {
+.honors-list table th {
   color: white;
   text-decoration: underline;
-  font-size: larger;
 }
 
-.history-text table th:hover {
+@media (min-width: 1024px) and (max-width: 1479px) {
+  .honors-list table th {
+    font-size: larger;
+  }
+}
+
+.honors-list table th:hover {
   color: #0E499D;
   background-color: white;
 }
 
-.history-text table tr:first-child {
+.honors-list table tr > td[rowspan="5"] ~ td:nth-child(odd), .honors-list table tr > td:not([rowspan]) ~ td:nth-child(even) {
+  font-size: x-small;
+  font-style: italic;
+}
+
+.honors-list table tr:first-child {
   border-top: 5px solid white;
   border-left: 5px solid white;
   border-right: 5px solid white;
 }
 
-.history-text table tr:first-child th {
-  font-size: x-large;
+@media (min-width: 1024px) and (max-width: 1479px) {
+  .honors-list table tr:first-child th {
+    font-size: x-large;
+  }
 }
 
-.history-text table tr:first-child th:first-child {
+.honors-list table tr:first-child th:first-child {
   font-style: italic;
 }
 
-.history-text table tr:first-child th[rowspan="2"] {
+.honors-list table tr:first-child th[rowspan="2"] {
   border-bottom: 5px solid white;
 }
 
-.history-text table tr:nth-child(2) {
+.honors-list table tr:first-child td:first-child {
+  color: inherit !important;
+}
+
+.honors-list table tr:nth-child(2) {
   border-bottom: 5px solid white;
   border-left: 5px solid white;
   border-right: 5px solid white;
 }
 
-.history-text table b {
+.honors-list table b {
   text-transform: uppercase;
 }
 /*# sourceMappingURL=list.css.map */

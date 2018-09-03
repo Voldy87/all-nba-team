@@ -69,5 +69,4 @@ class HonorsView(viewsets.ViewSet):
                 "team": team,
                 "player": info
             })
-        
         return Response(res)
