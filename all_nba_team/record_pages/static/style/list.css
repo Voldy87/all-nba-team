@@ -1,7 +1,31 @@
 /* Smartphones (portrait and landscape) ----------- */
+.page-footer.adapt {
+  background: #0E499D;
+}
+
+.page-footer.adapt div div {
+  background: rgba(255, 255, 255, 0.4);
+  color: #96011a;
+  font-size: x-small;
+}
+
 .stage {
   top: 0;
   left: 5%;
+}
+
+.seasons-header span {
+  display: none;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  .seasons-header span {
+    display: initial;
+  }
+}
+
+.page-content-container.adapt {
+  width: 66vw;
 }
 
 .page-content-container {
@@ -11,18 +35,19 @@
 @media (min-width: 1024px) and (max-width: 1479px) {
   .page-content-container {
     height: 70vh;
+    width: auto;
   }
 }
 
 @media (min-width: 320px) and (max-width: 413px) {
   .page-content-container {
-    width: 100vw;
+    width: 90vw;
   }
 }
 
 @media (min-width: 414px) and (max-width: 767px) {
   .page-content-container {
-    width: 100vw;
+    width: 90vw;
   }
 }
 
@@ -188,5 +213,21 @@ div.decade-choice a.active {
 
 .honors-list table b {
   text-transform: uppercase;
+}
+
+.honors-list table td[rowspan="5"] span:first-child {
+  display: none;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  .honors-list table td[rowspan="5"] span:first-child {
+    display: initial;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  .honors-list table td[rowspan="5"] span:last-child {
+    display: none;
+  }
 }
 /*# sourceMappingURL=list.css.map */

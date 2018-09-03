@@ -33,7 +33,7 @@
     <div class="honors-list"> 
         <table>
             <tr>
-                <th rowspan="2">Seasons</th>
+                <th rowspan="2" class="seasons-header"><span>Seasons</span></th>
                 <th colspan="2">First team</th>
                 <th colspan="2">Second team</th>
                 {% if teams == 3 %}<th colspan="2">Third team</th> {% endif %}
@@ -52,7 +52,10 @@
             {% for s in selections %}
                 {% if s.all %} <!-- player honored without regard to their role -->
                     <tr>
-                        <td rowspan="5">{{s.season}}</td>
+                        <td rowspan="5">
+                            <span>{{s.season}}</span>
+                            <span>{{s.season|slice:'-5:-3'}}<br>{{s.season|slice:'-2:'}}</span>
+                        </td>
                         {% for d in s.all.0 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %}
                     </tr>
                     <tr> {% for d in s.all.1 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %} </tr>
@@ -61,7 +64,10 @@
                     <tr> {% for d in s.all.4 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %} </tr>
                 {% else %} <!-- this year the player are honored by role -->
                     <tr>
-                        <td rowspan="5">{{s.season}}</td>
+                        <td rowspan="5">
+                            <span>{{s.season}}</span>
+                            <span>{{s.season|slice:'-5:-3'}}<br>{{s.season|slice:'-2:'}}</span>
+                        </td>
                         {% for d in s.F.0 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %}
                     </tr>
                     <tr> {% for d in s.F.1 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %} </tr>

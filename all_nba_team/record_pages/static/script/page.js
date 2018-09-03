@@ -3,7 +3,7 @@ var initial = document.querySelector(".page-footer").style.display;
 var j = 0;
 var element = document.querySelector(".item.left");
 
-function toggleFooter() {
+function toggleFooter() { 
     var style = element.currentStyle || window.getComputedStyle(element);
     var grow = style.flexGrow;
     if (grow==30) {

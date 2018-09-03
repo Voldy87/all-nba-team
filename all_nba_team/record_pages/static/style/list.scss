@@ -1,21 +1,31 @@
 @import '../../../static/style/mixins.scss';
 $clr:#0E499D;
 $clr2:#96011a;
+.page-footer.adapt {
+    background: $clr;
+    div div{
+        background: rgba(255,255,255,0.4);
+        color: $clr2;
+        font-size: x-small;
+    }
+} 
 .stage {
     top: 0;
     left: 5%;
 }
+.seasons-header span {
+    display: none;
+    @include lg {display: initial;}
+}
+.page-content-container.adapt {width:66vw;}
 .page-content-container {
     top: 10%;
     @include lg {
         height: 70vh;
+        width: auto;
     }
-    @include xs {
-        width: 100vw;
-    }
-    @include sm {
-        width: 100vw;
-    }
+    @include xs {width: 90vw;}
+    @include sm {width: 90vw;}
 }
 div.decade-choice {
     span:first-child {
@@ -125,4 +135,13 @@ div.decade-choice {
         border-right: 5px solid white;
     }
     b {text-transform: uppercase;}
+    td[rowspan="5"] {
+        span:first-child {
+            display: none;
+            @include lg {display: initial;}
+        }
+        span:last-child {
+            @include lg {display: none;}
+        }
+    }
 } 
