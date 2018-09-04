@@ -54,9 +54,15 @@ def load__player_data(id:str):
     url = 'https://stats.nba.com/stats/commonplayerinfo/?PlayerID='+id
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'}
     response = requests.get(url, headers=headers)
-    name,surname = response.json()['resultSets'][0]['rowSet'][0][1:3]
-    info = {"name":name,"surname":surname}
-    #models.setPlayerInfo(id,info)
+    data = response.json()['resultSets'][0]['rowSet'][0]
+    name,surname = data[1:3]
+    country,role = data[8], data[14]
+    info = { 
+        "name":name,
+        "surname":surname, 
+        "country":country, 
+        "role":role, 
+    }
     return(info)
     
 class NBA_stats:

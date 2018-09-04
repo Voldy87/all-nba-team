@@ -1,0 +1,55 @@
+{% extends "page.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% load i18n_include %}
+
+{% block title %}{% trans "All the All-NBA Team Honored Players" %}{% endblock %}
+
+{% block head %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/all_honored.css' %}" />
+    <style>
+        .layer:after {
+            content:"{% trans 'Players Honored' %}"
+        }
+    </style> 
+{% endblock %}
+
+{% block content %} 
+    {{ block.super }} 
+{% endblock %}
+
+{% block data %}
+    <div class="honors-list"> 
+        <table cellspacing="0">
+            <tr>
+                <th>Player</th>
+                <th>1st</th>
+                <th>2nd</th>
+                <th>3rd</th>
+                <th>Tot</th>
+            </tr>
+            {% for s in selections %}
+            <tr> 
+                <td>{{ s.fullname|safe }}</td>
+                <td>{{ s.first }}</td>
+                <td>{{ s.second }}</td>
+                <td>{{ s.third }}</td>
+                <td>{{ s.overall }}</td>
+            </tr>
+            {% endfor %}
+            
+            </table>
+
+    </div> 
+{% endblock %}
+
+{% block svgdef %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'script/all_honored.js' %}"></script>
+{% endblock %}

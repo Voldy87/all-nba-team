@@ -4,5 +4,7 @@ from . import views
 
 urlpatterns = [
     path('history', views.history, name='history'),
-    path('list', views.complete_list, name='list'),
+    path('list', views.complete_list, name='list'),  # all honors, year by year, gropued by decade
+    path('10list', views.list_10, name='10list'),
+    path('all_honored', views.all_honored, name='all_honored'), # all players selected at least 1 time
 ]

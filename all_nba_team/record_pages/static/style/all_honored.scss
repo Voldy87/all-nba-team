@@ -1,0 +1,60 @@
+@import '../../../static/style/mixins.scss';
+$clr:#0E499D;
+$clr2:#96011a;
+
+@include xs {
+    .container .item {width: 75vw;}
+    .page-content-container {height: 60vh!important;width: 84vw;}
+    body{ font-size: xx-small;}
+    .stage {left: 4%; top:2%;}
+}
+@include sm {
+    .container .item {width: 75vw;}
+    .page-content-container {height: 60vh!important;width: 84vw;}
+    body{ font-size: x-small;}
+    .stage {left: 4%; top:3%;}
+}
+@include lg {
+    .page-content-container {
+        height: 65vh;
+        top: 20%;
+    }
+    .stage {left: 8%;}
+    div.honors-list table {
+        width: 71%;
+        margin: auto;
+    }
+    tr td:first-child {
+        font-size: x-large;
+    }
+}
+
+.page-content-container {padding: 5px;}
+.honors-list {
+    max-height: 100%;
+    overflow: auto;
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        //background: rgba(121,121,121,0.2);
+        color: white;
+        td, th {
+            border: 1px solid $clr2;
+            padding: 8px;
+        }
+        tr {
+            &:hover {
+                background-color: white;
+                color: $clr;
+            }
+            th {
+                color: white;
+                background-color: $clr2;
+                text-decoration: underline;
+                @include lg {
+                    font-size: larger;
+                }
+            }
+        }
+    } 
+}

@@ -1,0 +1,87 @@
+/* Smartphones (portrait and landscape) ----------- */
+@media (min-width: 320px) and (max-width: 413px) {
+  .container .item {
+    width: 75vw;
+  }
+  .page-content-container {
+    height: 60vh !important;
+    width: 84vw;
+  }
+  body {
+    font-size: xx-small;
+  }
+  .stage {
+    left: 4%;
+    top: 2%;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .container .item {
+    width: 75vw;
+  }
+  .page-content-container {
+    height: 60vh !important;
+    width: 84vw;
+  }
+  body {
+    font-size: x-small;
+  }
+  .stage {
+    left: 4%;
+    top: 3%;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  height: 60vh;
+  overflow: hidden;
+  .page-content-container {
+    top: 10%;
+    overflow: scroll;
+    height: 80%;
+  }
+}
+
+.page-content-container {
+  padding: 5px;
+}
+
+.honors-list {
+  max-height: 100%;
+  overflow: auto;
+}
+
+.honors-list table {
+  border-collapse: collapse;
+  width: 100%;
+  background: rgba(121, 121, 121, 0.2);
+  color: white;
+}
+
+.honors-list table td, .honors-list table th {
+  border: 1px solid #96011a;
+  padding: 8px;
+}
+
+.honors-list table tr:hover {
+  background-color: #96011a;
+}
+
+.honors-list table th {
+  color: white;
+  background-color: #96011a;
+  text-decoration: underline;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  .honors-list table th {
+    font-size: larger;
+  }
+}
+
+.honors-list table th:hover {
+  color: #0E499D;
+  background-color: white;
+}
+/*# sourceMappingURL=10.css.map */

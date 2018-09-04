@@ -4,13 +4,13 @@ from functools import reduce
 from datetime import datetime
 from math import ceil,floor
 
-# Create your views here.from django.http import HttpResponse
-
+###############################################################################
 def round(x,val=10,up=True):
     if up:
         return int(ceil(x / float(val))) * val
     else:
         return int(floor(x / float(val))) * val
+
 def chunks(l, n):
     """Yield successive n-sized chunks from l."""
     for i in range(0, len(l), n):
@@ -27,12 +27,13 @@ def createRoleArray(array,role):
     else:
         return array
 
+##################################################################################
 def history(request):
     #return HttpResponse("Hello, world. You're at the history page.")
     return render(
         request,
         'history.html',
-        {}#context={'num_books':num_books,'num_instances':num_instances,'num_instances_available':num_instances_available,'num_authors':num_authors},
+        {}
     )
 
 def complete_list(request):
@@ -87,5 +88,34 @@ def complete_list(request):
             "selections": selections,
             "teams": len(teams),
             "index": index
+        }
+    )
+
+def list_10(request):
+    url = request.build_absolute_uri("../../api/honored?overall=10")
+    data = requests.get(url).json()
+    data = sorted(data,key=lambda x: x["overall"])
+    for d in data: #each iteration represents the group of players chosen for that season
+        d["country"]="country"
+        d["flag"]=""
+        d["mvp"]=0
+        d["role"]=""
+        d["teams"]=""
+    return render(
+        request,
+        '10.html',
+        context={
+            "selections": data,
+        }
+    )
+
+def all_honored(request):
+    url = request.build_absolute_uri("../../api/honored")
+    data = requests.get(url).json()
+    return render(
+        request,
+        'all_honored.html',
+        context={
+            "selections": data,
         }
     )
