@@ -6,13 +6,13 @@ $clr2:#96011a;
     .container .item {width: 75vw;}
     .page-content-container {height: 60vh!important;width: 84vw;}
     body{ font-size: xx-small;}
-    .stage {left: 4%; top:2%;}
+    .stage {left: 12%; top:2%;}
 }
 @include sm {
     .container .item {width: 75vw;}
     .page-content-container {height: 60vh!important;width: 84vw;}
     body{ font-size: x-small;}
-    .stage {left: 4%; top:3%;}
+    .stage {left: 10%; top:3%;}
 }
 @include lg {
     .page-content-container {

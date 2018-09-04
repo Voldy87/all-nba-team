@@ -37,7 +37,16 @@ class HonoredSerializer(serializers.HyperlinkedModelSerializer):
     second = serializers.IntegerField()
     third = serializers.IntegerField()
     fullname = serializers.CharField()
-
     class Meta:
         model = models.AllNbaTeamsList
         fields = ('fullname', 'overall', 'first', 'second', 'third')
+
+class TeamHonorsSerializer(serializers.HyperlinkedModelSerializer):
+    name  = serializers.CharField()
+    teams = serializers.ListField()
+    first = serializers.IntegerField()
+    second = serializers.IntegerField()
+    third = serializers.IntegerField()
+    class Meta:
+        model = models.AllNbaTeamsList
+        fields = ('name','teams','first','second','third')
