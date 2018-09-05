@@ -6,12 +6,11 @@ from rest_framework.response import Response
 from . import models, serializers
 from django.db.models import Count, Q, Sum, Min, Max
 from functools import reduce
+import operator
+
 
 def history(request):
     return JsonResponse(555, safe=False)
-
-def aggregator(elem):
-    elem['teamid']
 
 # ------------- VIEWSETS -------------
 class UserViewSet(viewsets.ModelViewSet):
@@ -77,12 +76,12 @@ class FranchiseHonorsViewSet(viewsets.ModelViewSet):
         for i in list(models.TeamAlias.objects.using('data').values('aliasid','aliasname')):
             franchisenames[i["aliasid"]] = i["aliasname"]
         data = dict()
-        for spam in list(models.Teams.objects.using('data').values('aliases','teamid')):
+        honors = models.AllNbaTeamsList.objects.using('data')
+        for spam in list(models.Teams.objects.using('data').values('aliases','teamid')) :
             tmp = models.TeamAlias.objects.using('data').values('period','aliasname')
             arr = list()
             for a in spam["aliases"]:
                 arr.append(list(tmp.filter(aliasid=a)))
-            print(arr)
             arr = list(map(lambda x: x[0], arr))
             key = str()
             if len(arr)>1:
@@ -90,9 +89,8 @@ class FranchiseHonorsViewSet(viewsets.ModelViewSet):
             else:
                 key = franchisenames[spam["aliases"][-1]]
             data[key] = list()
-            honors = models.AllNbaTeamsList.objects.using('data').values('teamid')
             for alias_id in spam["aliases"]:
-                temp = list(honors.filter(teamid=alias_id).annotate(
+                temp = list(honors.values('teamid').filter(teamid=alias_id).annotate(
                     overall = Count('teamid'),
                     first   = Count('teamid', filter=Q(type=1)),
                     second  = Count('teamid', filter=Q(type=2)),
@@ -104,12 +102,28 @@ class FranchiseHonorsViewSet(viewsets.ModelViewSet):
                     data[key].append(temp)
         data_2 = dict()
         for key, value in data.items():
+
+            q_list = list()
+            teamids = list(map(lambda x:x[0]['teamid'],value))
+            for tid in teamids:
+                q_list.append(Q(teamid__exact=tid))
+            unique =  honors.values('playerid').filter(reduce(operator.or_, q_list)).aggregate(
+                overall      = Count('playerid', distinct=True ),
+                first        = Count('playerid', distinct=True, filter= Q(type=1) ),
+                firstsecond  = Count('playerid', distinct=True, filter=(Q(type=1)|Q(type=2)) ),
+            )
+            print(key)
+            print(unique)
+
             data_2[key] = dict()
             data_2[key]["old_names"] = list( filter ( lambda x: x!=key , map(lambda x: franchisenames[x[0]["teamid"]],value)  ) )
             for i in ('first','second','third'):
                 data_2[key][i] = sum(v[0][i] for v in value)
             data_2[key]['date1'] = min(v[0]['date1'] for v in value).year
             data_2[key]['date2'] = max(v[0]['date2'] for v in value).year
+            data_2[key]['unique_overall'] = unique['overall']
+            data_2[key]['unique_first'] = unique['first']
+            data_2[key]['unique_firstsecond'] = unique['firstsecond']
             #print(data_2['date1'])
         queryset = list()
         for key,value in data_2.items():
@@ -121,6 +135,9 @@ class FranchiseHonorsViewSet(viewsets.ModelViewSet):
                 'tot_third_sel': value['third'],
                 'first_year': value['date1'],
                 'last_year': value['date2'],
+                'unique_honored_all': value['unique_overall'],
+                'unique_honored_first': value['unique_first'],
+                'unique_honored_first_or_second': value['unique_firstsecond'],
             })
         #print(queryset)
         # models.Teams.objects.using('data').all()
