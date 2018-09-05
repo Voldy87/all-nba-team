@@ -7,4 +7,5 @@ urlpatterns = [
     path('list', views.complete_list, name='list'),  # all honors, year by year, gropued by decade
     path('10list', views.list_10, name='10list'),
     path('all_honored', views.all_honored, name='all_honored'), # all players selected at least 1 time
+    path('franchises', views.franchises, name='all_honored'),
 ]

@@ -28,6 +28,22 @@ $clr2:#96011a;
         font-size: x-large;
     }
 }
+@include xl { 
+    .page-content-container {
+        height: 80vh;
+        top: 10%;
+        font-size: x-large;
+        color:yellow;
+    }
+    .stage {left: 8%;}
+    div.honors-list table {
+        width: 95%;
+        margin: auto;
+    }
+    tr td:first-child {
+        font-size: xx-large;
+    }
+}
 
 .page-content-container {padding: 5px;}
 .honors-list {

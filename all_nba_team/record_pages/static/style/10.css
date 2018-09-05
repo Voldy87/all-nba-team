@@ -43,6 +43,15 @@
   }
 }
 
+@media (min-width: 1480px) {
+  .page-content-container {
+    font-size: x-large;
+    top: 12%;
+    overflow: scroll;
+    height: 75%;
+  }
+}
+
 .page-content-container {
   padding: 5px;
 }

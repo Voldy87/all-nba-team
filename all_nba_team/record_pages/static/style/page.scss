@@ -95,6 +95,7 @@ $clr2:#96011a;
         //content: "";
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center;
         background-image: url("../assets/basket-sky-lg.jpg");
         @include xs {
             background-image: url("../assets/basket-sky-sm.jpg");

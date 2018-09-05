@@ -119,3 +119,14 @@ def all_honored(request):
             "selections": data,
         }
     )
+
+def franchises(request):
+    url = request.build_absolute_uri("../../api/franchise_selections")
+    data = requests.get(url).json()
+    return render(
+        request,
+        'franchises.html',
+        context={
+            "data": data,
+        }
+    )

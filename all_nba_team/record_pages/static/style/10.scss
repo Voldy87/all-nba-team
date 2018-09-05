@@ -23,6 +23,17 @@ $clr2:#96011a;
         height: 80%;
     }
 }
+@include xl {
+    .page-content-container {
+        font-size: x-large;
+        top: 12%;
+        overflow: scroll;
+        height: 75%;
+    }
+}
+.longtext {
+    font-size: smaller;
+}
 .page-content-container {padding: 5px;}
 .honors-list {
     max-height: 100%;
