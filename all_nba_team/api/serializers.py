@@ -28,9 +28,6 @@ class SeasonSerializer(serializers.HyperlinkedModelSerializer):
         model = models.Seasons
         fields = ('start', 'end', 'name', 'abbreviation')
 
-
-
-
 class HonoredSerializer(serializers.HyperlinkedModelSerializer):
     overall = serializers.IntegerField()
     first = serializers.IntegerField()
@@ -59,3 +56,21 @@ class FranchiseHonorsSerializer(serializers.HyperlinkedModelSerializer):
                   'tot_first_sel', 'tot_second_sel', 'tot_third_sel',
                   'unique_honored_all','unique_honored_first','unique_honored_first_or_second'
         )
+
+class HonoredSerializer(serializers.HyperlinkedModelSerializer):
+    overall = serializers.IntegerField()
+    first = serializers.IntegerField()
+    second = serializers.IntegerField()
+    third = serializers.IntegerField()
+    fullname = serializers.CharField()
+    class Meta:
+        model = models.AllNbaTeamsList
+        fields = ('fullname', 'overall', 'first', 'second', 'third')
+
+class SinglePlayerSerializer(serializers.HyperlinkedModelSerializer):
+    team_type = serializers.CharField()
+    selections = serializers.IntegerField()
+    players = serializers.ListField()
+    class Meta:
+        model = models.AllNbaTeamsList
+        fields = ('team_type', 'selections', 'players')

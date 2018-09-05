@@ -8,10 +8,6 @@ from django.db.models import Count, Q, Sum, Min, Max
 from functools import reduce
 import operator
 
-
-def history(request):
-    return JsonResponse(555, safe=False)
-
 # ------------- VIEWSETS -------------
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all() #on default db
@@ -57,7 +53,7 @@ class HonoredViewSet(viewsets.ModelViewSet):
         queryset = queryset.order_by('-overall')
         for q in queryset:
             info = c.get_Single_PlayerInfo(str(q["playerid"]))
-            fullname = info["name"]+" "+info["surname"]
+            fullname = info["name"] + " " + info["surname"]
             q["fullname"] = fullname
         return queryset#.order_by('overall')
 
@@ -112,41 +108,55 @@ class FranchiseHonorsViewSet(viewsets.ModelViewSet):
                 first        = Count('playerid', distinct=True, filter= Q(type=1) ),
                 firstsecond  = Count('playerid', distinct=True, filter=(Q(type=1)|Q(type=2)) ),
             )
-            print(key)
-            print(unique)
-
             data_2[key] = dict()
             data_2[key]["old_names"] = list( filter ( lambda x: x!=key , map(lambda x: franchisenames[x[0]["teamid"]],value)  ) )
             for i in ('first','second','third'):
                 data_2[key][i] = sum(v[0][i] for v in value)
             data_2[key]['date1'] = min(v[0]['date1'] for v in value).year
             data_2[key]['date2'] = max(v[0]['date2'] for v in value).year
-            data_2[key]['unique_overall'] = unique['overall']
-            data_2[key]['unique_first'] = unique['first']
+            data_2[key]['unique_overall']     = unique['overall']
+            data_2[key]['unique_first']       = unique['first']
             data_2[key]['unique_firstsecond'] = unique['firstsecond']
-            #print(data_2['date1'])
         queryset = list()
         for key,value in data_2.items():
             queryset.append({
                 'franchise_name': key,
-                'old_names': value['old_names'],
-                'tot_first_sel': value['first'],
+                'old_names':      value['old_names'],
+                'tot_first_sel':  value['first'],
                 'tot_second_sel': value['second'],
-                'tot_third_sel': value['third'],
-                'first_year': value['date1'],
-                'last_year': value['date2'],
-                'unique_honored_all': value['unique_overall'],
-                'unique_honored_first': value['unique_first'],
+                'tot_third_sel':  value['third'],
+                'first_year':     value['date1'],
+                'last_year':      value['date2'],
+                'unique_honored_all':             value['unique_overall'],
+                'unique_honored_first':           value['unique_first'],
                 'unique_honored_first_or_second': value['unique_firstsecond'],
             })
-        #print(queryset)
-        # models.Teams.objects.using('data').all()
-        
-        # scan the honors list and associate at each TeamID(ALias) the associate TeamID(franchise) using Franchise
-        # group by TeamID(franchise), use Aliases&Franchise to associate at each TeamID(Franchise) its aliases ..
-        # .. and get the last assigning this alias to the franchise (TeamID)
         return sorted(queryset, key=lambda x:x['franchise_name'])
     
+class SingleHonorsViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.SinglePlayerSerializer
+    def get_queryset(self):
+        data = models.AllNbaTeamsList.objects.using('data').values('playerid')
+        selections = data.annotate(
+                overall = Count('playerid'),
+                first   = Count('playerid', filter=Q(type=1)),
+                first_second   = Count('playerid', filter=Q(type=1)|Q(type=2)),
+                second  = Count('playerid', filter=Q(type=2)),
+                third   = Count('playerid', filter=Q(type=3))
+            )
+        queryset = list()
+        for spam in list(selections)[0].keys():
+            if spam != 'playerid':
+                max_val = selections.aggregate(Max(spam))[spam+"__max"]
+                print(max_val)
+                kwargs = { '{0}'.format(spam): max_val }
+                tmp = dict()
+                tmp['team_type'] = spam
+                tmp['selections'] = max_val
+                tmp['players'] = selections.filter(**kwargs).values('playerid')
+                queryset.append(tmp)
+                print(tmp)
+        return queryset#.order_by('overall')
 
 # ------------ VIEWS -----------
 class HonorsView(viewsets.ViewSet):
@@ -163,12 +173,12 @@ class HonorsView(viewsets.ViewSet):
         decade = self.request.query_params.get('decade', None)
         if decade is not None:
            start_year = int(decade)+1
-           end_year = int(decade)+10
-           start = str(start_year)+"-01-01"
-           end = str(end_year)+"-01-01"
+           end_year   = int(decade)+10
+           start      = str(start_year)+"-01-01"
+           end        = str(end_year)+"-01-01"
         year = self.request.query_params.get('season', None)
         if year is not None:
-            year+="-01-01"
+            year += "-01-01"
         data = list(models.AllNbaTeamsList.objects.using('data').filter(year__range=[start,end]).values()) #year, teamid_id, type, playerid, role
         teams = dict()
         res = list()
@@ -179,13 +189,13 @@ class HonorsView(viewsets.ViewSet):
             role = ""
             if d["role"] is not None:
                 role = d["role"]
-            season = str(d['year'].year-1)+"-"+str(d['year'].year)[2:4]
+            season = str(d['year'].year-1) + "-" + str(d['year'].year)[2:4]
             info = c.get_Single_PlayerInfo(str(d["playerid"]))
             res.append({
-                "season":season,
-                "role": role,
-                "type": d["type"],
-                "team": team,
+                "season": season,
+                "role"  : role,
+                "type"  : d["type"],
+                "team"  : team,
                 "player": info
             })
         return Response(res)
