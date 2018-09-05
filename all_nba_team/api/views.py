@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.response import Response
 from . import models, serializers
-from django.db.models import Count, Q, Sum
+from django.db.models import Count, Q, Sum, Min, Max
 from functools import reduce
 
 def history(request):
@@ -62,55 +62,73 @@ class HonoredViewSet(viewsets.ModelViewSet):
             q["fullname"] = fullname
         return queryset#.order_by('overall')
 
-class TeamHonorsViewSet(viewsets.ModelViewSet):
+class FranchiseHonorsViewSet(viewsets.ModelViewSet):
     ''' 
     The list of the selections of every franchise (corresponding to different times in different times)
     with overall, first, second and third team number of selections, different player selected, etc..
     '''
-    serializer_class = serializers.TeamHonorsSerializer
+    serializer_class = serializers.FranchiseHonorsSerializer
     def get_queryset(self):
         """
         Optionally restricts the returned honored by filtering 
         against a specific minimum for overall, 1sr,2nd,3rd, selections.
         """
-        franchisenames = list(range(100))
+        franchisenames = list(range(100)) # !!!!!!
         for i in list(models.TeamAlias.objects.using('data').values('aliasid','aliasname')):
             franchisenames[i["aliasid"]] = i["aliasname"]
         data = dict()
         for spam in list(models.Teams.objects.using('data').values('aliases','teamid')):
-            key = franchisenames[spam["aliases"][-1]]
+            tmp = models.TeamAlias.objects.using('data').values('period','aliasname')
+            arr = list()
+            for a in spam["aliases"]:
+                arr.append(list(tmp.filter(aliasid=a)))
+            print(arr)
+            arr = list(map(lambda x: x[0], arr))
+            key = str()
+            if len(arr)>1:
+                key = (sorted(arr, key=lambda x: x['period'], reverse=False)).pop()['aliasname']
+            else:
+                key = franchisenames[spam["aliases"][-1]]
             data[key] = list()
+            honors = models.AllNbaTeamsList.objects.using('data').values('teamid')
             for alias_id in spam["aliases"]:
-                temp = list(models.AllNbaTeamsList.objects.using('data').filter(teamid=alias_id).values('teamid').annotate(
-                   # overall = Count('teamid'),
+                temp = list(honors.filter(teamid=alias_id).annotate(
+                    overall = Count('teamid'),
                     first   = Count('teamid', filter=Q(type=1)),
                     second  = Count('teamid', filter=Q(type=2)),
                     third   = Count('teamid', filter=Q(type=3)),
+                    date1 = Min('year'),
+                    date2 = Max('year'),
                 ))
                 if len(temp)!=0:
                     data[key].append(temp)
         data_2 = dict()
         for key, value in data.items():
             data_2[key] = dict()
-            data_2[key]["teams"] = list(map(lambda x: x[0]["teamid"],value))
+            data_2[key]["old_names"] = list( filter ( lambda x: x!=key , map(lambda x: franchisenames[x[0]["teamid"]],value)  ) )
             for i in ('first','second','third'):
                 data_2[key][i] = sum(v[0][i] for v in value)
+            data_2[key]['date1'] = min(v[0]['date1'] for v in value).year
+            data_2[key]['date2'] = max(v[0]['date2'] for v in value).year
+            #print(data_2['date1'])
         queryset = list()
         for key,value in data_2.items():
             queryset.append({
-                'name': key,
-                'teams': value['teams'],
-                'first': value['first'],
-                'second': value['second'],
-                'third': value['third'],
+                'franchise_name': key,
+                'old_names': value['old_names'],
+                'tot_first_sel': value['first'],
+                'tot_second_sel': value['second'],
+                'tot_third_sel': value['third'],
+                'first_year': value['date1'],
+                'last_year': value['date2'],
             })
-        print(queryset)
+        #print(queryset)
         # models.Teams.objects.using('data').all()
         
         # scan the honors list and associate at each TeamID(ALias) the associate TeamID(franchise) using Franchise
         # group by TeamID(franchise), use Aliases&Franchise to associate at each TeamID(Franchise) its aliases ..
         # .. and get the last assigning this alias to the franchise (TeamID)
-        return queryset
+        return sorted(queryset, key=lambda x:x['franchise_name'])
     
 
 # ------------ VIEWS -----------
