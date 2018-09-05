@@ -1,0 +1,72 @@
+{% extends "page.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% load i18n_include %}
+
+{% block title %}{% trans "Franchises total selections" %}{% endblock %}
+
+{% block head %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/franchises.css' %}" />
+    <style>
+        .layer:after {
+            content:"{% trans 'NBA franchises data' %}"
+        }
+    </style> 
+{% endblock %}
+
+{% block content %} 
+    {{ block.super }} 
+{% endblock %}
+
+{% block data %}
+    <div class="honors-list"> 
+        <table cellspacing="0">
+            <tr>
+                <th rowspan="2">Franchise</th>
+                <th rowspan="2" class="old_names">Old names</th>
+                <th rowspan="2">First<br>insertion</th>
+                <th rowspan="2">Last<br>insertion</th>
+                <th rowspan="2" class="longtext"><div># of</div><div>Honored</div><div>players</div></th>
+                <th rowspan="2" class="longtext"><div># of</div><div>1st Team</div><div>honored players</div></th>
+                <th rowspan="2" class="longtext"><div># of</div><div>1st or 2nd Team</div><div>honored players</div></th>
+                <th colspan="5">Overall selections</th>
+            </tr>
+            <tr class="under_th">
+                <th>1st</th>
+                <th>2nd</th>
+                <th>3rd</th>
+                <th>1st+2nd</th>
+                <th>Tot</th>
+            </tr>
+            {% for d in data %}
+            <tr> 
+                <td>{{ d.franchise_name }}</td>
+                <td class="old_names">{% for n in d.old_names %} <span>{{ n }}</span> {% endfor %}</td>
+                <td>{{ d.first_year }}</td>
+                <td>{{ d.last_year }}</td>
+                <td>{{ d.unique_honored_all }}</td>
+                <td>{{ d.unique_honored_first }}</td>
+                <td>{{ d.unique_honored_first_or_second }}</td>
+                <td>{{ d.tot_first_sel }}</td>
+                <td>{{ d.tot_second_sel }}</td>
+                <td>{{ d.tot_third_sel }}</td>
+                <td>{{ d.tot_first_sel|add:d.tot_second_sel }}</td>
+                <td>{{ d.tot_first_sel|add:d.tot_second_sel|add:d.tot_third_sel }}</td>
+            </tr>
+            {% endfor %}
+            
+            </table>
+
+    </div> 
+{% endblock %}
+
+{% block svgdef %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'script/franchises.js' %}"></script>
+{% endblock %}

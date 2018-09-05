@@ -1,0 +1,143 @@
+/* Smartphones (portrait and landscape) ----------- */
+@media (min-width: 320px) and (max-width: 413px) {
+  .container .item {
+    width: 75vw;
+  }
+  .page-content-container {
+    height: 57vh !important;
+    width: 84vw;
+    top: 21%;
+    margin: 0;
+  }
+  body {
+    font-size: xx-small;
+  }
+  .stage {
+    left: 4%;
+    top: 5%;
+  }
+  .stage .layer::after {
+    font-size: 28px;
+  }
+  .page-footer {
+    bottom: 4%;
+  }
+  .page-footer div div {
+    font-size: xx-small !important;
+  }
+  th {
+    font-size: 7px;
+  }
+  td.old_names span {
+    font-size: 5px !important;
+  }
+  .longtext div {
+    display: none;
+  }
+  .longtext div:nth-child(2) {
+    display: initial;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .container .item {
+    width: 75vw;
+  }
+  .page-content-container {
+    height: 55vh !important;
+    width: 84vw;
+    top: 20%;
+  }
+  body {
+    font-size: x-small;
+  }
+  .stage {
+    left: 4%;
+    top: 5%;
+  }
+  .stage .layer::after {
+    font-size: 31px;
+  }
+  th {
+    font-size: 7px;
+  }
+  td.old_names span {
+    font-size: 8px !important;
+  }
+  .longtext div {
+    display: none;
+  }
+  .longtext div:nth-child(2) {
+    display: initial;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  .page-content-container {
+    height: 60vh;
+    top: 10%;
+    overflow: scroll;
+    height: 80%;
+  }
+}
+
+@media (min-width: 1480px) {
+  .page-content-container {
+    font-size: x-large;
+    top: 12%;
+    overflow: scroll;
+    height: 75%;
+  }
+}
+
+.page-content-container {
+  padding: 5px;
+}
+
+td.old_names span {
+  display: block;
+  font-size: xx-small;
+  font-style: oblique;
+}
+
+.honors-list {
+  max-height: 100%;
+  overflow: auto;
+}
+
+.honors-list table {
+  border-collapse: collapse;
+  width: 100%;
+  background: rgba(121, 121, 121, 0.2);
+  color: white;
+}
+
+.honors-list table td, .honors-list table th {
+  border: 1px solid #96011a;
+  padding: 8px;
+}
+
+.honors-list table tr:hover {
+  background-color: #96011a;
+}
+
+.honors-list table th {
+  color: white;
+  padding: 0;
+  background-color: #96011a;
+  text-decoration: underline;
+}
+
+.honors-list table th:hover {
+  color: #0E499D;
+  background-color: white;
+}
+
+.honors-list table .longtext, .honors-list table .under_th {
+  font-size: smaller !important;
+}
+
+.honors-list table .under_th th {
+  text-decoration: none;
+}
+/*# sourceMappingURL=franchises.css.map */
