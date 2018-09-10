@@ -52,6 +52,10 @@
   }
 }
 
+.longtext {
+  font-size: smaller;
+}
+
 .page-content-container {
   padding: 5px;
 }

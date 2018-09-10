@@ -130,3 +130,14 @@ def franchises(request):
             "data": data,
         }
     )
+
+def overall(request):
+    url = request.build_absolute_uri("../../api/single_selections")
+    data = requests.get(url).json()
+    return render(
+        request,
+        'overall.html',
+        context={
+            "data": data,
+        }
+    )

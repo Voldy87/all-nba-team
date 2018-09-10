@@ -8,4 +8,5 @@ urlpatterns = [
     path('10list', views.list_10, name='10list'),
     path('all_honored', views.all_honored, name='all_honored'), # all players selected at least 1 time
     path('franchises', views.franchises, name='all_honored'),
+    path('overall', views.overall, name='overall'),
 ]

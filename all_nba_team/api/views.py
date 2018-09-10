@@ -145,17 +145,24 @@ class SingleHonorsViewSet(viewsets.ModelViewSet):
                 third   = Count('playerid', filter=Q(type=3))
             )
         queryset = list()
+        c = models.NBA_stats()
+        if not c.isUpToDate(): #load every playerId-playerInfo(name,surname,etc.) couples inside redis, if not there
+            c.set_All_PlayerInfo()
         for spam in list(selections)[0].keys():
             if spam != 'playerid':
                 max_val = selections.aggregate(Max(spam))[spam+"__max"]
-                print(max_val)
                 kwargs = { '{0}'.format(spam): max_val }
                 tmp = dict()
                 tmp['team_type'] = spam
                 tmp['selections'] = max_val
-                tmp['players'] = selections.filter(**kwargs).values('playerid')
+                tmp['players'] = list()
+                leaders = list(selections.filter(**kwargs).values('playerid'))#[0]
+                for l in leaders:
+                    pl_id = l['playerid']
+                    info = c.get_Single_PlayerInfo(pl_id)
+                    fullname = info["surname"].upper()+ ", " +info["name"]
+                    tmp['players'].append(fullname)
                 queryset.append(tmp)
-                print(tmp)
         return queryset#.order_by('overall')
 
 # ------------ VIEWS -----------
