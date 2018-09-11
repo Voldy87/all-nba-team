@@ -4,9 +4,31 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework.response import Response
 from . import models, serializers
-from django.db.models import Count, Q, Sum, Min, Max
+from django.db.models import Count, F, Q, Sum, Min, Max
+from django.conf import settings
 from functools import reduce
-import operator
+import operator, psycopg2
+from datetime import date 
+
+def aliasId_to_franchiseName(id):
+    return list(models.TeamAlias.objects.using('data').values('aliasname').filter(aliasid=id)).pop()['aliasname']
+def aliasId_to_aliasName(id):
+    for spam in list(models.Teams.objects.using('data').values('aliases','teamid')) :  #scan the teamID/alias rows
+        tmp = models.TeamAlias.objects.using('data').values('period','aliasname') #aliasId/period/aliasname table
+        arr = list() # for each aliasId position store the franchise name
+        flag = False
+        for a in spam["aliases"]: #scan the array of aliases
+            arr.append(list(tmp.filter(aliasid=a)))
+            if id==a:
+                flag = True
+        if flag:
+            arr = list(map(lambda x: x[0], arr)) #contain the period/aliasname for the franchise
+            key = str()
+            if len(arr)>1:
+                key = (sorted(arr, key=lambda x: x['period'], reverse=False)).pop()['aliasname']
+            else:
+                key = arr.pop()['aliasname']
+            return key
 
 # ------------- VIEWSETS -------------
 class UserViewSet(viewsets.ModelViewSet):
@@ -70,7 +92,7 @@ class FranchiseHonorsViewSet(viewsets.ModelViewSet):
         """
         franchisenames = list(range(100)) # !!!!!!
         for i in list(models.TeamAlias.objects.using('data').values('aliasid','aliasname')):
-            franchisenames[i["aliasid"]] = i["aliasname"]
+            franchisenames[i["aliasid"]] = i["aliasname"]  #array with at the aliasId position the alias name (e.g. a)
         data = dict()
         honors = models.AllNbaTeamsList.objects.using('data')
         for spam in list(models.Teams.objects.using('data').values('aliases','teamid')) :
@@ -98,7 +120,6 @@ class FranchiseHonorsViewSet(viewsets.ModelViewSet):
                     data[key].append(temp)
         data_2 = dict()
         for key, value in data.items():
-
             q_list = list()
             teamids = list(map(lambda x:x[0]['teamid'],value))
             for tid in teamids:
@@ -165,6 +186,87 @@ class SingleHonorsViewSet(viewsets.ModelViewSet):
                 queryset.append(tmp)
         return queryset#.order_by('overall')
 
+class TeamMemberHonorsViewSet(viewsets.ModelViewSet):
+    '''Teams, not franchises'''
+    serializer_class = serializers.SinglePlayerSerializer
+    def get_queryset(self):
+        data = models.AllNbaTeamsList.objects.using('data').values('playerid','teamid_id')
+        selections = data.annotate(
+                overall = Count('playerid'),
+                first   = Count('playerid', filter=Q(type=1)),
+                first_second   = Count('playerid', filter=Q(type=1)|Q(type=2)),
+            )
+        queryset = list()
+        c = models.NBA_stats()
+        if not c.isUpToDate(): #load every playerId-playerInfo(name,surname,etc.) couples inside redis, if not there
+            c.set_All_PlayerInfo()
+        for spam in ('overall','first','first_second'):
+            max_val = selections.aggregate(Max(spam))[spam+"__max"]
+            kwargs = { '{0}'.format(spam): max_val }
+            tmp = dict()
+            tmp['team_type'] = spam
+            tmp['selections'] = max_val
+            tmp['players'] = list()
+            leaders = list(selections.filter(**kwargs).values('playerid','teamid_id'))#[0]
+            for l in leaders:
+                pl_id = l['playerid']
+                info = c.get_Single_PlayerInfo(pl_id)
+                fullname = info["surname"].upper()+ ", " +info["name"]
+                tmp['players'].append({
+                    "player": fullname,
+                    "team": aliasId_to_aliasName(l['teamid_id'])
+                    })
+                #print()
+            queryset.append(tmp)
+        return queryset#.order_by('overall')
+
+class FranchiseMemberHonorsViewSet(viewsets.ModelViewSet):
+    '''Teams, not franchises'''
+    serializer_class = serializers.SinglePlayerSerializer
+    def get_queryset(self):
+        c = models.NBA_stats()
+        if not c.isUpToDate(): #load every playerId-playerInfo(name,surname,etc.) couples inside redis, if not there
+            c.set_All_PlayerInfo()
+        db_name = settings.DATABASES['data']['NAME']
+        db_user = settings.DATABASES['data']['USER']
+        db_host = settings.DATABASES['data']['HOST']
+        db_pass = settings.DATABASES['data']['PASSWORD']
+        conn = psycopg2.connect(host=db_host,dbname=db_name,user=db_user,password=db_pass)
+        cur = conn.cursor()
+        queryset = list()
+        for q_type,q_filter in [('Overall','(1,2,3) '),('First','(1) '),('FirstOrSecond','(1,2) ')]:
+            tmp = dict()
+            tmp["team_type"] = q_type
+            tmp["players"] = list()
+            cur.execute(""" 
+            select AAA.*
+    from (
+        select A."PlayerID" as pl_id, T."Aliases" as aliases, Count(A."PlayerID") as """+q_type+""" 
+        from public."all-nba-teams_list" A, public."teams" T
+        where A."TeamID"=any(T."Aliases") and A."type" in """+q_filter+"""
+        group by A."PlayerID",T."Aliases"
+    ) as AAA
+    left outer join (
+        select A."PlayerID" as pl_id, T."Aliases" as aliases, Count(A."PlayerID") as """+q_type+""" 
+        from public."all-nba-teams_list" A, public."teams" T
+        where A."TeamID"=any(T."Aliases") and A."type" in """+q_filter+"""
+        group by A."PlayerID",T."Aliases"
+    ) as BBB
+    ON AAA."""+q_type+"""  < BBB."""+q_type+"""
+    where BBB.pl_id is null
+            """)
+            for spam in cur.fetchall():
+                player,aliases,tmp["selections"] = spam
+                info = c.get_Single_PlayerInfo(str(player))
+                fullname = info["name"] + " " + info["surname"].upper()
+                team = aliasId_to_franchiseName(aliases.pop())
+                tmp["players"].append({"player":fullname,"team":team})
+            queryset.append(tmp)
+        cur.close()
+        conn.close()
+        print(queryset)
+        return queryset#.order_by('overall')
+
 # ------------ VIEWS -----------
 class HonorsView(viewsets.ViewSet):
     """
@@ -178,6 +280,7 @@ class HonorsView(viewsets.ViewSet):
         if not c.isUpToDate(): #load every playerId-playerInfo(name,surname,etc.) couples inside redis, if not there
             c.set_All_PlayerInfo()
         decade = self.request.query_params.get('decade', None)
+        start, end = date.min, date.max
         if decade is not None:
            start_year = int(decade)+1
            end_year   = int(decade)+10

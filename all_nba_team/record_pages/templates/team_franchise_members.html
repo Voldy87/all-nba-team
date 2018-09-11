@@ -1,0 +1,93 @@
+{% extends "page.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% load i18n_include %}
+
+{% block title %}{% trans "Leaders in selections" %}{% endblock %}
+
+{% block head %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/team_franchise_members.css' %}" />
+    <style>
+        .layer:after {
+            content:"{% trans 'Selections leaders for Teams and Franchises' %}"
+        }
+    </style> 
+{% endblock %}
+
+{% block content %} 
+    {{ block.super }} 
+{% endblock %}
+
+{% block data %}
+    <div class="honors-list"> 
+        <h1>Franchises</h1>
+        <table cellspacing="0">
+            <tr>
+                <th>Honor</th>
+                <th class="selections"><small>Selections</small><b>#</b></th>
+                <th>Player</th>
+                <th>Team</th>
+            </tr>
+            {% for d in franchise_data %}
+            <tr> 
+                <td rowspan="{{ d.players|length }}"><i>
+                    {% if d.team_type == "FirstOrSecond" %} 
+                        First &<br>Second 
+                    {% else %}
+                        {{ d.team_type|title }}
+                    {% endif %}                    
+                </i></td>
+                <td rowspan="{{ d.players|length }}">{{ d.selections }}</td>
+                <td class="player">{{ d.players.0.player }}</td>
+                <td class="team">{{ d.players.0.team }}</td>
+            </tr>
+                {% for p in d.players|slice:"1:" %}
+                <tr>
+                    <td class="player">{{ p.player }}</td>
+                    <td class="team">{{ p.team }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+        <h1>Teams</h1>
+        <table cellspacing="0">
+            <tr>
+                <th>Honor</th>
+                <th class="selections"><small>Selections</small><b>#</b></th>
+                <th>Player</th>
+                <th>Team</th>
+            </tr>
+            {% for d in team_data %}
+            <tr> 
+                <td rowspan="{{ d.players|length }}"><i>
+                    {% if d.team_type == "first_second" %} 
+                        First &<br>Second 
+                    {% else %}
+                        {{ d.team_type|title }}
+                    {% endif %}                    
+                </i></td>
+                <td rowspan="{{ d.players|length }}">{{ d.selections }}</td>
+                <td class="player">{{ d.players.0.player }}</td>
+                <td class="team">{{ d.players.0.team }}</td>
+            </tr>
+                {% for p in d.players|slice:"1:" %}
+                <tr>
+                    <td class="player">{{ p.player }}</td>
+                    <td class="team">{{ p.team }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+    </div> 
+{% endblock %}
+
+{% block svgdef %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'script/team_franchise_members.js' %}"></script>
+{% endblock %}

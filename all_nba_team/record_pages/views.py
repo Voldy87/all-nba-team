@@ -132,12 +132,26 @@ def franchises(request):
     )
 
 def overall(request):
-    url = request.build_absolute_uri("../../api/single_selections")
+    url = request.build_absolute_uri("../../api/franchise_member_selections")
     data = requests.get(url).json()
     return render(
         request,
-        'overall.html',
+        'teamfranchise_member.html',
         context={
             "data": data,
+        }
+    )
+
+def team_franchise_member(request):
+    url = request.build_absolute_uri("../../api/team_member_selections")
+    data1 = requests.get(url).json()
+    url = request.build_absolute_uri("../../api/franchise_member_selections")
+    data2 = requests.get(url).json()
+    return render(
+        request,
+        'team_franchise_members.html',
+        context={
+            "franchise_data": data2,
+            "team_data": data1
         }
     )

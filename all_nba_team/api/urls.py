@@ -14,7 +14,10 @@ router.register(r'seasons', views.SeasonsViewSet)
 router.register(r'honors', views.HonorsView, base_name='honors' )
 router.register(r'honored', views.HonoredViewSet, base_name='honored' )
 router.register(r'franchise_selections', views.FranchiseHonorsViewSet, base_name='franchise_selections' )
-router.register(r'single_selections', views.SingleHonorsViewSet, base_name='singlee_selections' )
+router.register(r'single_selections', views.SingleHonorsViewSet, base_name='single_selections' )
+router.register(r'team_member_selections', views.TeamMemberHonorsViewSet, base_name='team_member_selections' )
+router.register(r'franchise_member_selections', views.FranchiseMemberHonorsViewSet, base_name='franchise_member_selections' )
+
 
 # Wire up our API using automatic URL routing. Additionally, we include login URLs for the browsable API.
 urlpatterns = [
