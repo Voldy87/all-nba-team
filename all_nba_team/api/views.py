@@ -9,10 +9,35 @@ from django.conf import settings
 from functools import reduce
 import operator, psycopg2
 from datetime import date 
+from . import hardcoded_queries
 
-def aliasId_to_franchiseName(id):
-    return list(models.TeamAlias.objects.using('data').values('aliasname').filter(aliasid=id)).pop()['aliasname']
+def aliasid_to_franchisename_list():
+    ''' Array where for each aliasId position store the franchise name '''
+    ret = list(range(100)) # !!!!!!
+    for spam in list(models.Teams.objects.using('data').values('aliases','teamid')) :  #scan the teamID/alias rows
+        tmp = models.TeamAlias.objects.using('data').values('aliasid','period','aliasname') #aliasId/period/aliasname table
+        for a in spam["aliases"]: #scan the array of aliases
+            arr = list() 
+            arr.append(list(tmp.filter(aliasid=a)))
+            arr = list(map(lambda x: x[0], arr)) #contain the period/aliasname for the franchise
+            key = str()
+            if len(arr)>1:
+                key = (sorted(arr, key=lambda x: x['period'], reverse=False)).pop()['aliasname']
+            else:
+                key = arr.pop()['aliasname']
+            ret[a] = key 
+    return ret
+
+            
+def aliasid_to_name_list():
+    ''' Array with at the aliasId position the alias name (e.g. a) '''
+    arr = list(range(100)) # !!!!!!
+    for i in list(models.TeamAlias.objects.using('data').values('aliasid','aliasname')):
+        arr[i["aliasid"]] = i["aliasname"]  
+    return arr
 def aliasId_to_aliasName(id):
+    return list(models.TeamAlias.objects.using('data').values('aliasname').filter(aliasid=id)).pop()['aliasname']
+def aliasId_to_franchiseName(id):
     for spam in list(models.Teams.objects.using('data').values('aliases','teamid')) :  #scan the teamID/alias rows
         tmp = models.TeamAlias.objects.using('data').values('period','aliasname') #aliasId/period/aliasname table
         arr = list() # for each aliasId position store the franchise name
@@ -30,7 +55,7 @@ def aliasId_to_aliasName(id):
                 key = arr.pop()['aliasname']
             return key
 
-# ------------- VIEWSETS -------------
+# ------------- private VIEWSETS -------------
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all() #on default db
     serializer_class = serializers.UserSerializer
@@ -51,6 +76,7 @@ class SeasonsViewSet(viewsets.ModelViewSet):
     queryset = models.Seasons.objects.using('data').all()
     serializer_class = serializers.SeasonSerializer
 
+# ------------- public VIEWSETS -------------
 class HonoredViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.HonoredSerializer
     def get_queryset(self):
@@ -90,9 +116,7 @@ class FranchiseHonorsViewSet(viewsets.ModelViewSet):
         Optionally restricts the returned honored by filtering 
         against a specific minimum for overall, 1sr,2nd,3rd, selections.
         """
-        franchisenames = list(range(100)) # !!!!!!
-        for i in list(models.TeamAlias.objects.using('data').values('aliasid','aliasname')):
-            franchisenames[i["aliasid"]] = i["aliasname"]  #array with at the aliasId position the alias name (e.g. a)
+        franchisenames = aliasid_to_name_list()
         data = dict()
         honors = models.AllNbaTeamsList.objects.using('data')
         for spam in list(models.Teams.objects.using('data').values('aliases','teamid')) :
@@ -153,7 +177,40 @@ class FranchiseHonorsViewSet(viewsets.ModelViewSet):
                 'unique_honored_first_or_second': value['unique_firstsecond'],
             })
         return sorted(queryset, key=lambda x:x['franchise_name'])
-    
+class FranchiseHonorsViewSet_2(viewsets.ModelViewSet):
+    ''' 
+    The list of the selections of every franchise (corresponding to different times in different times)
+    with overall, first, second and third team number of selections, different player selected, etc..
+    '''
+    serializer_class = serializers.FranchiseHonorsSerializer
+    def get_queryset(self):
+        db_name = settings.DATABASES['data']['NAME']
+        db_user = settings.DATABASES['data']['USER']
+        db_host = settings.DATABASES['data']['HOST']
+        db_pass = settings.DATABASES['data']['PASSWORD']
+        conn = psycopg2.connect(host=db_host,dbname=db_name,user=db_user,password=db_pass)
+        cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        queryset = list()
+        cur.execute(hardcoded_queries.FRANCHISES)
+        alias_names = aliasid_to_name_list()
+        franchise_names = aliasid_to_franchisename_list()
+        for spam in cur.fetchall():
+            tmp=dict()
+            tmp["franchise_name"] = franchise_names[spam["aliases"].pop()]
+            tmp["old_names"] = list( map(lambda x: alias_names[x],spam["aliases"]) )
+            tmp["tot_first_sel"] = spam["firsts"]
+            tmp["tot_second_sel"] = spam["seconds"]
+            tmp["tot_third_sel"] = spam["third"]
+            tmp["first_year"] = spam["y1"].year
+            tmp["last_year"] = spam["y2"].year
+            tmp["unique_honored_all"] = spam["unique_a"]
+            tmp["unique_honored_first"] = spam["unique_1"]
+            tmp["unique_honored_first_or_second"] = spam["unique_12"]
+            queryset.append(tmp)
+        cur.close()
+        conn.close()
+        return queryset#.order_by('overall')
+           
 class SingleHonorsViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.SinglePlayerSerializer
     def get_queryset(self):

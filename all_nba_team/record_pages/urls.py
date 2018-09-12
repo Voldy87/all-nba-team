@@ -11,4 +11,5 @@ urlpatterns = [
     path('overall', views.overall, name='Overall player selections'),
     path('team_franchise_member', views.team_franchise_member, name='Most honored player with single Team/Franchise'),
     path('players_streaks', views.pl_streak, name='Selection streaks for players'),
+    path('franchises', views.franchises, name='Honors of all the franchises'),
 ]

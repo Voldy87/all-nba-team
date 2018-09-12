@@ -54,9 +54,9 @@ class FranchiseHonorsSerializer(serializers.HyperlinkedModelSerializer):
     tot_third_sel = serializers.IntegerField()
     first_year = serializers.IntegerField()
     last_year = serializers.IntegerField()
-    unique_honored_all = serializers.CharField()
-    unique_honored_first = serializers.CharField()
-    unique_honored_first_or_second = serializers.CharField()
+    unique_honored_all = serializers.IntegerField()
+    unique_honored_first = serializers.IntegerField()
+    unique_honored_first_or_second = serializers.IntegerField()
     class Meta:
         model = models.AllNbaTeamsList
         fields = ('franchise_name', 'old_names', 
