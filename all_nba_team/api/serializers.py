@@ -90,3 +90,12 @@ class PlayerStreakSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.AllNbaTeamsList
         fields = ('team_type','players', 'length')
+
+class RolePlayerSerializer(serializers.HyperlinkedModelSerializer):
+    role = serializers.CharField()
+    players = PlayerSerializer(many=True)
+    honor_type = serializers.CharField()
+    selections = serializers.IntegerField()
+    class Meta:
+        model = models.AllNbaTeamsList
+        fields = ('honor_type','players', 'role', 'selections')

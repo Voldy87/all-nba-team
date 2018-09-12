@@ -239,7 +239,7 @@ class SingleHonorsViewSet(viewsets.ModelViewSet):
                     pl_id = l['playerid']
                     info = c.get_Single_PlayerInfo(pl_id)
                     fullname = info["surname"].upper()+ ", " +info["name"]
-                    tmp['players'].append(fullname)
+                    tmp['players'].append({"fullname":fullname})
                 queryset.append(tmp)
         return queryset#.order_by('overall')
 
@@ -273,9 +273,8 @@ class TeamMemberHonorsViewSet(viewsets.ModelViewSet):
                     "player": fullname,
                     "team": aliasId_to_aliasName(l['teamid_id'])
                     })
-                #print()
             queryset.append(tmp)
-        return queryset#.order_by('overall')
+        return queryset
 
 class FranchiseMemberHonorsViewSet(viewsets.ModelViewSet):
     '''Teams, not franchises'''
@@ -317,7 +316,7 @@ class FranchiseMemberHonorsViewSet(viewsets.ModelViewSet):
                 info = c.get_Single_PlayerInfo(str(player))
                 fullname = info["name"] + " " + info["surname"].upper()
                 team = aliasId_to_franchiseName(aliases.pop())
-                tmp["players"].append({"player":fullname,"team":team})
+                tmp["players"].append({"fullname":fullname,"team":team})
             queryset.append(tmp)
         cur.close()
         conn.close()
@@ -377,6 +376,47 @@ class PlayerStreakViewSet(viewsets.ModelViewSet):
         cur.close()
         conn.close()
         return queryset#.order_by('overall')
+
+class PlayerRoleViewSet(viewsets.ModelViewSet):
+    '''Role records'''
+    serializer_class = serializers.RolePlayerSerializer
+    def get_queryset(self):
+        data = models.AllNbaTeamsList.objects.using('data').values('playerid')
+        selections = data.annotate(
+                guard_all           = Count( 'playerid', filter=(                        (Q(role="G")|Q(role__isnull=True)) ) ),
+                guard_first         = Count( 'playerid', filter=( (Q(type=1)          )& (Q(role="G")|Q(role__isnull=True)) ) ),
+                guard_firstsecond   = Count( 'playerid', filter=( (Q(type=1)|Q(type=2))& (Q(role="G")|Q(role__isnull=True)) ) ),
+                forward_all         = Count( 'playerid', filter=(                        (Q(role="F")|Q(role__isnull=True)) ) ),
+                forward_first       = Count( 'playerid', filter=( (Q(type=1)          )& (Q(role="F")|Q(role__isnull=True)) ) ),
+                forward_firstsecond = Count( 'playerid', filter=( (Q(type=1)|Q(type=2))& (Q(role="F")|Q(role__isnull=True)) ) ),
+                center_all          = Count( 'playerid', filter=(                        (Q(role="C")|Q(role__isnull=True)) ) ),
+                center_first        = Count( 'playerid', filter=( (Q(type=1)          )& (Q(role="C")|Q(role__isnull=True)) ) ),
+                center_firstsecond  = Count( 'playerid', filter=( (Q(type=1)|Q(type=2))& (Q(role="C")|Q(role__isnull=True)) ) ),
+            )
+        queryset = list()
+        c = models.NBA_stats()
+        if not c.isUpToDate(): #load every playerId-playerInfo(name,surname,etc.) couples inside redis, if not there
+            c.set_All_PlayerInfo()
+        for spam in ( 'guard_all',   'guard_first',  'guard_firstsecond',
+                      'forward_all', 'forward_first','forward_firstsecond',
+                      'center_all',  'center_first', 'center_firstsecond',
+        ):
+            max_val = selections.aggregate(Max(spam))[spam+"__max"]
+            kwargs = { '{0}'.format(spam): max_val }
+            tmp = dict()
+            tmp['role'], tmp['honor_type'] = spam.split("_")
+            tmp['selections'] = max_val
+            tmp['players'] = list()
+            leaders = list(selections.filter(**kwargs).values('playerid'))
+            for l in leaders:
+                pl_id = l['playerid']
+                info = c.get_Single_PlayerInfo(pl_id)
+                fullname = info["surname"].upper()+ ", " +info["name"]
+                tmp['players'].append({
+                    "fullname": fullname,
+                    })
+            queryset.append(tmp)
+        return queryset
 # ------------ VIEWS -----------
 class HonorsView(viewsets.ViewSet):
     """

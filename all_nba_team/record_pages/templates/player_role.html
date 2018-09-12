@@ -1,0 +1,106 @@
+{% extends "page.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% load i18n_include %}
+
+{% block title %}{% trans "Players selection by role" %}{% endblock %}
+
+{% block head %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/player_role.css' %}" />
+    <style>
+        .layer:after {
+            content:"{% trans 'Players selection by role' %}"
+        }
+    </style> 
+{% endblock %}
+
+{% block content %} 
+    {{ block.super }} 
+{% endblock %}
+
+{% block data %}
+    <div class="honors-list"> 
+        <table cellspacing="0">
+            <tr>
+                <th></th>
+                <th colspan="2">1st Team</th>
+                <th colspan="2">1st+2nd Team</th>
+                <th colspan="2">All</th>
+            </tr>
+            <tr>
+                <td class="role_header">Center</td>
+                <td>{{ data.center_first.selections }}</td>
+                <td>
+                    {% for d in data.center_first.players %}
+                    <div>{{ d.fullname }}</div>
+                    {% endfor %} 
+                </td>
+                <td>{{ data.center_firstsecond.selections }}</td>
+                <td>
+                    {% for d in data.center_firstsecond.players %}
+                    <div>{{ d.fullname }}</div>
+                    {% endfor %} 
+                </td>
+                <td>{{ data.center_all.selections }}</td>
+                <td>
+                    {% for d in data.center_all.players %}
+                    <div>{{ d.fullname }}</div>
+                    {% endfor %} 
+                </td>
+            </tr>
+            <tr>
+                <td class="role_header">Guard</td>
+                <td>{{ data.guard_first.selections }}</td>
+                <td>
+                    {% for d in data.guard_first.players %}
+                    <div>{{ d.fullname }}</div>
+                    {% endfor %} 
+                </td>
+                <td>{{ data.guard_firstsecond.selections }}</td>
+                <td>
+                    {% for d in data.guard_firstsecond.players %}
+                    <div>{{ d.fullname }}</div>
+                    {% endfor %} 
+                </td>
+                <td>{{ data.guard_all.selections }}</td>
+                <td>
+                    {% for d in data.guard_all.players %}
+                    <div>{{ d.fullname }}</div>
+                    {% endfor %} 
+                </td>
+            </tr>
+            <tr>
+                <td class="role_header">Forward</td>
+                <td>{{ data.forward_first.selections }}</td>
+                <td>
+                    {% for d in data.forward_first.players %}
+                    <div>{{ d.fullname }}</div>
+                    {% endfor %} 
+                </td>
+                <td>{{ data.forward_firstsecond.selections }}</td>
+                <td>
+                    {% for d in data.forward_firstsecond.players %}
+                    <div>{{ d.fullname }}</div>
+                    {% endfor %} 
+                </td>
+                <td>{{ data.forward_all.selections }}</td>
+                <td>
+                    {% for d in data.forward_all.players %}
+                    <div>{{ d.fullname }}</div>
+                    {% endfor %} 
+                </td>
+            </tr>
+        </table>
+    </div> 
+{% endblock %}
+
+{% block svgdef %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'script/player_role.js' %}"></script>
+{% endblock %}

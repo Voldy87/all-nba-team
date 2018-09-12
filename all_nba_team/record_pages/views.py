@@ -132,11 +132,11 @@ def franchises(request):
     )
 
 def overall(request):
-    url = request.build_absolute_uri("../../api/franchise_member_selections")
+    url = request.build_absolute_uri("../../api/single_selections")
     data = requests.get(url).json()
     return render(
         request,
-        'teamfranchise_member.html',
+        'overall.html',
         context={
             "data": data,
         }
@@ -175,5 +175,24 @@ def pl_streak(request):
         'streaks_player.html',
         context={
             "data": data,
+        }
+    )
+
+def pl_role(request):
+    url = request.build_absolute_uri("../../api/player_role")
+    data = requests.get(url).json()
+    tmp = dict()
+    for spam in data:
+        key = spam["role"]+"_"+spam["honor_type"]
+        tmp[key] = {
+            "selections": spam["selections"],
+            "players": spam["players"]
+        }
+    print(tmp)
+    return render(
+        request,
+        'player_role.html',
+        context={
+            "data": tmp,
         }
     )

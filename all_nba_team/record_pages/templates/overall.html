@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block content %} 
-    {{ block.super }} 
+    {{ block.super }}  
 {% endblock %}
 
 {% block data %}
@@ -41,7 +41,7 @@
                 <td>{{ d.selections }}</td>
                 <td class="players">
                     {% for p in d.players %}
-                    <div>{{ p }}</div>
+                    <div>{{ p.fullname }}</div>
                     {% endfor %}
                 </td>
             </tr>

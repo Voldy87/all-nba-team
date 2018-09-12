@@ -1,0 +1,94 @@
+/* Smartphones (portrait and landscape) ----------- */
+.page-content-container {
+  padding: 3px;
+  margin: 0px;
+  top: 10%;
+  height: 75%;
+}
+
+@media (min-width: 320px) and (max-width: 413px) {
+  .team {
+    font-size: 5px !important;
+    font-style: oblique;
+  }
+  .selections small {
+    display: none;
+  }
+  .selections b {
+    display: initial;
+  }
+  .stage {
+    top: 6%;
+  }
+  .stage .layer:after {
+    font-size: larger;
+  }
+  .page-content-container {
+    height: 66%;
+    top: 15%;
+    font-size: xx-small;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .team {
+    font-size: 7px !important;
+    font-style: oblique;
+  }
+  .selections small {
+    display: none;
+  }
+  .selections b {
+    display: initial;
+  }
+  .stage .layer:after {
+    font-size: small;
+  }
+  .page-content-container {
+    height: 70%;
+    font-size: x-small;
+  }
+}
+
+.honors-list {
+  max-height: 100%;
+  overflow: auto;
+}
+
+.honors-list table {
+  border-collapse: collapse;
+  width: 100%;
+  background: rgba(121, 121, 121, 0.9);
+  color: white;
+}
+
+.honors-list table td, .honors-list table th {
+  border: 1px solid #96011a;
+  padding: 8px;
+}
+
+.honors-list table th, .honors-list table .role_header {
+  color: white;
+  background-color: #0E499D;
+  text-decoration: underline;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  .honors-list table th, .honors-list table .role_header {
+    font-size: larger;
+  }
+}
+
+.honors-list table th:hover, .honors-list table .role_header:hover {
+  color: #0E499D;
+  background-color: white;
+}
+
+.honors-list table .players div:nth-child(even) {
+  color: #96011a;
+}
+
+.honors-list table .players div:nth-child(odd) {
+  color: #0E499D;
+}
+/*# sourceMappingURL=player_role.css.map */
