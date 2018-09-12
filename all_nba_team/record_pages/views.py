@@ -155,3 +155,25 @@ def team_franchise_member(request):
             "team_data": data1
         }
     )
+
+def pl_streak(request):
+    url = request.build_absolute_uri("../../api/player_streak")
+    data = requests.get(url).json()
+    def modify_period(elem):
+        start = datetime.strptime(elem["period_start"],"%Y-%m-%d")
+        start = start.strftime("%Y")
+        end   = datetime.strptime(elem["period_end"]  ,"%Y-%m-%d")
+        end = end.strftime("%Y")
+        del elem["period_start"], elem["period_end"]
+        elem["period"] = str(start)+"-"+str(end)
+        return elem
+    for spam in data:
+        tmp = map( modify_period , spam["players"] )
+        spam["players"] = list( tmp )
+    return render(
+        request,
+        'streaks_player.html',
+        context={
+            "data": data,
+        }
+    )

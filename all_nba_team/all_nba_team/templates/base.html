@@ -4,17 +4,18 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>{% block title %}HERE THE TITLE{% endblock %}</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="description" content="All-NBA Teams Stats Home Page">
-  <meta name="author" content="Andrea Orlandi">
-  <meta name="web_author" content="Voldy87">
-  <meta name="reply-to" content="allnbateam@voldy87.tk">
-  <meta name="keywords" content="NBA, award, basketball, sport, team, franchise">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex" />
-  <meta name="language" content="{{ LANGUAGE_CODE }}">
-  <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon/favicon.ico' %}"/>
+    <base href="../record_pages/">
+    <title>{% block title %}HERE THE TITLE{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="All-NBA Teams Stats Home Page">
+    <meta name="author" content="Andrea Orlandi">
+    <meta name="web_author" content="Voldy87">
+    <meta name="reply-to" content="allnbateam@voldy87.tk">
+    <meta name="keywords" content="NBA, award, basketball, sport, team, franchise">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex" />
+    <meta name="language" content="{{ LANGUAGE_CODE }}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon/favicon.ico' %}"/>
 
   <link rel="stylesheet" type="text/css" href="{% static 'style/general.css' %}" />
   {% block head %}{% endblock %}
@@ -28,18 +29,18 @@
     <div class="container">
         <nav class="item left">
             <ul class="index">
-                <li><h5><a href="../record_pages/history">{{ _("history")|capfirst }}</a></h5></li>
-                <li><h5><a href="../record_pages/list">{{ _("Winners' list")|capfirst }}</a></h5></li>
+                <li><h5><a href="history">{{ _("history")|capfirst }}</a></h5></li>
+                <li><h5><a href="list">   {{ _("Winners' list")|capfirst }}</a></h5></li>
                 <li><h5>{{ _("records")|capfirst }}</h5>
                     <ul>
                         <li>Single Players
                             <ul>
-                                <li><a href="../record_pages/all_honored">{{ _("Complete list")|capfirst }}</a></li>
-                                <li><a href="../record_pages/10list">{{ _("10 or more selections")|capfirst }}</a></li>
+                                <li><a href="all_honored">{{ _("Complete list")|capfirst }}</a></li>
+                                <li><a href="10list">     {{ _("10 or more selections")|capfirst }}</a></li>
                                 <li>{{ _("Stats Leading")|capfirst }}</li>
                                 <li>{{ _("Rookie primacies")|capfirst }}</li>
-                                <li><a href="../record_pages/overall">{{ _("Overall selections")|capfirst }}</a></li>
-                                <li>{{ _("Selection streaks")|capfirst }}</li>
+                                <li><a href="overall">        {{ _("Overall selections")|capfirst }}</a></li>
+                                <li><a href="players_streaks">{{ _("Selection streaks")|capfirst }}</a></li>
                                 <li>{{ _("Role sorting")|capfirst }}</li>
                                 <li>{{ _("Age primacies")|capfirst }}</li>
                                 <li>{{ _("Choices with single team")|capfirst }}</li>
@@ -48,7 +49,7 @@
                         </li>
                         <li>{{ _("NBA Franchises") }}
                             <ul>
-                                <li>{{ _("List") }}</li>
+                                <li>{{ _("List") }}</li> <!-- selection numbers by franchise, with link to modal with list of players honored-->
                                 <li>{{ _(" Records") }}</li>
                             </ul>
                         </li>

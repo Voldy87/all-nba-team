@@ -264,9 +264,62 @@ class FranchiseMemberHonorsViewSet(viewsets.ModelViewSet):
             queryset.append(tmp)
         cur.close()
         conn.close()
-        print(queryset)
         return queryset#.order_by('overall')
 
+class PlayerStreakViewSet(viewsets.ModelViewSet):
+    '''Streak of consecutive seasons selections, independtly by team/franchise'''
+    serializer_class = serializers.PlayerStreakSerializer
+    def get_queryset(self):
+        c = models.NBA_stats()
+        if not c.isUpToDate(): #load every playerId-playerInfo(name,surname,etc.) couples inside redis, if not there
+            c.set_All_PlayerInfo()
+        db_name = settings.DATABASES['data']['NAME']
+        db_user = settings.DATABASES['data']['USER']
+        db_host = settings.DATABASES['data']['HOST']
+        db_pass = settings.DATABASES['data']['PASSWORD']
+        conn = psycopg2.connect(host=db_host,dbname=db_name,user=db_user,password=db_pass)
+        cur = conn.cursor()
+        queryset = list()
+        for q_type,q_filter in [('Overall','(1,2,3) '),('First','(1) '),('FirstOrSecond','(1,2) ')]:
+            tmp = dict()
+            tmp["team_type"] = q_type
+            tmp["players"] = list()
+            cur.execute(""" 
+            select AAA.*
+            from (
+                select COUNT(A.diff) as  """+q_type+""" , A."PlayerID" as pl_id, MIN(A.y) as start, max(A.y) as end
+                from (
+                        select "PlayerID", extract(year from "year") as Y, row_number() over (partition by "PlayerID" order by "year") as consec, extract(year from "year") - row_number() over (partition by "PlayerID" order by "year") as diff
+                        from public."all-nba-teams_list"
+                        where "type" in  """+q_filter+"""
+                        ) as A
+                group by A."PlayerID",A.diff
+            ) as AAA
+            left outer join (
+            select COUNT(A.diff) as  """+q_type+""" , A."PlayerID" as pl_id, MIN(A.y) as start, max(A.y) as end
+            from (
+                select "PlayerID", extract(year from "year") as Y, row_number() over (partition by "PlayerID" order by "year") as consec, extract(year from "year") - row_number() over (partition by "PlayerID" order by "year") as diff
+                from public."all-nba-teams_list"
+                where "type" in  """+q_filter+"""
+                ) as A
+            group by A."PlayerID",A.diff
+            ) as BBB
+            on AAA."""+q_type+"""  < BBB."""+q_type+""" 
+            where BBB.pl_id is null
+            """)
+            for spam in cur.fetchall():
+                tmp["length"], player, start, end = spam
+                info = c.get_Single_PlayerInfo(str(player))
+                fullname = info["name"] + " " + info["surname"].upper()
+                tmp["players"].append({
+                    "fullname":fullname,
+                    "period_start": date(int(start),1,1),
+                    "period_end": date(int(end),1,1),
+                    })
+            queryset.append(tmp)
+        cur.close()
+        conn.close()
+        return queryset#.order_by('overall')
 # ------------ VIEWS -----------
 class HonorsView(viewsets.ViewSet):
     """

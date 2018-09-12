@@ -8,6 +8,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('url', 'username', 'email', 'is_staff')
 
+class PlayerSerializer(serializers.Serializer):
+    name = serializers.CharField(required=False)
+    surname = serializers.CharField(required=False)
+    fullname = serializers.CharField(required=False)
+    team = serializers.CharField(required=False)
+    period_start = serializers.DateField(required=False)
+    period_end = serializers.DateField(required=False)
+
 class ListSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.AllNbaTeamsList
@@ -70,7 +78,15 @@ class HonoredSerializer(serializers.HyperlinkedModelSerializer):
 class SinglePlayerSerializer(serializers.HyperlinkedModelSerializer):
     team_type = serializers.CharField()
     selections = serializers.IntegerField()
-    players = serializers.ListField()
+    players = PlayerSerializer(many=True)  # A nested list of 'player' items.
     class Meta:
         model = models.AllNbaTeamsList
         fields = ('team_type', 'selections', 'players')
+
+class PlayerStreakSerializer(serializers.HyperlinkedModelSerializer):
+    team_type = serializers.CharField()
+    players = PlayerSerializer(many=True)
+    length = serializers.IntegerField()
+    class Meta:
+        model = models.AllNbaTeamsList
+        fields = ('team_type','players', 'length')

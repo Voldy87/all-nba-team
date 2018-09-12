@@ -1,0 +1,63 @@
+{% extends "page.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% load i18n_include %}
+
+{% block title %}{% trans "Players' streaks" %}{% endblock %}
+
+{% block head %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/streaks_player.css' %}" />
+    <style>
+        .layer:after {
+            content:"{% trans 'Streak of selections for players' %}"
+        }
+    </style> 
+{% endblock %}
+
+{% block content %} 
+    {{ block.super }} 
+{% endblock %}
+
+{% block data %}
+    <div class="honors-list"> 
+        <table cellspacing="0">
+            <tr>
+                <th>Honor</th>
+                <th>Streak</th>
+                <th>Player</th>
+                <th>Seasons</th>
+            </tr>
+            {% for d in data %}
+            <tr> 
+                <td rowspan="{{ d.players|length }}"><i>
+                    {% if d.team_type == "FirstOrSecond" %} 
+                        First &<br>Second 
+                    {% else %}
+                        {{ d.team_type|title }}
+                    {% endif %}                    
+                </i></td>
+                <td rowspan="{{ d.players|length }}">{{ d.length }}</td>
+                <td class="player">{{ d.players.0.fullname }}</td>
+                <td class="period">{{ d.players.0.period }}</td>
+            </tr>
+                {% for p in d.players|slice:"1:" %}
+                <tr>
+                    <td class="player">{{ p.fullname }}</td>
+                    <td class="period">{{ p.period }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+    </div> 
+{% endblock %}
+
+{% block svgdef %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'script/streaks_player.js' %}"></script>
+{% endblock %}
