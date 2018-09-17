@@ -19,11 +19,11 @@ from django.utils.translation import gettext_lazy as _
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #read config gile (private)
-config = configparser.ConfigParser()
-path = os.path.join(os.path.dirname(__file__), '../../config.ini')
-print(path)
-config.read(path)
-print(config.sections())
+is_prod = os.environ.get('IS_HEROKU', None)
+if not is_prod:
+    config = configparser.ConfigParser()
+    path = os.path.join(os.path.dirname(__file__), '../../config.ini')
+    config.read(path)
 
 
 # Quick-start development settings - unsuitable for production
