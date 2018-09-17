@@ -29,5 +29,6 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     # admin page
     url(r'^admin/', admin.site.urls),
+    #https acme challenges
     url(r'^\.well-known/', include('letsencrypt.urls')), #django letsencrpy certbot (https://github.com/urda/django-letsencrypt)
 ]
