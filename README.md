@@ -28,6 +28,9 @@ pipenv shell
 [cd all_nba_team/]
 django-admin compilemessages 
 python3 manage.py runserver
+...
+exit pipenv
+pipenv lock
 
 #tech used
 svg
