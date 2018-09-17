@@ -24,7 +24,18 @@ if not is_prod:
     config = configparser.ConfigParser()
     path = os.path.join(os.path.dirname(__file__), '../../config.ini')
     config.read(path)
-
+else
+    config = {
+        'PROD': {
+            'SecretKey': os.environ.get('SECRET_KEY', None),
+            'DbDefaultHost': os.environ.get('default_db_host', None),
+            'DbDefaultPass': os.environ.get('default_db_pass', None),
+            'DbDataHost': os.environ.get('data_db_host', None),
+            'DbDataPass': os.environ.get('data_db_pass', None),
+            'DbRedisHost': os.environ.get('redis_db_host', None),
+            'DbRedisPass': os.environ.get('redis_db_pass', None),
+        }
+    }
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
