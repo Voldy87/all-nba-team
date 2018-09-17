@@ -1,7 +1,7 @@
 /* Smartphones (portrait and landscape) ----------- */
 @counter-style ball-list {
   system: fixed;
-  symbols: url("../assets/images/ball-bn.svg");
+  symbols: url("../assets/ball-bn.svg");
   suffix: " ";
 }
 
