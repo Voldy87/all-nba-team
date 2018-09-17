@@ -1,0 +1,147 @@
+@import '../../../static/style/mixins.scss';
+$clr:#0E499D;
+$clr2:#96011a;
+.page-footer.adapt {
+    background: $clr;
+    div div{
+        background: rgba(255,255,255,0.4);
+        color: $clr2;
+        font-size: x-small;
+    }
+} 
+.stage {
+    top: 0;
+    left: 5%;
+}
+.seasons-header span {
+    display: none;
+    @include lg {display: initial;}
+}
+.page-content-container.adapt {width:66vw;}
+.page-content-container {
+    top: 10%;
+    @include lg {
+        height: 70vh;
+        width: auto;
+    }
+    @include xs {width: 90vw;}
+    @include sm {width: 90vw;}
+}
+div.decade-choice {
+    span:first-child {
+        display: none;
+        @include lg {display: inherit;}
+    }
+    span:last-child {
+        display: inherit; font-size: xx-small;
+        @include lg {display: none;}
+    }
+    @include lg {
+        padding: 8px;
+        margin: 7px;
+    }
+    
+    @include lg {border: 2px solid $clr2;}
+    border-radius: 10px;
+    display: inline-block;
+    background: rgba(255,255,255,0.4);
+    a {
+        //margin: 0 10px;
+        &:not(:last-child)::after{
+            content: '';
+            background: $clr;
+            width: 10px;
+            height: 10px;
+            border-radius: 20px;
+            display: none;
+            @include lg {display: inline-block;}
+            margin: 0 5px;
+        }
+        &:hover {
+            color: white
+        }
+        &.active {
+            color: white;
+            @include lg {
+                font-size: xx-large;
+            }
+            font-weight: 900;
+            text-decoration: none;
+        }
+    }
+
+}
+.honors-list {
+    height: 100%;
+    overflow-y: scroll;
+}
+.honors-list table {
+    border-collapse: collapse;
+    width: 100%;
+    background: rgba(121,121,121,0.8);
+    color: white;
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    tr:nth-child(even){
+        background-color: $clr;
+        td:hover {color: $clr2;}
+    }
+    tr:nth-child(odd){
+        background-color: $clr2;
+        td:hover {color: $clr;}
+    }
+    td:hover {
+        background-color: white;
+    }
+    th {
+        color: white;
+        text-decoration: underline;
+        @include lg {
+            font-size: larger;
+        }
+        &:hover {
+            color: $clr;
+            background-color: white;
+        }
+    }
+    tr > td[rowspan="5"]~td:nth-child(odd), tr > td:not([rowspan])~td:nth-child(even) { //player
+        font-size: x-small;
+        font-style: italic;
+    }
+    tr:first-child {
+        border-top: 5px solid white;
+        border-left: 5px solid white;
+        border-right: 5px solid white;
+        th {
+            @include lg {
+                font-size: x-large;
+            } // "n" team
+            &:first-child { //season header
+                font-style: italic;
+            }
+            &[rowspan="2"] {border-bottom: 5px solid white;}
+        }
+        td {
+            &:first-child { // season value
+                color: inherit !important;
+            }
+        }
+    }
+    tr:nth-child(2){
+        border-bottom: 5px solid white;
+        border-left: 5px solid white;
+        border-right: 5px solid white;
+    }
+    b {text-transform: uppercase;}
+    td[rowspan="5"] {
+        span:first-child {
+            display: none;
+            @include lg {display: initial;}
+        }
+        span:last-child {
+            @include lg {display: none;}
+        }
+    }
+} 

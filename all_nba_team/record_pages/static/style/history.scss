@@ -1,0 +1,109 @@
+@import '../../../static/style/mixins.scss';
+@import '../../../static/style/colors.scss';
+
+@counter-style ball-list {
+    system: fixed;
+    symbols: url('../assets/images/ball-bn.svg');
+    suffix: " ";
+  }
+
+.history-text {
+    background: linear-gradient($red 80%,white);
+    color: $blue;
+    width: 95%;
+    @include lg {width: 98%;} 
+    height: 95%;
+    margin: 7px auto;
+    border-radius: inherit;
+    padding: 5px 8px;
+    font-size: 10px;
+    @include sm {font-size: smaller;} 
+    @include xs {font-size: small;}
+    h4 {
+        font-weight: bolder;
+        color: white;
+        text-decoration-line: underline;
+        text-decoration-color: $blue;
+        text-decoration-style: double; 
+        margin-top: 8px;
+        margin-bottom: 5px;
+    }
+    p {
+        text-align: justify;
+    }
+    ul {
+        text-align: left;
+        list-style-position: inside;
+        li {font-size: smaller;}
+    }
+    #composition ul {list-style-type: circle; list-style-type: ball-list;}
+    #voting ul {list-style-image: url('../assets/ball-bn.svg');}
+}
+
+.tab-bar {
+    display: none;
+    @include sm {display: block;} 
+    @include xs {display: block;}
+}
+.tab-bar {
+    display: none;
+    @include sm {display: inline-block;} 
+    @include xs {display: inline-block;} 
+    position: relative;
+    top: 2px;
+    right: 1px;
+    z-index: 2;
+    width: 100.4%;
+}
+.tab {
+    border-style: solid;
+    width: 32.4%;
+    border-width: 0;
+    border-color: $red;
+    background: $blue;
+    color: white;
+    //padding: 0 2px;
+    border-radius: 5px 5px 0 0;
+    //margin: 0 2px;
+    display: inline-block;
+    //width: 90px;
+    font-size: smaller;
+    cursor: pointer;
+    &:hover {
+        text-decoration-color: white;
+        text-decoration-line: underline;
+        text-decoration-style: dotted;
+    }
+}
+
+.tab-container {
+    position: relative;
+    color: white;
+    border: 2px solid white;
+    @include lg {
+        border: none;
+    } 
+    padding: 15px 8px 5px 8px;
+    //@include lg {padding: unset;} 
+    line-height: 22px;
+    word-spacing: 2px;
+    display: block;
+    @include sm {
+        display: none;
+        font-size: smaller;
+        line-height: normal;
+        word-spacing: normal;
+    } 
+    @include xs {
+        display: none;
+        font-size: 10px !important;
+        line-height: normal;
+        word-spacing: normal;
+    }
+}
+
+.tab-section {
+    display: block;
+    @include sm {display: none;} 
+    @include xs {display: none;} 
+}

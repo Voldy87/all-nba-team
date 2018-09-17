@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "All-NBA Teams Stats Home Page" %}{% endblock %}
+
+{% block head %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/home.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <div class="linkbutton-direct">
+        <div class="cursor menu__title menu__title--up">
+            <h2>{% trans "List of recipients" %}</h2>
+        </div>
+        <div id="list">
+            <object type="image/svg+xml" data="{% static 'images/group.svg' %}">
+                List <!-- fallback image in CSS -->
+            </object>
+        </div>
+    </div>
+    <div class="linkbutton-expandible">
+        <div class="menu__title menu__title--down">
+            <h2>{{ _("Statistics")|title }} &amp; {{ _("Records")|title }}</h2>
+        </div> 
+        <div class="menu">
+            <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open"/>
+            <label class="menu-open-button" for="menu-open">
+                <span class="hamburger hamburger-1"></span>
+                <span class="hamburger hamburger-2"></span>
+                <span class="hamburger hamburger-3"></span>
+            </label>
+            <a href="#" class="menu-item" content="Other" > <img class="misc" src="{% static 'images/misc.svg' %}" alt="Miscellaneous"> </a>
+            <a href="#" class="menu-item" content="Country"> <img class="flag" src="{% static 'images/flag.svg' %}" alt="Nations"> </a>
+            <a href="#" class="menu-item" content="Draft"> <img class="lottery" src="{% static 'images/lottery.svg' %}" alt="Drafts"> </a>
+            <a href="#" class="menu-item" content="Franchise"> <img class="team" src="{% static 'images/team3.svg' %}" alt="Teams"> </a>
+            <a href="#" class="menu-item" content="Player"> <img class="player" src="{% static 'images/player3.svg' %}" alt="Single players"> </a>
+        </div>
+    </div>
+    <div class="slidesContainer">
+                {% for image in images %}
+                <div class="mySlides">
+                    {% with '/images/'|add:image as image_static %}
+                    <img src="{% static image_static %}" alt="TODO" >
+                    {% endwith %}
+                </div>
+                {% endfor %}
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+              
+                <!-- Here, inside the p, the title of the image -->
+                <div class="caption-container">
+                  <p id="caption"></p>
+                </div>
+              
+                <!-- Thumbnail images -->
+                <div class="row">
+                        {% for image in images %}
+                        <div class="column">
+                            {% with '/images/'|add:image as image_static %}
+                            <img class="demo cursor" style="width:100%" onclick="currentSlide({{ forloop.counter }})" alt="TODO" src="{% static image_static %}">
+                            {% endwith %}
+                        </div>
+                        {% endfor %}
+                </div>
+              </div> 
+        </div>
+
+    </div>
+     <!-- Container for the image gallery -->
+
+   
+
+{% endblock %}
+
+{% block svgdef %}
+    <svg id="filterdef" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+          <filter id="shadowed-goo">
+              <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+              <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+              <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2" result="shadow" />
+              <feOffset in="shadow" dx="1" dy="1" result="shadow" />
+              <feBlend in2="shadow" in="goo" result="goo" />
+              <feBlend in2="goo" in="SourceGraphic" result="mix" />
+          </filter>
+          <filter id="goo">
+              <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+              <feBlend in2="goo" in="SourceGraphic" result="mix" />
+          </filter>
+        </defs>
+    </svg>
+{% endblock %}
+    
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'script/home.js' %}"></script>
+{% endblock %}

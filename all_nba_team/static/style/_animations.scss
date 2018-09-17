@@ -1,0 +1,19 @@
+@keyframes appear {
+    0% {
+      visibility: visible;
+      opacity: 0;
+    }
+    30% {
+      background:$red;
+      opacity: 0;
+    }
+    70% {
+      background:$red;
+      opacity: 0.2;
+    }
+    100% {
+      visibility: visible;
+      opacity: 1;
+      background: url('../images/nba_logo.svg') center bottom no-repeat, linear-gradient($blue,$red,rgba(255, 255, 255, 0.8) 20%) ;
+    }
+  }

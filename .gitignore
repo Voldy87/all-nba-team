@@ -3,3 +3,4 @@
 all_nba_team/.DS_Store
 node_modules
 dist
+config.ini

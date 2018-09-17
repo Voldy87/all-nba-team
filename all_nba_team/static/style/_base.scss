@@ -1,0 +1,54 @@
+
+body {
+    font-family: Bitter, Arial, Helvetica, sans-serif;
+    cursor: url("../images/ball.cur"), url("../images/ball.svg"), url("../images/ball.jpg"), auto !important;
+  }
+  
+  .cursor {
+    cursor: url("../images/ball.cur"), url("../images/ball.svg"), url("../images/ball.jpg"), auto !important;
+    &:hover {
+      cursor: url('../images/ball-hover.png'), auto !important;
+      color: $blue;
+      text-decoration-style: double;
+      text-decoration-color: white;
+      text-decoration-line: underline;    
+  }
+}
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  
+    h2 {
+        @extend .cursor;
+        font-size: 24px;
+        font-weight: 700;
+        display: inline-block;
+        @include xs {
+          font-size: 10px;
+          font-weight: normal;
+          display: inline;
+        }
+        @include sm {
+          font-size: 20px;
+          box-shadow: unset;
+          display: inline;
+        }
+    }
+    h5 {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    h2 a, h5 a {
+      text-decoration: unset;
+      color: inherit;
+    }
+  
+    ul {
+      list-style-type: none;
+    }
+
+
+
+/* Add a pointer when hovering over the thumbnail images */

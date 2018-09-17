@@ -1,0 +1,104 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!doctype html>
+<html lang="en">
+<head>
+    <base href="../record_pages/">
+    <title>{% block title %}HERE THE TITLE{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="All-NBA Teams Stats Home Page">
+    <meta name="author" content="Andrea Orlandi">
+    <meta name="web_author" content="Voldy87">
+    <meta name="reply-to" content="allnbateam@voldy87.tk">
+    <meta name="keywords" content="NBA, award, basketball, sport, team, franchise">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex" />
+    <meta name="language" content="{{ LANGUAGE_CODE }}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon/favicon.ico' %}"/>
+
+  <link rel="stylesheet" type="text/css" href="{% static 'style/general.css' %}" />
+  {% block head %}{% endblock %}
+  
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <nav class="item left">
+            <ul class="index">
+                <li><h5><a href="history">{{ _("history")|capfirst }}</a></h5></li>
+                <li><h5><a href="list">   {{ _("Winners' list")|capfirst }}</a></h5></li>
+                <li><h5>{{ _("records")|capfirst }}</h5>
+                    <ul>
+                        <li>Single Players
+                            <ul>
+                                <li><a href="all_honored">{{ _("Complete list")|capfirst }}</a></li>
+                                <li><a href="10list">     {{ _("10 or more selections")|capfirst }}</a></li>
+                                <li>{{ _("Stats Leading")|capfirst }}</li>
+                                <li>{{ _("Rookie primacies")|capfirst }}</li>
+                                <li><a href="overall">        {{ _("Overall selections")|capfirst }}</a></li>
+                                <li><a href="players_streaks">{{ _("Selection streaks")|capfirst }} </a></li>
+                                <li><a href="players_roles">    {{ _("Role sorting")|capfirst }} </a></li>
+                                <li>{{ _("Age primacies")|capfirst }}</li>
+                                <li>{{ _("Choices with single team")|capfirst }}</li>
+                                <li>{{ _("Choices with multiple teams")|capfirst }}</li>
+                            </ul>
+                        </li>
+                        <li>{{ _("NBA Franchises") }}
+                            <ul>
+                                <li>{{ _("List") }}</li> <!-- selection numbers by franchise, with link to modal with list of players honored-->
+                                <li>{{ _(" Records") }}</li>
+                            </ul>
+                        </li>
+                        <li>{{ _("Winners' nationality") }}
+                            <ul>
+                                <li>{{ _("List") }}</li>
+                                <li>{{ _(" Records") }}</li>
+                            </ul>
+                        </li>
+                        <li><span>Draft classes</span>
+                            <ul>
+                                <li>{{ _("List") }}</li>
+                                <li>{{ _(" Records") }}</li>
+                            </ul>
+                        </li>
+                        <li>Other criteria</li>
+                    </ul>
+                </li>
+                <li><h5>Data &amp; Charts</h5></li>
+                <li><a href="../api"><h5>Public API</h5></a></li>
+                <li><h5>References</h5></li>
+                <li><h5>Useful Links</h5></li>
+                <li><h5>Credits</h5>
+                    <ul class="credits">
+                        <li><a href="#">Assets</a></li>
+                        <span>|</span>
+                        <li><a href="https://voldy87.tk">Author</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="mobile-switch" ></div> {% comment %} onmouseover="toggleH2(); toggleFooter();" onmouseout="toggleH2(); toggleFooter();" {% endcomment %}
+        </nav>
+        <div class="item right">
+            {% include "lang-switch.html" %}
+            {% block content %}HERE THE CONTENT OF THE PAGE{% endblock %}
+            {% block footer %}{% endblock %}
+        </div>
+        {% block svgdef %}{% endblock %}
+    </div>
+     <!-- Container END -->
+     <script src="{% static 'script/general.js' %}" charset="UTF-8" type="application/javascript"></script>
+     {% block script %}{% endblock %}
+</body>
+</html>
+
+<!--
+    
+    credits: lottey icon: <div>Icons made by x<a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+    <div>Icon made from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a> is licensed by CC BY 3.0</div>
+    </div>
+images slideshow: 
+-->

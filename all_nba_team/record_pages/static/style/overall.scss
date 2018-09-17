@@ -1,0 +1,53 @@
+@import '../../../static/style/mixins.scss';
+$clr:#0E499D;
+$clr2:#96011a;
+
+.selections b {display: none }
+@include xs {
+    .selections  {
+        small {
+            display: none;
+        }
+        b {
+            display: initial;
+        }
+    }
+    .stage .layer:after{font-size:20px;}
+}
+.page-content-container {
+    padding: 5px;
+    top: 15%;
+}
+.honors-list {
+    max-height: 100%;
+    overflow: auto;
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background: rgba(121,121,121,0.9);
+        color: white;
+        td, th {
+            border: 1px solid $clr2;
+            padding: 8px;
+        }
+        tr:hover {
+            background-color: $clr2;
+        }
+        th {
+            color: white;
+            background-color: $clr;
+            text-decoration: underline;
+            @include lg {
+                font-size: larger;
+            }
+            &:hover {
+                color: $clr;
+                background-color: white;
+            }
+        }
+        .players {
+            div:nth-child(even){color: $clr2}
+            div:nth-child(odd){color: $clr}
+        }
+    } 
+}

@@ -1,0 +1,75 @@
+@import '../../../static/style/mixins.scss';
+$clr:#0E499D;
+$clr2:#96011a;
+
+.selections b {display: none }
+.stage .layer:after{font-size:20px;}
+.page-content-container {
+    padding: 5px;
+    top: 10%;
+    height: 75%;
+}
+@include xs {
+    .team {
+        font-size: 5px !important;
+        font-style: oblique;
+    }
+    .selections  {
+        small {display: none;}
+        b {display: initial;}
+    }
+    .stage {
+        top: 6%;
+        .layer:after{font-size: small;}
+    }
+    .page-content-container {
+        height: 70%;
+        font-size: xx-small;
+    }
+}
+@include sm {
+    .team {
+        font-size: 7px !important;
+        font-style: oblique;
+    }
+    .selections  {
+        small {display: none;}
+        b {display: initial;}
+    }
+    .stage .layer:after{font-size: small;}
+    .page-content-container {
+        height: 70%;
+        font-size: x-small; 
+    }
+}
+
+.honors-list {
+    max-height: 100%;
+    overflow: auto;
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background: rgba(121,121,121,0.9);
+        color: white;
+        td, th {
+            border: 1px solid $clr2;
+            padding: 8px;
+        }
+        th {
+            color: white;
+            background-color: $clr;
+            text-decoration: underline;
+            @include lg {
+                font-size: larger;
+            }
+            &:hover {
+                color: $clr;
+                background-color: white;
+            }
+        }
+        .players {
+            div:nth-child(even){color: $clr2}
+            div:nth-child(odd){color: $clr}
+        }
+    } 
+}
