@@ -24,6 +24,12 @@
   }
 }
 
+@media (min-width: 1480px) {
+  .seasons-header span {
+    display: initial;
+  }
+}
+
 .page-content-container.adapt {
   width: 66vw;
 }
@@ -35,6 +41,13 @@
 @media (min-width: 1024px) and (max-width: 1479px) {
   .page-content-container {
     height: 70vh;
+    width: auto;
+  }
+}
+
+@media (min-width: 1480px) {
+  .page-content-container {
+    height: 72vh;
     width: auto;
   }
 }
@@ -54,7 +67,7 @@
 div.decade-choice {
   border-radius: 10px;
   display: inline-block;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.6);
 }
 
 div.decade-choice span:first-child {
@@ -62,6 +75,12 @@ div.decade-choice span:first-child {
 }
 
 @media (min-width: 1024px) and (max-width: 1479px) {
+  div.decade-choice span:first-child {
+    display: inherit;
+  }
+}
+
+@media (min-width: 1480px) {
   div.decade-choice span:first-child {
     display: inherit;
   }
@@ -78,16 +97,26 @@ div.decade-choice span:last-child {
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1479px) {
-  div.decade-choice {
-    padding: 8px;
-    margin: 7px;
+@media (min-width: 1480px) {
+  div.decade-choice span:last-child {
+    display: none;
   }
 }
 
 @media (min-width: 1024px) and (max-width: 1479px) {
   div.decade-choice {
+    padding: 8px;
+    margin: 7px;
     border: 2px solid #96011a;
+  }
+}
+
+@media (min-width: 1480px) {
+  div.decade-choice {
+    padding: 12px;
+    margin: 10px;
+    border: 4px solid #96011a;
+    font-size: 30px;
   }
 }
 
@@ -104,6 +133,16 @@ div.decade-choice a:not(:last-child)::after {
 @media (min-width: 1024px) and (max-width: 1479px) {
   div.decade-choice a:not(:last-child)::after {
     display: inline-block;
+    width: 15px;
+    height: 15px;
+  }
+}
+
+@media (min-width: 1480px) {
+  div.decade-choice a:not(:last-child)::after {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -112,7 +151,7 @@ div.decade-choice a:hover {
 }
 
 div.decade-choice a.active {
-  color: white;
+  color: #96011a;
   font-weight: 900;
   text-decoration: none;
 }
@@ -123,9 +162,21 @@ div.decade-choice a.active {
   }
 }
 
+@media (min-width: 1480px) {
+  div.decade-choice a.active {
+    font-size: 50px;
+  }
+}
+
 .honors-list {
   height: 100%;
   overflow-y: scroll;
+}
+
+@media (min-width: 1480px) {
+  .honors-list {
+    font-size: xx-large;
+  }
 }
 
 .honors-list table {
@@ -171,13 +222,20 @@ div.decade-choice a.active {
   }
 }
 
+@media (min-width: 1480px) {
+  .honors-list table th {
+    font-size: x-large;
+  }
+}
+
 .honors-list table th:hover {
   color: #0E499D;
   background-color: white;
 }
 
-.honors-list table tr > td[rowspan="5"] ~ td:nth-child(odd), .honors-list table tr > td:not([rowspan]) ~ td:nth-child(even) {
-  font-size: x-small;
+.honors-list table tr > td[rowspan="5"] ~ td:nth-child(odd),
+.honors-list table tr > td:not([rowspan]):first-child ~ td:nth-child(even) {
+  font-size: 50%;
   font-style: italic;
 }
 
@@ -188,6 +246,12 @@ div.decade-choice a.active {
 }
 
 @media (min-width: 1024px) and (max-width: 1479px) {
+  .honors-list table tr:first-child th {
+    font-size: x-large;
+  }
+}
+
+@media (min-width: 1480px) {
   .honors-list table tr:first-child th {
     font-size: x-large;
   }
@@ -225,7 +289,19 @@ div.decade-choice a.active {
   }
 }
 
+@media (min-width: 1480px) {
+  .honors-list table td[rowspan="5"] span:first-child {
+    display: initial;
+  }
+}
+
 @media (min-width: 1024px) and (max-width: 1479px) {
+  .honors-list table td[rowspan="5"] span:last-child {
+    display: none;
+  }
+}
+
+@media (min-width: 1480px) {
   .honors-list table td[rowspan="5"] span:last-child {
     display: none;
   }

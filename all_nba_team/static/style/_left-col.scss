@@ -1,3 +1,5 @@
+@import './mixins';
+
 $ball-icn-size:13px;
 
 .item.left {
@@ -21,15 +23,9 @@ $ball-icn-size:13px;
     &:hover {
       flex-grow: 30;
       width: 45%;
-      @include xs {
-        width: 50%;
-      }
-      @include sm {
-        width: auto;
-      }
-      @include xl {
-        width: 10%;
-      }
+      @include xs {width: 50%;}
+      @include sm {width: auto;}
+      @include xl {width: 20%;}
       cursor: pointer;
       ul.index {
         background: white;
@@ -47,12 +43,8 @@ $ball-icn-size:13px;
 ul.index {
     visibility: hidden;
     overflow-y: auto;
-    @include xs {
-      width: 88%;
-    }
-    @include sm {
-      width: 88%;
-    }
+    @include xs {width: 88%;}
+    @include sm {width: 88%;}
     padding: 15px 2px;
     line-height: 45px;
     @include xs {
@@ -81,22 +73,36 @@ ul.index {
     margin: 10px 3px;
     background-color: rgba(245, 236, 236, 0.8);
     font-size: 17px;
+    @include lg {font-size: 25px;}
+    @include xl {font-size: 30px;} 
   }
   ul.index h5 {
     font-size: $ball-icn-size;
+    @include lg {font-size: 2*$ball-icn-size;}
+    @include xl {font-size: 2.5*$ball-icn-size;}
     &:hover {
       color: $red;
       text-decoration: $blue underline dashed;
     } 
   }
   
-  ul.index h5::before, ul.index h5::after {
+  ul.index h5::before, ul.index h5::after { // rotating ball on sides
     content:'';
     width: $ball-icn-size;
     height: $ball-icn-size;
+    @include lg {
+      width: 1.1*$ball-icn-size;
+      height: 1.1*$ball-icn-size;
+    }
+    @include xl {
+      width: 1.4*$ball-icn-size;
+      height: 1.4*$ball-icn-size;
+    }
     display: inline-block;
     background-image: url("../images/ball.svg");
     background-size: $ball-icn-size $ball-icn-size;
+    @include lg {background-size: 1.1*$ball-icn-size 1.1*$ball-icn-size;}
+    @include xl {background-size: 1.4*$ball-icn-size 1.4*$ball-icn-size;}
     background-repeat: no-repeat; 
     transition: transform 5s;
     @include xs {display: none;}
@@ -113,6 +119,8 @@ ul.index {
   ul.index ::after {margin-left:5px}
   ul.index > li li {
     font-size: 12px;
+    @include lg {font-size: 15px;}
+    @include xl {font-size: 20px;}
     line-height: 25px;
   }
   ul.index > li > ul > :not(:last-child)::after{ /*:not(ul:last-child)*/
@@ -128,8 +136,12 @@ ul.index {
   
   ul.index > li li li {
     font-size: 8px;
+    @include lg {font-size: 12px;}
+    @include xl {font-size: 18px;}
     font-style: italic;
     line-height: 12px;
+    @include lg {line-height: 20px;}
+    @include xl {line-height: 30px;}
     @include lg { 
         display: inline-block;
         width: 45%; 
