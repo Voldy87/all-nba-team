@@ -106,6 +106,7 @@ ul {
 }
 
 /* Add a pointer when hovering over the thumbnail images */
+/* Smartphones (portrait and landscape) ----------- */
 .item.left {
   -webkit-transition: all ease-out 800ms forwards;
   transition: all ease-out 800ms forwards;
@@ -165,7 +166,7 @@ ul {
 
 @media (min-width: 1480px) {
   .item.left:hover {
-    width: 10%;
+    width: 20%;
   }
 }
 
@@ -244,8 +245,32 @@ ul.index > li {
   font-size: 17px;
 }
 
+@media (min-width: 1024px) and (max-width: 1479px) {
+  ul.index > li {
+    font-size: 25px;
+  }
+}
+
+@media (min-width: 1480px) {
+  ul.index > li {
+    font-size: 30px;
+  }
+}
+
 ul.index h5 {
   font-size: 13px;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  ul.index h5 {
+    font-size: 26px;
+  }
+}
+
+@media (min-width: 1480px) {
+  ul.index h5 {
+    font-size: 32.5px;
+  }
 }
 
 ul.index h5:hover {
@@ -266,6 +291,32 @@ ul.index h5::before, ul.index h5::after {
   transition: -webkit-transform 5s;
   transition: transform 5s;
   transition: transform 5s, -webkit-transform 5s;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  ul.index h5::before, ul.index h5::after {
+    width: 14.3px;
+    height: 14.3px;
+  }
+}
+
+@media (min-width: 1480px) {
+  ul.index h5::before, ul.index h5::after {
+    width: 18.2px;
+    height: 18.2px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  ul.index h5::before, ul.index h5::after {
+    background-size: 14.3px 14.3px;
+  }
+}
+
+@media (min-width: 1480px) {
+  ul.index h5::before, ul.index h5::after {
+    background-size: 18.2px 18.2px;
+  }
 }
 
 @media (min-width: 320px) and (max-width: 413px) {
@@ -312,6 +363,18 @@ ul.index > li li {
   line-height: 25px;
 }
 
+@media (min-width: 1024px) and (max-width: 1479px) {
+  ul.index > li li {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1480px) {
+  ul.index > li li {
+    font-size: 20px;
+  }
+}
+
 ul.index > li > ul > :not(:last-child)::after {
   /*:not(ul:last-child)*/
   content: '';
@@ -329,6 +392,30 @@ ul.index > li li li {
   font-size: 8px;
   font-style: italic;
   line-height: 12px;
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  ul.index > li li li {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1480px) {
+  ul.index > li li li {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1479px) {
+  ul.index > li li li {
+    line-height: 20px;
+  }
+}
+
+@media (min-width: 1480px) {
+  ul.index > li li li {
+    line-height: 30px;
+  }
 }
 
 @media (min-width: 1024px) and (max-width: 1479px) {

@@ -23,6 +23,7 @@ HTTP/1.1 401 Unauthorized
 
 #deploygit ch (auto deploy heroku on master)
 (in django root)
+brew switch python 3.6.5
 pipenv shell
 [cd all_nba_team/]
 django-admin compilemessages 
