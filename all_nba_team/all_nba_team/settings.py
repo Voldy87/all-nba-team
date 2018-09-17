@@ -24,7 +24,7 @@ if not is_prod:
     config = configparser.ConfigParser()
     path = os.path.join(os.path.dirname(__file__), '../../config.ini')
     config.read(path)
-else
+else:
     config = {
         'PROD': {
             'SecretKey': os.environ.get('SECRET_KEY', None),
