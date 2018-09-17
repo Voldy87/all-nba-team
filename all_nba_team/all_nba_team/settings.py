@@ -63,11 +63,7 @@ INSTALLED_APPS = [
     'api',
     'record_pages',
     'splashome', # voldy87 & site-specific splash, home page
-<<<<<<< HEAD
-    'letsencrypt',
-=======
     'letsencrypt', #for django certbot acme challenge
->>>>>>> a312d02d729fc837ef02cbb2d0c2f071fb918a44
 ]
 
 MIDDLEWARE = [
