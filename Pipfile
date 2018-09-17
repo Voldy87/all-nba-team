@@ -6,6 +6,10 @@ name = "pypi"
 [packages]
 django-heroku = "*"
 gunicorn = "*"
+requests = "*"
+fake-useragent = "*"
+selenium = "*"
+redis = "*"
 
 [dev-packages]
 pylint = "*"

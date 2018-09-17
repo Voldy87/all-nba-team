@@ -1,0 +1,91 @@
+{% extends "page.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% load i18n_include %}
+
+{% block title %}{% trans "All-NBA Teams Recipients" %}{% endblock %}
+
+{% block head %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/list.css' %}" />
+    <style>
+        .layer:after {
+            content:"{% trans 'Selections' %}"
+        }
+    </style> 
+{% endblock %}
+
+{% block content %} 
+    {{ block.super }} 
+{% endblock %}
+
+{% block data %}
+    <div class="decade-choice">
+    {% for decade in intervals %}
+        <a class="{% if index == forloop.counter0 %}active{% endif %}" href="./list?start={{ decade|slice:'0:4' }}&index={{forloop.counter0}}">
+            <span>{{ decade }}</span>
+            <span>{{ decade|slice:'0:4' }}'s</span>
+        </a> 
+    {% endfor %}
+    </div>
+    <div class="honors-list"> 
+        <table>
+            <tr>
+                <th rowspan="2" class="seasons-header"><span>Seasons</span></th>
+                <th colspan="2">First team</th>
+                <th colspan="2">Second team</th>
+                {% if teams == 3 %}<th colspan="2">Third team</th> {% endif %}
+            </tr>
+            <tr>
+                <th>Player</th>
+                <th>Team</th>
+                <th>Player</th>
+                <th>Team</th>
+            {% if teams == 3 %}
+                <th>Player</th>
+                <th>Team</th>
+            {% endif %}
+            </tr>
+            
+            {% for s in selections %}
+                {% if s.all %} <!-- player honored without regard to their role -->
+                    <tr>
+                        <td rowspan="5">
+                            <span>{{s.season}}</span>
+                            <span>{{s.season|slice:'-5:-3'}}<br>{{s.season|slice:'-2:'}}</span>
+                        </td>
+                        {% for d in s.all.0 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %}
+                    </tr>
+                    <tr> {% for d in s.all.1 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %} </tr>
+                    <tr> {% for d in s.all.2   %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %} </tr>
+                    <tr> {% for d in s.all.3 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %} </tr>
+                    <tr> {% for d in s.all.4 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %} </tr>
+                {% else %} <!-- this year the player are honored by role -->
+                    <tr>
+                        <td rowspan="5">
+                            <span>{{s.season}}</span>
+                            <span>{{s.season|slice:'-5:-3'}}<br>{{s.season|slice:'-2:'}}</span>
+                        </td>
+                        {% for d in s.F.0 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %}
+                    </tr>
+                    <tr> {% for d in s.F.1 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %} </tr>
+                    <tr> {% for d in s.C   %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %} </tr>
+                    <tr> {% for d in s.G.0 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %} </tr>
+                    <tr> {% for d in s.G.1 %} <td>{{d.0|safe}}</td><td>{{d.1}}</td> {% endfor %} </tr>
+                {% endif %}
+            {% endfor %}
+            
+            </table>
+
+    </div> 
+{% endblock %}
+
+{% block svgdef %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'script/list.js' %}"></script>
+{% endblock %}

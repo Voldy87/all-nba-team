@@ -1,0 +1,59 @@
+{% extends "page.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% load i18n_include %}
+
+{% block title %}{% trans "Leaders in selections" %}{% endblock %}
+
+{% block head %} 
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'style/overall.css' %}" />
+    <style>
+        .layer:after {
+            content:"{% trans 'Selections leaders' %}"
+        }
+    </style> 
+{% endblock %}
+
+{% block content %} 
+    {{ block.super }}  
+{% endblock %}
+
+{% block data %}
+    <div class="honors-list"> 
+        <table cellspacing="0">
+            <tr>
+                <th>Honor</th>
+                <th class="selections"><small>Selections</small><b>#</b></th>
+                <th>Player(s)</th>
+            </tr>
+            {% for d in data %}
+            <tr> 
+                <td><i>
+                    {% if d.team_type == "first_second" %} 
+                        First &<br>Second 
+                    {% else %}
+                        {{ d.team_type|title }}
+                    {% endif %}                    
+                </i></td>
+                <td>{{ d.selections }}</td>
+                <td class="players">
+                    {% for p in d.players %}
+                    <div>{{ p.fullname }}</div>
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div> 
+{% endblock %}
+
+{% block svgdef %}
+{% endblock %}
+
+{% block script %}
+    {{ block.super }}
+    <script src="{% static 'script/overall.js' %}"></script>
+{% endblock %}

@@ -30,10 +30,10 @@ $clr2:#96011a;
             font-size: 70px;
             @include xs {
                 font-size: 35px;
-              }
-              @include sm {
+            }
+            @include sm {
                 font-size: 55px;
-              }
+            }
             position: absolute;
             left: 0; right: 0;
             color: darken($clr2, 4%);
@@ -95,6 +95,7 @@ $clr2:#96011a;
         //content: "";
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center;
         background-image: url("../assets/basket-sky-lg.jpg");
         @include xs {
             background-image: url("../assets/basket-sky-sm.jpg");

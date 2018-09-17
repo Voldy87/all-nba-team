@@ -28,6 +28,7 @@
   transition: all 800ms ease-out;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   background-image: url("../assets/basket-sky-lg.jpg");
   opacity: 0.5;
   background-repeat: no-repeat;

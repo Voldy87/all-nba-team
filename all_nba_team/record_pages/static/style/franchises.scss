@@ -1,0 +1,104 @@
+@import '../../../static/style/mixins.scss';
+$clr:#0E499D;
+$clr2:#96011a;
+
+@include xs {
+    .container .item {width: 75vw;}
+    .page-content-container {
+        height: 57vh!important;
+        width: 84vw;
+        top: 21%;
+        margin: 0;
+    }
+    body{ font-size: xx-small;}
+    .stage {
+        left: 4%; 
+        top:5%;
+        .layer::after{font-size: 28px;}
+    }
+    .page-footer {
+        bottom: 4%;
+        div div {font-size: xx-small !important;}
+    }
+    th {font-size: 7px;}
+    td.old_names span{font-size: 5px !important;}
+    .longtext div{
+        display: none;
+        &:nth-child(2){display: initial;}
+   }
+}
+@include sm {
+    .container .item {width: 75vw;}
+    .page-content-container {
+        height: 55vh!important;
+        width: 84vw;
+        top: 20%;
+    }
+    body{ font-size: x-small;}
+    .stage {
+        left: 4%; 
+        top:5%;
+        .layer::after{font-size: 31px;}
+    }
+    th {font-size: 7px;}
+    td.old_names span{font-size: 8px !important;}
+    .longtext div{
+         display: none;
+         &:nth-child(2){display: initial;}
+    }
+}
+@include lg {
+    .page-content-container {
+        height: 60vh;
+        top: 10%;
+        overflow: scroll;
+        height: 80%;
+    }
+}
+@include xl {
+    .page-content-container {
+        font-size: x-large;
+        top: 12%;
+        overflow: scroll;
+        height: 75%;
+    }
+}
+.page-content-container {padding: 5px;}
+td.old_names {
+    span {
+        display: block;
+        font-size: xx-small;
+        font-style: oblique;
+    }
+}
+.honors-list {
+    max-height: 100%;
+    overflow: auto;
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background: rgba(121,121,121,0.2);
+        color: white;
+        td, th {
+            border: 1px solid $clr2;
+            padding: 8px;
+        }
+        tr:hover {
+            background-color: $clr2;
+        }
+        th {
+            color: white;
+            padding: 0;
+            background-color: $clr2;
+            text-decoration: underline;
+            &:hover {
+                color: $clr;
+                background-color: white;
+            }
+        }
+        .longtext, .under_th {font-size: smaller!important;}
+        .under_th th {
+            text-decoration: none;
+        }
+    } 
+}
