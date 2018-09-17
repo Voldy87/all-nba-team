@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'api',
     'record_pages',
     'splashome', # voldy87 & site-specific splash, home page
+    'letsencrypt',
 ]
 
 MIDDLEWARE = [
