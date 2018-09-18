@@ -29,7 +29,7 @@
                 <th>Honor</th>
                 <th class="selections"><small>Selections</small><b>#</b></th>
                 <th>Player</th>
-                <th>Team</th>
+                <th>Franchise</th>
             </tr>
             {% for d in franchise_data %}
             <tr> 
@@ -41,12 +41,12 @@
                     {% endif %}                    
                 </i></td>
                 <td rowspan="{{ d.players|length }}">{{ d.selections }}</td>
-                <td class="player">{{ d.players.0.player }}</td>
+                <td class="player">{{ d.players.0.fullname }}</td>
                 <td class="team">{{ d.players.0.team }}</td>
             </tr>
                 {% for p in d.players|slice:"1:" %}
                 <tr>
-                    <td class="player">{{ p.player }}</td>
+                    <td class="player">{{ p.fullname }}</td>
                     <td class="team">{{ p.team }}</td>
                 </tr>
                 {% endfor %}
@@ -70,12 +70,12 @@
                     {% endif %}                    
                 </i></td>
                 <td rowspan="{{ d.players|length }}">{{ d.selections }}</td>
-                <td class="player">{{ d.players.0.player }}</td>
+                <td class="player">{{ d.players.0.fullname }}</td>
                 <td class="team">{{ d.players.0.team }}</td>
             </tr>
                 {% for p in d.players|slice:"1:" %}
                 <tr>
-                    <td class="player">{{ p.player }}</td>
+                    <td class="player">{{ p.fullname }}</td>
                     <td class="team">{{ p.team }}</td>
                 </tr>
                 {% endfor %}

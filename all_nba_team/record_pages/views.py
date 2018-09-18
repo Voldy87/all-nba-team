@@ -188,7 +188,6 @@ def pl_role(request):
             "selections": spam["selections"],
             "players": spam["players"]
         }
-    print(tmp)
     return render(
         request,
         'player_role.html',

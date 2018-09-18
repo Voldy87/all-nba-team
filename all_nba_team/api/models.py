@@ -56,12 +56,19 @@ def load__player_data(id:str):
     response = requests.get(url, headers=headers)
     data = response.json()['resultSets'][0]['rowSet'][0]
     name,surname = data[1:3]
+    dob = data[6]
     country,role = data[8], data[14]
+    d_y, d_r, d_n = data[26:29]
     info = { 
         "name":name,
         "surname":surname, 
         "country":country, 
         "role":role, 
+        "draft":{
+            "year":d_y,
+            "round":d_r,
+            "number":d_n
+        }
     }
     return(info)
     

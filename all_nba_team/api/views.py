@@ -270,10 +270,11 @@ class TeamMemberHonorsViewSet(viewsets.ModelViewSet):
                 info = c.get_Single_PlayerInfo(pl_id)
                 fullname = info["surname"].upper()+ ", " +info["name"]
                 tmp['players'].append({
-                    "player": fullname,
+                    "fullname": fullname,
                     "team": aliasId_to_aliasName(l['teamid_id'])
                     })
             queryset.append(tmp)
+            print(tmp)
         return queryset
 
 class FranchiseMemberHonorsViewSet(viewsets.ModelViewSet):
