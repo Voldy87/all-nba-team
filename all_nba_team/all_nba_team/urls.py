@@ -16,18 +16,22 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.urls import include, path
 from django.contrib import admin
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse("W7Z81KgQ-Rt5uPHUlRDWwuuhSiU-Dt-zY8ELJhfC05Y.afiEOhroSFWLh0vH7GO6GHJt3sWscU1IxaDZ1JLL6kU")
 
 urlpatterns = [
     # i18n
     path('i18n/', include('django.conf.urls.i18n')),
     # django rest framework browsable api
     url(r'^api/', include('api.urls')),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')), 
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # standard pages
     url(r'^', include('splashome.urls')),
     path('record_pages/', include('record_pages.urls')),
     path('polls/', include('polls.urls')),
     # admin page
     url(r'^admin/', admin.site.urls),
-    url(r'^\.well-known/', include('letsencrypt.urls')),
+    url(r'^\.well-known/acme-challenge/W7Z81KgQ-Rt5uPHUlRDWwuuhSiU-Dt-zY8ELJhfC05Y', index),
 ]
