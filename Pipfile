@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 django-heroku = "*"
 djangorestframework = "*"
+django-letsencrypt = "*"
 gunicorn = "*"
 letsencrypt = "*"
 requests = "*"

@@ -22,6 +22,10 @@ HTTP/1.1 401 Unauthorized
 }
 
 #deploygit ch (auto deploy heroku on master)
+Heroku knows that your app is a Python app by the existence of one of two files in the root of your application:
+    setup.py
+    requirements.txt
+If one of these files aren’t present in the root of your repository, the Python buildpack will fail to detect your application.
 (in django root)
 brew switch python 3.6.5
 pipenv shell
